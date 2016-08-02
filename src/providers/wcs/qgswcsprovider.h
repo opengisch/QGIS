@@ -154,7 +154,7 @@ class QgsWcsProvider : public QgsRasterDataProvider, QgsGdalProviderBase
     void readBlock( int theBandNo, int xBlock, int yBlock, void *block ) override;
 
     /** Download cache */
-    void getCache( int bandNo, QgsRectangle  const & viewExtent, int width, int height, QString crs = QString(), QgsRasterBlockFeedback* feedback = nullptr ) const;
+    void getCache( int bandNo, QgsRectangle  const & viewExtent, int width, int height, QString crs = QString(), QgsRasterBlockFeedback* feedback = nullptr );
 
     /** Return the extent for this data layer
      */
