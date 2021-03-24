@@ -23,7 +23,7 @@
 #include <QNetworkRequest>
 #include <QStringList>
 #include <QUrl>
-#include <QMutex>
+#include <QRecursiveMutex>
 
 #include "qgis_core.h"
 
@@ -173,7 +173,6 @@ class CORE_EXPORT QgsAuthMethod : public QObject
      * \note Non-public since this is an abstract base class
      */
     explicit QgsAuthMethod()
-      : mMutex( QMutex::RecursionMode::Recursive )
     {}
 
 
@@ -191,8 +190,7 @@ class CORE_EXPORT QgsAuthMethod : public QObject
     QgsAuthMethod::Expansions mExpansions = QgsAuthMethod::Expansions();
     QStringList mDataProviders;
     int mVersion = 0;
-    QMutex mMutex;
-
+    QRecursiveMutex mMutex;
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS( QgsAuthMethod::Expansions )
 
