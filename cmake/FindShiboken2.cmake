@@ -41,7 +41,7 @@ if(SHIBOKEN2_PRIV_FOUND)
     set(SHIBOKEN_LIBRARY ${SHIBOKEN2_PRIV_LINK_LIBRARIES})
 else()
     execute_process(
-        COMMAND ${Python3_EXECUTABLE} -c "if True:
+        COMMAND python3 -c "if True:
            import os
            try:
             import shiboken2_generator
@@ -53,7 +53,7 @@ else()
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
     execute_process(
-        COMMAND ${Python3_EXECUTABLE} -c "if True:
+        COMMAND python3 -c "if True:
            import os
            try:
             import shiboken2
@@ -65,7 +65,7 @@ else()
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
     execute_process(
-        COMMAND ${Python3_EXECUTABLE} -c "if True:
+        COMMAND python3 -c "if True:
            import os
            import shiboken2
            print(';'.join(filter(None, map(str, shiboken2.__version_info__))))
@@ -138,7 +138,7 @@ else()
         # On Windows we must link to python3.dll that is a small library that links against python3x.dll
         # that allow us to choose any python3x.dll at runtime
         execute_process(
-            COMMAND ${Python3_EXECUTABLE} -c "if True:
+            COMMAND python3 -c "if True:
                 for lib in '${Python3_LIBRARIES}'.split(';'):
                     if '/' in lib:
                         prefix, py = lib.rsplit('/', 1)

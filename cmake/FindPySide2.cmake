@@ -47,7 +47,7 @@ else()
     get_filename_component(PYTHON_LIBRARY_FILENAME ${PYTHON_LIBRARY_FILENAME} NAME)
 
     execute_process(
-        COMMAND ${Python3_EXECUTABLE} -c "if True:
+        COMMAND python3 -c "if True:
            import os, sys
            try:
             import PySide2.QtCore as QtCore
@@ -63,7 +63,7 @@ else()
     if(PYSIDE2_BASEDIR)
         set(PYSIDE_BASEDIR ${PYSIDE2_BASEDIR} CACHE PATH "Top level install of PySide2" FORCE)
         execute_process(
-            COMMAND ${Python3_EXECUTABLE} -c "if True:
+            COMMAND python3 -c "if True:
                import os
                import PySide2.QtCore as QtCore
                print(os.path.basename(QtCore.__file__).split('.', 1)[1])
@@ -73,7 +73,7 @@ else()
         )
 
         execute_process(
-            COMMAND ${Python3_EXECUTABLE} -c "if True:
+            COMMAND python3 -c "if True:
                import os
                import PySide2.QtCore as QtCore
                print(';'.join(map(str, QtCore.__version_info__)))
