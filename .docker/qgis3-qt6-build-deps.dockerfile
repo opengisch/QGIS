@@ -26,12 +26,10 @@ RUN dnf -y install \
     qt6-qt5compat-devel \
     spatialindex-devel \
     sqlite-devel \
-    unzip \
-    wget
+    unzip
 
-
-RUN dnf -y install wget openssl-devel && cd /usr/src \
-  && wget https://github.com/KDE/qca/archive/refs/heads/qt6.zip \
+RUN dnf -y install openssl-devel && cd /usr/src \
+  && curl https://github.com/KDE/qca/archive/refs/heads/qt6.zip --output qt6.zip \
   && unzip qt6.zip \
   && cd qca-qt6 \
   && cmake -DCMAKE_INSTALL_PREFIX=/usr -GNinja \
