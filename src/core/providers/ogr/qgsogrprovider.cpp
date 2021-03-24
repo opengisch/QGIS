@@ -6429,7 +6429,7 @@ bool QgsOgrProviderMetadata::saveStyle(
   if ( !userLayer )
     return false;
 
-  QMutex *mutex = nullptr;
+  QRecursiveMutex *mutex = nullptr;
   OGRLayerH hUserLayer = userLayer->getHandleAndMutex( mutex );
   GDALDatasetH hDS = userLayer->getDatasetHandleAndMutex( mutex );
   QMutexLocker locker( mutex );
@@ -6641,7 +6641,7 @@ bool QgsOgrProviderMetadata::deleteStyleById( const QString &uri, QString styleI
   if ( !userLayer )
     return false;
 
-  QMutex *mutex = nullptr;
+  QRecursiveMutex *mutex = nullptr;
   GDALDatasetH hDS = userLayer->getDatasetHandleAndMutex( mutex );
   QMutexLocker locker( mutex );
 
@@ -6722,9 +6722,9 @@ QString QgsOgrProviderMetadata::loadStyle( const QString &uri, QString &errCause
     return QString();
   }
 
-  QMutex *mutex1 = nullptr;
+  QRecursiveMutex *mutex1 = nullptr;
   OGRLayerH hLayer = layerStyles->getHandleAndMutex( mutex1 );
-  QMutex *mutex2 = nullptr;
+  QRecursiveMutex *mutex2 = nullptr;
   OGRLayerH hUserLayer = userLayer->getHandleAndMutex( mutex2 );
   QMutexLocker lock1( mutex1 );
   QMutexLocker lock2( mutex2 );
@@ -6811,10 +6811,10 @@ int QgsOgrProviderMetadata::listStyles(
     return 0;
   }
 
-  QMutex *mutex1 = nullptr;
+  QRecursiveMutex *mutex1 = nullptr;
   OGRLayerH hLayer = layerStyles->getHandleAndMutex( mutex1 );
   QMutexLocker lock1( mutex1 );
-  QMutex *mutex2 = nullptr;
+  QRecursiveMutex *mutex2 = nullptr;
   OGRLayerH hUserLayer = userLayer->getHandleAndMutex( mutex2 );
   QMutexLocker lock2( mutex2 );
 

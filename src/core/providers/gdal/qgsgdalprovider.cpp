@@ -71,7 +71,7 @@
 #define PROVIDER_DESCRIPTION QStringLiteral( "GDAL data provider" )
 
 // To avoid potential races when destroying related instances ("main" and clones)
-Q_GLOBAL_STATIC_WITH_ARGS( QMutex, sGdalProviderMutex, ( QMutex::Recursive ) )
+Q_GLOBAL_STATIC( QRecursiveMutex, sGdalProviderMutex )
 
 QHash< QgsGdalProvider *, QVector<QgsGdalProvider::DatasetPair> > QgsGdalProvider::mgDatasetCache;
 
@@ -146,7 +146,7 @@ QgsGdalProvider::QgsGdalProvider( const QString &uri, const QgsError &error )
 QgsGdalProvider::QgsGdalProvider( const QString &uri, const ProviderOptions &options, bool update, GDALDatasetH dataset )
   : QgsRasterDataProvider( uri, options )
   , mpRefCounter( new QAtomicInt( 1 ) )
-  , mpMutex( new QMutex( QMutex::Recursive ) )
+  , mpMutex( new QRecursiveMutex() )
   , mpParent( new QgsGdalProvider * ( this ) )
   , mpLightRefCounter( new QAtomicInt( 1 ) )
   , mUpdate( update )
@@ -238,7 +238,7 @@ QgsGdalProvider::QgsGdalProvider( const QgsGdalProvider &other )
 
     mpRefCounter = new QAtomicInt( 1 );
     mpLightRefCounter = other.mpLightRefCounter;
-    mpMutex = new QMutex( QMutex::Recursive );
+    mpMutex = new QRecursiveMutex();
     mpParent = other.mpParent;
 
     if ( getCachedGdalHandles( const_cast<QgsGdalProvider *>( &other ), mGdalBaseDataset, mGdalDataset ) )
