@@ -413,8 +413,8 @@ QList<QColor> QgsLimitedRandomColorRamp::randomColors( int count,
     currentHueAngle += 137.50776;
     //scale hue to between hueMax and hueMin
     h = std::clamp( std::round( ( std::fmod( currentHueAngle, 360.0 ) / 360.0 ) * ( safeHueMax - safeHueMin ) + safeHueMin ), 0.0, 359.0 );
-    s = std::clamp( ( qrand() % ( safeSatMax - safeSatMin + 1 ) ) + safeSatMin, 0, 255 );
-    v = std::clamp( ( qrand() % ( safeValMax - safeValMin + 1 ) ) + safeValMin, 0, 255 );
+    s = std::clamp( ( static_cast<int>( QRandomGenerator::system()->generate() ) % ( safeSatMax - safeSatMin + 1 ) ) + safeSatMin, 0, 255 );
+    v = std::clamp( ( static_cast<int>( QRandomGenerator::system()->generate() ) % ( safeValMax - safeValMin + 1 ) ) + safeValMin, 0, 255 );
     colors.append( QColor::fromHsv( h, s, v ) );
   }
   return colors;
@@ -452,9 +452,9 @@ QColor QgsRandomColorRamp::color( double value ) const
   }
 
   //can't use precalculated hues, use a totally random hue
-  int h = static_cast< int >( 360.0 * qrand() / ( RAND_MAX + 1.0 ) );
-  int s = ( qrand() % ( DEFAULT_RANDOM_SAT_MAX - DEFAULT_RANDOM_SAT_MIN + 1 ) ) + DEFAULT_RANDOM_SAT_MIN;
-  int v = ( qrand() % ( maxVal - minVal + 1 ) ) + minVal;
+  int h = static_cast< int >( 360.0 * QRandomGenerator::system()->generate() / ( RAND_MAX + 1.0 ) );
+  int s = ( QRandomGenerator::system()->generate() % ( DEFAULT_RANDOM_SAT_MAX - DEFAULT_RANDOM_SAT_MIN + 1 ) ) + DEFAULT_RANDOM_SAT_MIN;
+  int v = ( QRandomGenerator::system()->generate() % ( maxVal - minVal + 1 ) ) + minVal;
   return QColor::fromHsv( h, s, v );
 }
 
@@ -468,7 +468,7 @@ void QgsRandomColorRamp::setTotalColorCount( const int colorCount )
   //similar colors being picked. TODO - investigate alternative "n-visually distinct color" routines
 
   //random offsets
-  double hueOffset = ( 360.0 * qrand() / ( RAND_MAX + 1.0 ) );
+  double hueOffset = ( 360.0 * QRandomGenerator::system()->generate() / ( RAND_MAX + 1.0 ) );
 
   //try to maximise difference between hues. this is not an ideal implementation, as constant steps
   //through the hue wheel are not visually perceived as constant changes in hue
@@ -480,8 +480,8 @@ void QgsRandomColorRamp::setTotalColorCount( const int colorCount )
   for ( int idx = 0; idx < colorCount; ++ idx )
   {
     int h = static_cast< int >( std::round( currentHue ) ) % 360;
-    int s = ( qrand() % ( DEFAULT_RANDOM_SAT_MAX - DEFAULT_RANDOM_SAT_MIN + 1 ) ) + DEFAULT_RANDOM_SAT_MIN;
-    int v = ( qrand() % ( DEFAULT_RANDOM_VAL_MAX - DEFAULT_RANDOM_VAL_MIN + 1 ) ) + DEFAULT_RANDOM_VAL_MIN;
+    int s = ( QRandomGenerator::system()->generate() % ( DEFAULT_RANDOM_SAT_MAX - DEFAULT_RANDOM_SAT_MIN + 1 ) ) + DEFAULT_RANDOM_SAT_MIN;
+    int v = ( QRandomGenerator::system()->generate() % ( DEFAULT_RANDOM_VAL_MAX - DEFAULT_RANDOM_VAL_MIN + 1 ) ) + DEFAULT_RANDOM_VAL_MIN;
     mPrecalculatedColors << QColor::fromHsv( h, s, v );
     currentHue += hueStep;
   }
