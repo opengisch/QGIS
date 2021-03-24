@@ -1,5 +1,5 @@
 
-ARG UBUNTU_BASE=20.04
+ARG UBUNTU_BASE=21.04
 
 FROM      ubuntu:${UBUNTU_BASE}
 MAINTAINER Denis Rouzaud <denis@opengis.ch>
