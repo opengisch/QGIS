@@ -35,7 +35,7 @@ set(pyqgis_core_target_link_libraries
 
 # Dependencies - changes on these files should trigger new bindings
 set(pyqgis_core_DEPENDS
-    ${CMAKE_SOURCE_DIR}/src/core/qgswkbtypes.h
+   ${CMAKE_SOURCE_DIR}/src/core/geometry/qgswkbtypes.h
 )
 
 CREATE_PYTHON_BINDINGS(
