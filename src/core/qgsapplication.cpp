@@ -102,6 +102,7 @@
 #include <QRegularExpression>
 #include <QTextStream>
 #include <QScreen>
+#include <QRecursiveMutex>
 
 #ifndef Q_OS_WIN
 #include <netinet/in.h>
@@ -2584,7 +2585,7 @@ QgsApplication::ApplicationMembers *QgsApplication::members()
   }
   else
   {
-    static QMutex sMemberMutex( QMutex::Recursive );
+    static QRecursiveMutex sMemberMutex;
     QMutexLocker lock( &sMemberMutex );
     if ( !sApplicationMembers )
       sApplicationMembers = new ApplicationMembers();
