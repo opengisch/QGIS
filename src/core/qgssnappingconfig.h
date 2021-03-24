@@ -18,6 +18,7 @@
 
 #include <QHash>
 #include "qgis_core.h"
+#include "qgis.h"
 #include "qgstolerance.h"
 
 class QDomDocument;
