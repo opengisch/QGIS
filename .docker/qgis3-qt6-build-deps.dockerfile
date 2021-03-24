@@ -24,7 +24,6 @@ RUN dnf -y install \
     qt6-qttools-static \
     qt6-qtsvg-devel \
     qt6-qt5compat-devel \
-    openssl-devel \
     spatialindex-devel \
     sqlite-devel \
     unzip
