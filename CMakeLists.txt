@@ -946,6 +946,11 @@ message("-- Found Python executable: ${Python_EXECUTABLE} (version ${Python_VERS
 message("-- Python library: ${Python_LIBRARIES}")
 message("-- Python site-packages: ${Python_SITEARCH}")
 
+set (WITH_PYSIDE FALSE CACHE BOOL "Enable (broken, experimental) PySide support")
+if (WITH_PYSIDE)
+  add_subdirector(qt-for-python)
+endif()
+
 if (WITH_CORE AND WITH_BINDINGS AND NOT WITH_QT6)
   set(PYTHON_OUTPUT_DIRECTORY ${QGIS_OUTPUT_DIRECTORY}/python)
   set (QGIS_PYTHON_OUTPUT_DIRECTORY ${PYTHON_OUTPUT_DIRECTORY}/qgis)
