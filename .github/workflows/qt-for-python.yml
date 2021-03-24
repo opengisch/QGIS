@@ -1,4 +1,4 @@
-name: 😱 Build with Qt 6
+name: 😱 Qt for Python
 
 on:
   push:
