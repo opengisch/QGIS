@@ -506,18 +506,14 @@ if(WITH_CORE)
   endif()
 
   # Password helper
-  if (WITH_QT6)
-    # nope, not yet!
-  else()
-    find_package(QtKeychain REQUIRED)
-    # Master password hash and authentication encryption
-    find_package(QCA REQUIRED)
-    # Check for runtime dependency of qca-ossl plugin
-    # REQUIRED if unit tests are to be run from build directory
-    if(NOT MSVC)
-      include(QCAMacros)
-      FIND_QCAOSSL_PLUGIN_CPP(ENABLE_TESTS)
-    endif()
+  find_package(QtKeychain REQUIRED)
+  # Master password hash and authentication encryption
+  find_package(QCA REQUIRED)
+  # Check for runtime dependency of qca-ossl plugin
+  # REQUIRED if unit tests are to be run from build directory
+  if(NOT MSVC)
+    include(QCAMacros)
+    FIND_QCAOSSL_PLUGIN_CPP(ENABLE_TESTS)
   endif()
 
   if (APPLE)
