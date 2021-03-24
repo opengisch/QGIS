@@ -2,12 +2,14 @@
 
 set -e
 
-mkdir /usr/src/qgis/build
+mkdir -p /usr/src/qgis/build-pyside2
 cd /usr/src/qgis/build || exit 1
 
 CLANG_WARNINGS="-Wrange-loop-construct"
 
 cmake -GNinja \
+ -WITH_PYSIDE=ON \
+ -WITH_QT6=OFF \
  -DWITH_QUICK=OFF \
  -DWITH_3D=OFF \
  -DWITH_ANALYSIS=OFF \
