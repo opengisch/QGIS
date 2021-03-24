@@ -563,7 +563,7 @@ int main( int argc, char *argv[] )
         break;
       }
 
-      coords[i] = myInitialExtent.midRef( posOld, pos - posOld ).toDouble( &ok );
+      coords[i] = QStringView{myInitialExtent}.mid( posOld, pos - posOld ).toDouble( &ok );
       if ( !ok )
         break;
 
@@ -572,7 +572,7 @@ int main( int argc, char *argv[] )
 
     // parse last coordinate
     if ( ok )
-      coords[3] = myInitialExtent.midRef( posOld ).toDouble( &ok );
+      coords[3] = QStringView{myInitialExtent}.mid( posOld ).toDouble( &ok );
 
     if ( !ok )
     {
