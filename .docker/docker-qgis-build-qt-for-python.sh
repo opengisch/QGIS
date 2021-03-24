@@ -8,8 +8,9 @@ cd /usr/src/qgis/build || exit 1
 CLANG_WARNINGS="-Wrange-loop-construct"
 
 cmake -GNinja \
- -WITH_PYSIDE=ON \
- -WITH_QT6=OFF \
+ -DWITH_PYSIDE=ON \
+ -DWITH_QT6=OFF \
+ -DWITH_EPT=OFF \
  -DWITH_QUICK=OFF \
  -DWITH_3D=OFF \
  -DWITH_ANALYSIS=OFF \
