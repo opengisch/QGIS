@@ -736,10 +736,10 @@ class QgsOgrLayer
     void SetSpatialFilter( OGRGeometryH );
 
     //! Returns native GDALDatasetH object with the mutex to lock when using it
-    GDALDatasetH getDatasetHandleAndMutex( QMutex *&mutex );
+    GDALDatasetH getDatasetHandleAndMutex( QRecursiveMutex *&mutex );
 
     //! Returns native OGRLayerH object with the mutex to lock when using it
-    OGRLayerH getHandleAndMutex( QMutex *&mutex );
+    OGRLayerH getHandleAndMutex( QRecursiveMutex *&mutex );
 
     //! Wrapper of GDALDatasetReleaseResultSet( GDALDatasetExecuteSQL( ... ) )
     void ExecuteSQLNoReturn( const QByteArray &sql );

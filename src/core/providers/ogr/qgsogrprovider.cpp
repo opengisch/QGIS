@@ -99,7 +99,7 @@ static OGRwkbGeometryType ogrWkbGeometryTypeFromName( const QString &typeName );
 
 static bool IsLocalFile( const QString &path );
 
-Q_GLOBAL_STATIC_WITH_ARGS( QMutex, sGlobalMutex, ( QMutex::Recursive ) )
+Q_GLOBAL_STATIC( QRecursiveMutex, sGlobalMutex )
 
 //! Map a dataset name to the number of opened GDAL dataset objects on it (if opened with GDALOpenWrapper, only for GPKG)
 typedef QMap< QString, int > OpenedDsCountMap;
@@ -6202,13 +6202,13 @@ void QgsOgrLayer::SetSpatialFilter( OGRGeometryH hGeometry )
   OGR_L_SetSpatialFilter( hLayer, hGeometry );
 }
 
-GDALDatasetH QgsOgrLayer::getDatasetHandleAndMutex( QMutex *&mutex )
+GDALDatasetH QgsOgrLayer::getDatasetHandleAndMutex( QRecursiveMutex *&mutex )
 {
   mutex = &( ds->mutex );
   return ds->hDS;
 }
 
-OGRLayerH QgsOgrLayer::getHandleAndMutex( QMutex *&mutex )
+OGRLayerH QgsOgrLayer::getHandleAndMutex( QRecursiveMutex *&mutex )
 {
   mutex = &( ds->mutex );
   return hLayer;
@@ -6331,7 +6331,7 @@ QString QgsOgrLayer::GetMetadataItem( const QString &key, const QString &domain 
                               domain.toUtf8().constData() );
 }
 
-QMutex &QgsOgrFeatureDefn::mutex()
+QRecursiveMutex &QgsOgrFeatureDefn::mutex()
 {
   return layer->mutex();
 }
