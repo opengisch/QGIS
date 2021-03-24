@@ -10,11 +10,13 @@ LABEL Description="Docker container with QGIS dependencies" Vendor="QGIS.org" Ve
 # && echo "deb-src http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu xenial main" >> /etc/apt/sources.list \
 # && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 314DF160 \
 
+ARG DEBIAN_FRONTEND=noninteractive
 
-RUN  apt-get update \
-  && apt-get install -y software-properties-common \
-  && apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt-get update && apt-get remove -y ucf && apt-get upgrade -y
+#RUN apt-get install -y software-properties-common
+RUN apt-get update
+RUN apt-get install -y apt-utils dialog
+RUN apt-get install -y \
     apt-transport-https \
     bison \
     ca-certificates \
