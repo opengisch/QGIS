@@ -636,13 +636,13 @@ QString QgsStringUtils::wordWrap( const QString &string, const int length, const
       }
       if ( strHit > -1 )
       {
-        newstr.append( lines.at( i ).midRef( strCurrent, strHit - strCurrent ) );
+        newstr.append( QStringView{lines.at( i )}.mid( strCurrent, strHit - strCurrent ) );
         newstr.append( '\n' );
         strCurrent = strHit + delimiterLength;
       }
       else
       {
-        newstr.append( lines.at( i ).midRef( strCurrent ) );
+        newstr.append( QStringView{lines.at( i )}.mid( strCurrent ) );
         strCurrent = strLength;
       }
     }
