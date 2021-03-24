@@ -27,7 +27,7 @@
 #include "qgsnetworkcontentfetchertask.h"
 
 #include <QObject>
-#include <QMutex>
+#include <QRecursiveMutex>
 #include <QCache>
 #include <QSet>
 #include <QDateTime>
@@ -210,7 +210,6 @@ class CORE_EXPORT QgsAbstractContentCache : public QgsAbstractContentCacheBase
                              long maxCacheSize = 20000000,
                              int fileModifiedCheckTimeout = 30000 )
       : QgsAbstractContentCacheBase( parent )
-      , mMutex( QMutex::Recursive )
       , mMaxCacheSize( maxCacheSize )
       , mFileModifiedCheckTimeout( fileModifiedCheckTimeout )
       , mTypeString( typeString.isEmpty() ? QObject::tr( "Content" ) : typeString )
@@ -549,7 +548,7 @@ class CORE_EXPORT QgsAbstractContentCache : public QgsAbstractContentCacheBase
       return currentEntry;
     }
 
-    mutable QMutex mMutex;
+    mutable QRecursiveMutex mMutex;
     //! Estimated total size of all cached content
     long mTotalSize = 0;
 

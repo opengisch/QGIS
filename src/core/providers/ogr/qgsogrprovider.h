@@ -397,13 +397,13 @@ class CORE_EXPORT QgsOgrProviderUtils
     class DatasetWithLayers
     {
       public:
-        QMutex         mutex;
-        GDALDatasetH   hDS = nullptr;
+        QRecursiveMutex mutex;
+        GDALDatasetH    hDS = nullptr;
         QMap<QString, QgsOgrLayer *>  setLayers;
         int            refCount = 0;
         bool           canBeShared = true;
 
-        DatasetWithLayers(): mutex( QMutex::Recursive ) {}
+        DatasetWithLayers() {}
     };
 
     //! Map dataset identification to a list of corresponding DatasetWithLayers*
@@ -560,7 +560,7 @@ class QgsOgrDataset
     static QgsOgrDatasetSharedPtr create( const QgsOgrProviderUtils::DatasetIdentification &ident,
                                           QgsOgrProviderUtils::DatasetWithLayers *ds );
 
-    QMutex &mutex() { return mDs->mutex; }
+    QRecursiveMutex &mutex() { return mDs->mutex; }
 
     bool executeSQLNoReturn( const QString &sql );
 
@@ -585,7 +585,7 @@ class QgsOgrFeatureDefn
     ~QgsOgrFeatureDefn() = default;
 
     OGRFeatureDefnH get();
-    QMutex &mutex();
+    QRecursiveMutex &mutex();
 
   public:
 
@@ -644,7 +644,7 @@ class QgsOgrLayer
       QgsOgrProviderUtils::DatasetWithLayers *ds,
       OGRLayerH hLayer );
 
-    QMutex &mutex() { return ds->mutex; }
+    QRecursiveMutex &mutex() { return ds->mutex; }
 
   public:
 
