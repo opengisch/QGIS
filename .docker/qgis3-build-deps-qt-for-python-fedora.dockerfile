@@ -32,5 +32,8 @@ RUN dnf -y install \
     spatialindex-devel \
     sqlite-devel \
     unzip \
-    python3-pip
-RUN pip3 install PySide2
+    python3-shiboken2 \
+    python3-shiboken2-devel \
+    python3-pyside2 \
+    python3-pyside2-devel \
+    pyside2-tools
