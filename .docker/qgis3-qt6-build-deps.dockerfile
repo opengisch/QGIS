@@ -36,7 +36,7 @@ RUN dnf -y install wget openssl-devel && cd /usr/src \
   && cmake -DCMAKE_INSTALL_PREFIX=/usr -GNinja \
   && ninja install
 
-RUN cd /usr/src \
+RUN dnf -y install libsecret-devel && cd /usr/src \
   && wget https://github.com/frankosterfeld/qtkeychain/archive/refs/heads/master.zip \
   && unzip master.zip \
   && cd qtkeychain-master \
