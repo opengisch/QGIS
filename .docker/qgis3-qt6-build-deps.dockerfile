@@ -24,12 +24,12 @@ RUN dnf -y install \
     qt6-qttools-static \
     qt6-qtsvg-devel \
     qt6-qt5compat-devel \
-    openssl-devel \
     spatialindex-devel \
     sqlite-devel \
     unzip
 
-RUN cd /usr/src \
+
+RUN dnf -y install openssl-devel && cd /usr/src \
   && curl https://github.com/KDE/qca/archive/refs/heads/qt6.zip --output qt6.zip \
   && unzip qt6.zip \
   && cd qca-qt6 \
