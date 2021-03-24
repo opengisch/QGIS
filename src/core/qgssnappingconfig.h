@@ -60,7 +60,7 @@ class CORE_EXPORT QgsSnappingConfig
       Segment = 3, //!< On segments only
     };
     // TODO QGIS 4: remove
-    // this could not be tagged with Q_DECL_DEPRECATED due to Doxygen warning
+    // this could not be tagged with QGIS_DEPRECATED due to Doxygen warning
     // might be fixed in newer Doxygen (does not on 1.8.15, might be ok on 1.8.16)
 
     /**
@@ -126,7 +126,7 @@ class CORE_EXPORT QgsSnappingConfig
          * \param units
          * \deprecated since QGIS 3.12 use the method with SnappingTypeFlag instead.
          */
-        Q_DECL_DEPRECATED IndividualLayerSettings( bool enabled, SnappingType type, double tolerance, QgsTolerance::UnitType units ) SIP_DEPRECATED;
+        QGIS_DEPRECATED IndividualLayerSettings( bool enabled, SnappingType type, double tolerance, QgsTolerance::UnitType units ) SIP_DEPRECATED;
 
         /**
          * \brief IndividualLayerSettings
@@ -164,13 +164,13 @@ class CORE_EXPORT QgsSnappingConfig
          * Returns the flags type (vertices | segments | area | centroid | middle)
          * \deprecated since QGIS 3.12 use typeFlag instead.
          */
-        Q_DECL_DEPRECATED QgsSnappingConfig::SnappingType type() const SIP_DEPRECATED;
+        QGIS_DEPRECATED QgsSnappingConfig::SnappingType type() const SIP_DEPRECATED;
 
         /**
          * define the type of snapping
         * \deprecated since QGIS 3.12 use setTypeFlag instead.
         */
-        Q_DECL_DEPRECATED void setType( QgsSnappingConfig::SnappingType type ) SIP_DEPRECATED;
+        QGIS_DEPRECATED void setType( QgsSnappingConfig::SnappingType type ) SIP_DEPRECATED;
 
         /**
          * define the type of snapping
@@ -263,13 +263,13 @@ class CORE_EXPORT QgsSnappingConfig
      * Returns the flags type (vertices | segments | area | centroid | middle)
      * \deprecated since QGIS 3.12 use typeFlag instead.
      */
-    Q_DECL_DEPRECATED QgsSnappingConfig::SnappingType type() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsSnappingConfig::SnappingType type() const SIP_DEPRECATED;
 
     /**
      * define the type of snapping
     * \deprecated since QGIS 3.12 use setTypeFlag instead.
     */
-    Q_DECL_DEPRECATED void setType( QgsSnappingConfig::SnappingType type );
+    QGIS_DEPRECATED void setType( QgsSnappingConfig::SnappingType type );
 
     /**
      * define the type of snapping

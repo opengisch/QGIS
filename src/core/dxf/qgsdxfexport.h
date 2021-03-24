@@ -526,7 +526,7 @@ class CORE_EXPORT QgsDxfExport : public QgsLabelSink
      *
      * \deprecated Will be made private in QGIS 4
      */
-    Q_DECL_DEPRECATED void registerDxfLayer( const QString &layerId, QgsFeatureId fid, const QString &layer );
+    QGIS_DEPRECATED void registerDxfLayer( const QString &layerId, QgsFeatureId fid, const QString &layer );
 
   private:
 

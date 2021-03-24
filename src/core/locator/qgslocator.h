@@ -106,7 +106,7 @@ class CORE_EXPORT QgsLocator : public QObject
      * \see filters()
      * \deprecated since QGIS 3.2 use filters() instead
      */
-    Q_DECL_DEPRECATED QMap<QString, QgsLocatorFilter *> prefixedFilters() const;
+    QGIS_DEPRECATED QMap<QString, QgsLocatorFilter *> prefixedFilters() const;
 
     /**
      * Triggers the background fetching of filter results for a specified search \a string.

@@ -198,7 +198,7 @@ class CORE_EXPORT QgsDataItem : public QObject
      *
      * \deprecated QGIS 3.10
      */
-    Q_DECL_DEPRECATED virtual QWidget *paramWidget() SIP_FACTORY SIP_DEPRECATED { return nullptr; }
+    QGIS_DEPRECATED virtual QWidget *paramWidget() SIP_FACTORY SIP_DEPRECATED { return nullptr; }
 
     /**
      * Returns the list of actions available for this item. This is usually used for the popup menu on right-clicking
@@ -227,7 +227,7 @@ class CORE_EXPORT QgsDataItem : public QObject
      *
      * \deprecated QGIS 3.10
      */
-    Q_DECL_DEPRECATED virtual bool acceptDrop() SIP_DEPRECATED { return false; }
+    QGIS_DEPRECATED virtual bool acceptDrop() SIP_DEPRECATED { return false; }
 
     /**
      * Attempts to process the mime data dropped on this item. Subclasses must override this and acceptDrop() if they
@@ -237,7 +237,7 @@ class CORE_EXPORT QgsDataItem : public QObject
      *
      * \deprecated QGIS 3.10
      */
-    Q_DECL_DEPRECATED virtual bool handleDrop( const QMimeData * /*data*/, Qt::DropAction /*action*/ ) SIP_DEPRECATED { return false; }
+    QGIS_DEPRECATED virtual bool handleDrop( const QMimeData * /*data*/, Qt::DropAction /*action*/ ) SIP_DEPRECATED { return false; }
 
     /**
      * Called when a user double clicks on the item. Subclasses should return TRUE
@@ -263,7 +263,7 @@ class CORE_EXPORT QgsDataItem : public QObject
      * \deprecated since QGIS 3.18, use mimeUris() instead
      * \since QGIS 3.0
      */
-    Q_DECL_DEPRECATED virtual QgsMimeDataUtils::Uri mimeUri() const SIP_DEPRECATED;
+    QGIS_DEPRECATED virtual QgsMimeDataUtils::Uri mimeUri() const SIP_DEPRECATED;
 
     /**
      * Returns mime URIs for the data item, most data providers will only return a single URI
@@ -293,7 +293,7 @@ class CORE_EXPORT QgsDataItem : public QObject
      *
      * \deprecated since QGIS 3.6. This method is no longer used by QGIS and will be removed in QGIS 4.0.
      */
-    Q_DECL_DEPRECATED virtual bool setCrs( const QgsCoordinateReferenceSystem &crs ) SIP_DEPRECATED
+    QGIS_DEPRECATED virtual bool setCrs( const QgsCoordinateReferenceSystem &crs ) SIP_DEPRECATED
     {
       Q_UNUSED( crs )
       return false;
@@ -311,7 +311,7 @@ class CORE_EXPORT QgsDataItem : public QObject
      * \since QGIS 3.4
      * \deprecated QGIS 3.10
      */
-    Q_DECL_DEPRECATED virtual bool rename( const QString &name ) SIP_DEPRECATED;
+    QGIS_DEPRECATED virtual bool rename( const QString &name ) SIP_DEPRECATED;
 
     // ### QGIS 4 - rename to capabilities()
 
@@ -637,7 +637,7 @@ class CORE_EXPORT QgsLayerItem : public QgsDataItem
      *
      * \deprecated QGIS 3.10
      */
-    Q_DECL_DEPRECATED virtual bool deleteLayer() SIP_DEPRECATED;
+    QGIS_DEPRECATED virtual bool deleteLayer() SIP_DEPRECATED;
 
   protected:
     //! The URI
@@ -850,7 +850,7 @@ class CORE_EXPORT QgsDirectoryItem : public QgsDataCollectionItem
 
     bool equal( const QgsDataItem *other ) override;
     QIcon icon() override;
-    Q_DECL_DEPRECATED QWidget *paramWidget() override SIP_FACTORY SIP_DEPRECATED;
+    QGIS_DEPRECATED QWidget *paramWidget() override SIP_FACTORY SIP_DEPRECATED;
     bool hasDragEnabled() const override { return true; }
     QgsMimeDataUtils::UriList mimeUris() const override;
 

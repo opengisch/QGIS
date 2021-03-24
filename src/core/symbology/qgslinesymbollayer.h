@@ -912,13 +912,13 @@ class CORE_EXPORT QgsMarkerLineSymbolLayer : public QgsTemplatedLineSymbolLayerB
      * \returns TRUE if the marker should be rotated.
      * \deprecated Use rotateSymbols() instead.
      */
-    Q_DECL_DEPRECATED bool rotateMarker() const SIP_DEPRECATED { return rotateSymbols(); }
+    QGIS_DEPRECATED bool rotateMarker() const SIP_DEPRECATED { return rotateSymbols(); }
 
     /**
      * Shall the marker be rotated.
      * \deprecated Use setRotateSymbols() instead.
      */
-    Q_DECL_DEPRECATED void setRotateMarker( bool rotate ) SIP_DEPRECATED { setRotateSymbols( rotate ); }
+    QGIS_DEPRECATED void setRotateMarker( bool rotate ) SIP_DEPRECATED { setRotateSymbols( rotate ); }
 
     void renderPolyline( const QPolygonF &points, QgsSymbolRenderContext &context ) override;
 

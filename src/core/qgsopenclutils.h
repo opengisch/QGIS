@@ -199,7 +199,7 @@ class CORE_EXPORT QgsOpenClUtils
      * \return the built program
      * \deprecated since QGIS 3.6
      */
-    Q_DECL_DEPRECATED static cl::Program buildProgram( const cl::Context &context, const QString &source, ExceptionBehavior exceptionBehavior = Catch );
+    QGIS_DEPRECATED static cl::Program buildProgram( const cl::Context &context, const QString &source, ExceptionBehavior exceptionBehavior = Catch );
 
     /**
      * Build the program from \a source, depending on \a exceptionBehavior can throw or catch the exceptions

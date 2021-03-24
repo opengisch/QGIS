@@ -131,42 +131,42 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
       Custom
     };
     // TODO QGIS 4: remove
-    // this could not be tagged with Q_DECL_DEPRECATED due to Doxygen warning
+    // this could not be tagged with QGIS_DEPRECATED due to Doxygen warning
     // might be fixed in newer Doxygen (does not on 1.8.13, might be ok on 1.8.16)
 
 
     //! \deprecated since QGIS 3.10 use classficationMethod instead
-    Q_DECL_DEPRECATED Mode mode() const SIP_DEPRECATED { return modeFromMethodId( mClassificationMethod->id() ); }
+    QGIS_DEPRECATED Mode mode() const SIP_DEPRECATED { return modeFromMethodId( mClassificationMethod->id() ); }
     //! \deprecated since QGIS 3.10 use classficationMethod instead
-    Q_DECL_DEPRECATED void setMode( Mode mode ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setMode( Mode mode ) SIP_DEPRECATED;
 
     /**
      * Returns if we want to classify symmetric around a given value
      * \since QGIS 3.4
      * \deprecated since QGIS 3.10 use classficationMethod instead
      */
-    Q_DECL_DEPRECATED bool useSymmetricMode() const SIP_DEPRECATED { return mClassificationMethod->symmetricModeEnabled(); }
+    QGIS_DEPRECATED bool useSymmetricMode() const SIP_DEPRECATED { return mClassificationMethod->symmetricModeEnabled(); }
 
     /**
      * Set if we want to classify symmetric around a given value
      * \since QGIS 3.4
      * \deprecated since QGIS 3.10 use classficationMethod instead
      */
-    Q_DECL_DEPRECATED  void setUseSymmetricMode( bool useSymmetricMode ) SIP_DEPRECATED;
+    QGIS_DEPRECATED  void setUseSymmetricMode( bool useSymmetricMode ) SIP_DEPRECATED;
 
     /**
      * Returns the pivot value for symmetric classification
      * \since QGIS 3.4
      * \deprecated since QGIS 3.10 use classficationMethod instead
      */
-    Q_DECL_DEPRECATED double symmetryPoint() const SIP_DEPRECATED { return mClassificationMethod->symmetryPoint(); }
+    QGIS_DEPRECATED double symmetryPoint() const SIP_DEPRECATED { return mClassificationMethod->symmetryPoint(); }
 
     /**
      * Set the pivot point
      * \since QGIS 3.4
      * \deprecated since QGIS 3.10 use classficationMethod instead
      */
-    Q_DECL_DEPRECATED void setSymmetryPoint( double symmetryPoint ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setSymmetryPoint( double symmetryPoint ) SIP_DEPRECATED;
 
 
     /**
@@ -174,14 +174,14 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
      * \since QGIS 3.4
      * \deprecated since QGIS 3.10 use classficationMethod instead
      */
-    Q_DECL_DEPRECATED bool astride() const SIP_DEPRECATED { return mClassificationMethod->symmetryAstride(); }
+    QGIS_DEPRECATED bool astride() const SIP_DEPRECATED { return mClassificationMethod->symmetryAstride(); }
 
     /**
      * Set if we want a central class astride the pivot value
      * \since QGIS 3.4
      * \deprecated since QGIS 3.10 use classficationMethod instead
      */
-    Q_DECL_DEPRECATED void setAstride( bool astride ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setAstride( bool astride ) SIP_DEPRECATED;
 
     /**
      * Remove the breaks that are above the existing opposite sign classes to keep colors symmetrically balanced around symmetryPoint
@@ -192,7 +192,7 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
      * \since QGIS 3.4
      * \deprecated since QGIS 3.10, use QgsClassificationMethod::makeBreaksSymmetric instead
      */
-    Q_DECL_DEPRECATED static void makeBreaksSymmetric( QList<double> &breaks SIP_INOUT, double symmetryPoint, bool astride ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static void makeBreaksSymmetric( QList<double> &breaks SIP_INOUT, double symmetryPoint, bool astride ) SIP_DEPRECATED;
 
     /**
      * Compute the equal interval classification
@@ -204,7 +204,7 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
      * \param astride A bool indicating if the symmetry is made astride the symmetryPoint or not ( [-1,1] vs. [-1,0][0,1] )
      * \deprecated since QGIS 3.10 use QgsClassificationEqualInterval class instead
      */
-    Q_DECL_DEPRECATED static QList<double> calcEqualIntervalBreaks( double minimum, double maximum, int classes, bool useSymmetricMode, double symmetryPoint, bool astride ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static QList<double> calcEqualIntervalBreaks( double minimum, double maximum, int classes, bool useSymmetricMode, double symmetryPoint, bool astride ) SIP_DEPRECATED;
 
     /**
      * Recalculate classes for a layer
@@ -217,7 +217,7 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
      * \since QGIS 2.6 (three first arguments) and 3.4 (three last arguments)
      * \deprecated since QGIS 3.10
      */
-    Q_DECL_DEPRECATED void updateClasses( QgsVectorLayer *vlayer, Mode mode, int nclasses, bool useSymmetricMode = false, double symmetryPoint = 0.0, bool astride = false ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void updateClasses( QgsVectorLayer *vlayer, Mode mode, int nclasses, bool useSymmetricMode = false, double symmetryPoint = 0.0, bool astride = false ) SIP_DEPRECATED;
 
     /**
      * Recalculate classes for a layer
@@ -233,7 +233,7 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
      * \since QGIS 2.6
      * \deprecated since QGIS 3.10 use classificationMethod() and QgsClassificationMethod::setLabelFormat instead
      */
-    Q_DECL_DEPRECATED QgsRendererRangeLabelFormat labelFormat() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsRendererRangeLabelFormat labelFormat() const SIP_DEPRECATED;
 
     /**
      * Set the label format used to generate default classification labels
@@ -242,7 +242,7 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
      * \since QGIS 2.6
      * \deprecated since QGIS 3.10 use classificationMethod() and QgsClassificationMethod::setLabelFormat instead
      */
-    Q_DECL_DEPRECATED void setLabelFormat( const QgsRendererRangeLabelFormat &labelFormat, bool updateRanges = false ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLabelFormat( const QgsRendererRangeLabelFormat &labelFormat, bool updateRanges = false ) SIP_DEPRECATED;
 
     Q_NOWARN_DEPRECATED_POP;
 
@@ -271,7 +271,7 @@ class CORE_EXPORT QgsGraduatedSymbolRenderer : public QgsFeatureRenderer
      * \returns new QgsGraduatedSymbolRenderer object
      * \deprecated since QGIS 3.10
      */
-    static Q_DECL_DEPRECATED QgsGraduatedSymbolRenderer *createRenderer( QgsVectorLayer *vlayer,
+    static QGIS_DEPRECATED QgsGraduatedSymbolRenderer *createRenderer( QgsVectorLayer *vlayer,
         const QString &attrName,
         int classes,
         Mode mode,

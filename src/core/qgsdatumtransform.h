@@ -283,7 +283,7 @@ class CORE_EXPORT QgsDatumTransform
      *
      * \deprecated Not used for builds based on Proj >= 6.0
      */
-    Q_DECL_DEPRECATED static QList< QgsDatumTransform::TransformPair > datumTransformations( const QgsCoordinateReferenceSystem &source, const QgsCoordinateReferenceSystem &destination ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static QList< QgsDatumTransform::TransformPair > datumTransformations( const QgsCoordinateReferenceSystem &source, const QgsCoordinateReferenceSystem &destination ) SIP_DEPRECATED;
 
     /**
      * Returns a proj string representing the specified \a datumTransformId datum transform ID.
@@ -293,7 +293,7 @@ class CORE_EXPORT QgsDatumTransform
      *
      * \deprecated Not used for builds based on Proj >= 6.0
      */
-    Q_DECL_DEPRECATED static QString datumTransformToProj( int datumTransformId ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static QString datumTransformToProj( int datumTransformId ) SIP_DEPRECATED;
 
     /**
      * Returns the datum transform ID corresponding to a specified proj \a string.
@@ -302,7 +302,7 @@ class CORE_EXPORT QgsDatumTransform
      *
      * \deprecated Not used for builds based on Proj >= 6.0
      */
-    Q_DECL_DEPRECATED static int projStringToDatumTransformId( const QString &string ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static int projStringToDatumTransformId( const QString &string ) SIP_DEPRECATED;
 
     /**
      * Returns detailed information about the specified \a datumTransformId.
@@ -313,7 +313,7 @@ class CORE_EXPORT QgsDatumTransform
      *
      * \deprecated Not used for builds based on Proj >= 6.0
     */
-    Q_DECL_DEPRECATED static QgsDatumTransform::TransformInfo datumTransformInfo( int datumTransformId ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static QgsDatumTransform::TransformInfo datumTransformInfo( int datumTransformId ) SIP_DEPRECATED;
 
 #ifndef SIP_RUN
 

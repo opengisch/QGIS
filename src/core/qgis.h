@@ -791,3 +791,9 @@ QString CORE_EXPORT geoEpsgCrsAuthId();
 QString CORE_EXPORT geoNone();
 
 #endif
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#define QGIS_DEPRECATED Q_DECL_DEPRECATED
+#else
+#define QGIS_DEPRECATED
+#endif

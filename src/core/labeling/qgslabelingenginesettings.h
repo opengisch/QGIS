@@ -119,7 +119,7 @@ class CORE_EXPORT QgsLabelingEngineSettings
      * Gets number of candidate positions that will be generated for each label feature.
      * \deprecated since QGIS 3.12 use maximumPolygonCandidatesPerCmSquared() and maximumLineCandidatesPerCm() instead.
      */
-    Q_DECL_DEPRECATED void numCandidatePositions( int &candPoint, int &candLine, int &candPolygon ) const SIP_DEPRECATED
+    QGIS_DEPRECATED void numCandidatePositions( int &candPoint, int &candLine, int &candPolygon ) const SIP_DEPRECATED
     {
       Q_UNUSED( candPoint )
       Q_UNUSED( candLine )
@@ -130,7 +130,7 @@ class CORE_EXPORT QgsLabelingEngineSettings
      * Sets the number of candidate positions that will be generated for each label feature.
      * \deprecated since QGIS 3.12 use setMaximumPolygonCandidatesPerCmSquared() and setMaximumLineCandidatesPerCm() instead.
      */
-    Q_DECL_DEPRECATED void setNumCandidatePositions( int candPoint, int candLine, int candPolygon ) SIP_DEPRECATED
+    QGIS_DEPRECATED void setNumCandidatePositions( int candPoint, int candLine, int candPolygon ) SIP_DEPRECATED
     {
       Q_UNUSED( candPoint )
       Q_UNUSED( candLine )
@@ -141,13 +141,13 @@ class CORE_EXPORT QgsLabelingEngineSettings
      * Used to set which search method to use for removal collisions between labels
      * \deprecated since QGIS 3.10 - Chain is always used.
      */
-    Q_DECL_DEPRECATED void setSearchMethod( Search s ) SIP_DEPRECATED { Q_UNUSED( s ) }
+    QGIS_DEPRECATED void setSearchMethod( Search s ) SIP_DEPRECATED { Q_UNUSED( s ) }
 
     /**
      * Which search method to use for removal collisions between labels
      * \deprecated since QGIS 3.10 - Chain is always used.
      */
-    Q_DECL_DEPRECATED Search searchMethod() const SIP_DEPRECATED { return Chain; }
+    QGIS_DEPRECATED Search searchMethod() const SIP_DEPRECATED { return Chain; }
 
     //! Read configuration of the labeling engine from a project
     void readSettingsFromProject( QgsProject *project );

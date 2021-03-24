@@ -192,14 +192,14 @@ class CORE_EXPORT QgsRuntimeProfiler : public QAbstractItemModel
      *
      * \deprecated use start() instead
      */
-    Q_DECL_DEPRECATED void beginGroup( const QString &name ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void beginGroup( const QString &name ) SIP_DEPRECATED;
 
     /**
      * \brief End the current active group.
      *
      * \deprecated use end() instead
      */
-    Q_DECL_DEPRECATED void endGroup() SIP_DEPRECATED;
+    QGIS_DEPRECATED void endGroup() SIP_DEPRECATED;
 
     /**
      * Returns a list of all child groups with the specified \a parent.

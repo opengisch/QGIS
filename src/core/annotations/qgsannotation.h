@@ -163,14 +163,14 @@ class CORE_EXPORT QgsAnnotation : public QObject
      * \see frameOffsetFromReferencePoint()
      * \deprecated use setFrameOffsetFromReferencePointMm() instead
      */
-    Q_DECL_DEPRECATED void setFrameOffsetFromReferencePoint( QPointF offset ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setFrameOffsetFromReferencePoint( QPointF offset ) SIP_DEPRECATED;
 
     /**
      * Returns the annotation's frame's offset (in pixels) from the mapPosition() reference point.
      * \see setFrameOffsetFromReferencePoint()
      * \deprecated use frameOffsetFromReferencePointMm() instead
      */
-    Q_DECL_DEPRECATED QPointF frameOffsetFromReferencePoint() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QPointF frameOffsetFromReferencePoint() const SIP_DEPRECATED;
 
     /**
      * Sets the annotation's frame's offset (in millimeters) from the mapPosition() reference point.
@@ -192,7 +192,7 @@ class CORE_EXPORT QgsAnnotation : public QObject
      * \see frameSize()
      * \deprecated use setFrameSizeMm() instead
      */
-    Q_DECL_DEPRECATED void setFrameSize( QSizeF size ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setFrameSize( QSizeF size ) SIP_DEPRECATED;
 
     /**
      * Returns the size (in pixels) of the annotation's frame (the main area in which
@@ -200,7 +200,7 @@ class CORE_EXPORT QgsAnnotation : public QObject
      * \see setFrameSize()
      * \deprecated use frameSizeMm() instead
      */
-    Q_DECL_DEPRECATED QSizeF frameSize() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QSizeF frameSize() const SIP_DEPRECATED;
 
     /**
      * Sets the size (in millimeters) of the annotation's frame (the main area in which

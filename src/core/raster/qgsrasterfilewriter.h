@@ -105,7 +105,7 @@ class CORE_EXPORT QgsRasterFileWriter
      * \param feedback optional feedback object for progress reports
      * \deprecated since QGIS 3.8, use version with transformContext instead
     */
-    Q_DECL_DEPRECATED WriterError writeRaster( const QgsRasterPipe *pipe, int nCols, int nRows, const QgsRectangle &outputExtent,
+    QGIS_DEPRECATED WriterError writeRaster( const QgsRasterPipe *pipe, int nCols, int nRows, const QgsRectangle &outputExtent,
         const QgsCoordinateReferenceSystem &crs, QgsRasterBlockFeedback *feedback = nullptr ) SIP_DEPRECATED;
 
     /**

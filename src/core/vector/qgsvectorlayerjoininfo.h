@@ -150,14 +150,14 @@ class CORE_EXPORT QgsVectorLayerJoinInfo
      *
      * \deprecated use setJoinFieldNamesBlockList() instead
      */
-    Q_DECL_DEPRECATED void setJoinFieldNamesBlackList( const QStringList &blackList ) SIP_DEPRECATED { mBlockList = blackList; }
+    QGIS_DEPRECATED void setJoinFieldNamesBlackList( const QStringList &blackList ) SIP_DEPRECATED { mBlockList = blackList; }
 
     /**
      * Returns the list of fields to ignore.
      *
      * \deprecated use joinFieldNamesBlockList() instead
      */
-    Q_DECL_DEPRECATED QStringList joinFieldNamesBlackList() const SIP_DEPRECATED { return mBlockList; }
+    QGIS_DEPRECATED QStringList joinFieldNamesBlackList() const SIP_DEPRECATED { return mBlockList; }
 
     /**
      * Sets a \a list of fields to ignore whatever happens.

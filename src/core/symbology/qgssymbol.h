@@ -618,12 +618,12 @@ class CORE_EXPORT QgsSymbol
      * \note the layer will be NULLPTR after stopRender
      * \deprecated Will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED void setLayer( const QgsVectorLayer *layer ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLayer( const QgsVectorLayer *layer ) SIP_DEPRECATED;
 
     /**
      * \deprecated Will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED const QgsVectorLayer *layer() const SIP_DEPRECATED;
+    QGIS_DEPRECATED const QgsVectorLayer *layer() const SIP_DEPRECATED;
 
     /**
      * Render a feature. Before calling this the startRender() method should be called to initialize
@@ -718,7 +718,7 @@ class CORE_EXPORT QgsSymbol
     bool mClipFeaturesToExtent = true;
     bool mForceRHR = false;
 
-    Q_DECL_DEPRECATED const QgsVectorLayer *mLayer = nullptr; //current vectorlayer
+    QGIS_DEPRECATED const QgsVectorLayer *mLayer = nullptr; //current vectorlayer
 
   private:
 #ifdef SIP_RUN
@@ -826,23 +826,23 @@ class CORE_EXPORT QgsSymbolRenderContext
      * Returns the output unit for the context.
      * \deprecated No longer used and will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED QgsUnitTypes::RenderUnit outputUnit() const SIP_DEPRECATED { return mOutputUnit; }
+    QGIS_DEPRECATED QgsUnitTypes::RenderUnit outputUnit() const SIP_DEPRECATED { return mOutputUnit; }
 
     /**
      * Sets the output unit for the context.
      * \deprecated No longer used and will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED void setOutputUnit( QgsUnitTypes::RenderUnit u ) SIP_DEPRECATED { mOutputUnit = u; }
+    QGIS_DEPRECATED void setOutputUnit( QgsUnitTypes::RenderUnit u ) SIP_DEPRECATED { mOutputUnit = u; }
 
     /**
      * \deprecated Will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED QgsMapUnitScale mapUnitScale() const SIP_DEPRECATED { return mMapUnitScale; }
+    QGIS_DEPRECATED QgsMapUnitScale mapUnitScale() const SIP_DEPRECATED { return mMapUnitScale; }
 
     /**
      * \deprecated Will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED void setMapUnitScale( const QgsMapUnitScale &scale ) SIP_DEPRECATED { mMapUnitScale = scale; }
+    QGIS_DEPRECATED void setMapUnitScale( const QgsMapUnitScale &scale ) SIP_DEPRECATED { mMapUnitScale = scale; }
 
     /**
      * Returns the opacity for the symbol.
@@ -941,12 +941,12 @@ class CORE_EXPORT QgsSymbolRenderContext
     /**
      * \deprecated Use the size conversion methods in QgsRenderContext instead.
      */
-    Q_DECL_DEPRECATED double outputLineWidth( double width ) const SIP_DEPRECATED;
+    QGIS_DEPRECATED double outputLineWidth( double width ) const SIP_DEPRECATED;
 
     /**
      * \deprecated Use the size conversion methods in QgsRenderContext instead.
      */
-    Q_DECL_DEPRECATED double outputPixelSize( double size ) const SIP_DEPRECATED;
+    QGIS_DEPRECATED double outputPixelSize( double size ) const SIP_DEPRECATED;
 
     // workaround for sip 4.7. Don't use assignment - will fail with assertion error
     QgsSymbolRenderContext &operator=( const QgsSymbolRenderContext & );

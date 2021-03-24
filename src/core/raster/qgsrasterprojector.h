@@ -73,8 +73,8 @@ class CORE_EXPORT QgsRasterProjector : public QgsRasterInterface
      * Sets the source and destination CRS
      * \deprecated since QGIS 3.8, use transformContext version instead
      */
-    Q_DECL_DEPRECATED void setCrs( const QgsCoordinateReferenceSystem &srcCRS, const QgsCoordinateReferenceSystem &destCRS,
-                                   int srcDatumTransform = -1, int destDatumTransform = -1 ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setCrs( const QgsCoordinateReferenceSystem &srcCRS, const QgsCoordinateReferenceSystem &destCRS,
+                                 int srcDatumTransform = -1, int destDatumTransform = -1 ) SIP_DEPRECATED;
 
     /**
      * Sets source CRS to \a srcCRS and destination CRS to \a destCRS and the transformation context to \a transformContext
@@ -114,10 +114,10 @@ class CORE_EXPORT QgsRasterProjector : public QgsRasterInterface
     QgsCoordinateReferenceSystem mDestCRS;
 
     //! Source datum transformation id (or -1 if none)
-    Q_DECL_DEPRECATED int mSrcDatumTransform = -1;
+    QGIS_DEPRECATED int mSrcDatumTransform = -1;
 
     //! Destination datum transformation id (or -1 if none)
-    Q_DECL_DEPRECATED int mDestDatumTransform = -1;
+    QGIS_DEPRECATED int mDestDatumTransform = -1;
 
     //! Requested precision
     Precision mPrecision = Approximate;

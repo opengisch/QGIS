@@ -493,7 +493,7 @@ class CORE_EXPORT QgsCoordinateTransform
      *
      * \deprecated Unused on builds based on Proj 6.0 or later
      */
-    Q_DECL_DEPRECATED int sourceDatumTransformId() const SIP_DEPRECATED;
+    QGIS_DEPRECATED int sourceDatumTransformId() const SIP_DEPRECATED;
 
     /**
      * Sets the \a datumId ID of the datum transform to use when projecting from the source
@@ -508,7 +508,7 @@ class CORE_EXPORT QgsCoordinateTransform
      *
      * \deprecated Unused on builds based on Proj 6.0 or later
      */
-    Q_DECL_DEPRECATED void setSourceDatumTransformId( int datumId ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setSourceDatumTransformId( int datumId ) SIP_DEPRECATED;
 
     /**
      * Returns the ID of the datum transform to use when projecting to the destination
@@ -523,7 +523,7 @@ class CORE_EXPORT QgsCoordinateTransform
      *
      * \deprecated Unused on builds based on Proj 6.0 or later
      */
-    Q_DECL_DEPRECATED int destinationDatumTransformId() const SIP_DEPRECATED;
+    QGIS_DEPRECATED int destinationDatumTransformId() const SIP_DEPRECATED;
 
     /**
      * Sets the \a datumId ID of the datum transform to use when projecting to the destination
@@ -538,7 +538,7 @@ class CORE_EXPORT QgsCoordinateTransform
      *
      * \deprecated Unused on builds based on Proj 6.0 or later
      */
-    Q_DECL_DEPRECATED void setDestinationDatumTransformId( int datumId ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setDestinationDatumTransformId( int datumId ) SIP_DEPRECATED;
 
 #ifndef SIP_RUN
 

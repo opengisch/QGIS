@@ -339,7 +339,7 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
      * \deprecated Use writeAsVectorFormatV2() instead.
      */
 #endif
-    Q_DECL_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( QgsVectorLayer *layer,
+    QGIS_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( QgsVectorLayer *layer,
         const QString &fileName,
         const QString &fileEncoding,
         const QgsCoordinateReferenceSystem &destCRS = QgsCoordinateReferenceSystem(),
@@ -361,7 +361,7 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
 #ifndef SIP_RUN
             , QString *newLayer = nullptr );
 #else
-                                                                                 ) SIP_DEPRECATED;
+                                                                               ) SIP_DEPRECATED;
 #endif
 
 #ifndef SIP_RUN
@@ -422,7 +422,7 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
      * \deprecated Use writeAsVectorFormatV2() instead.
      */
 #endif
-    Q_DECL_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( QgsVectorLayer *layer,
+    QGIS_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( QgsVectorLayer *layer,
         const QString &fileName,
         const QString &fileEncoding,
         const QgsCoordinateTransform &ct,
@@ -444,7 +444,7 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
 #ifndef SIP_RUN
             , QString *newLayer = nullptr );
 #else
-                                                                                 ) SIP_DEPRECATED;
+                                                                               ) SIP_DEPRECATED;
 #endif
 
     /**
@@ -559,7 +559,7 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
      * \deprecated Use writeAsVectorFormatV2() instead.
      */
 #endif
-    Q_DECL_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( QgsVectorLayer *layer,
+    QGIS_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( QgsVectorLayer *layer,
         const QString &fileName,
         const QgsVectorFileWriter::SaveVectorOptions &options,
         QString *newFilename = nullptr,
@@ -567,30 +567,30 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
 #ifndef SIP_RUN
                                         , QString *newLayer = nullptr );
 #else
-                                                                                 ) SIP_DEPRECATED;
+                                                                               ) SIP_DEPRECATED;
 #endif
 
     /**
      * Create a new vector file writer
      * \deprecated Use create() instead.
      */
-    Q_DECL_DEPRECATED QgsVectorFileWriter( const QString &vectorFileName,
-                                           const QString &fileEncoding,
-                                           const QgsFields &fields,
-                                           QgsWkbTypes::Type geometryType,
-                                           const QgsCoordinateReferenceSystem &srs = QgsCoordinateReferenceSystem(),
-                                           const QString &driverName = "GPKG",
-                                           const QStringList &datasourceOptions = QStringList(),
-                                           const QStringList &layerOptions = QStringList(),
-                                           QString *newFilename = nullptr,
-                                           QgsVectorFileWriter::SymbologyExport symbologyExport = QgsVectorFileWriter::NoSymbology,
-                                           QgsFeatureSink::SinkFlags sinkFlags = QgsFeatureSink::SinkFlags()
+    QGIS_DEPRECATED QgsVectorFileWriter( const QString &vectorFileName,
+                                         const QString &fileEncoding,
+                                         const QgsFields &fields,
+                                         QgsWkbTypes::Type geometryType,
+                                         const QgsCoordinateReferenceSystem &srs = QgsCoordinateReferenceSystem(),
+                                         const QString &driverName = "GPKG",
+                                         const QStringList &datasourceOptions = QStringList(),
+                                         const QStringList &layerOptions = QStringList(),
+                                         QString *newFilename = nullptr,
+                                         QgsVectorFileWriter::SymbologyExport symbologyExport = QgsVectorFileWriter::NoSymbology,
+                                         QgsFeatureSink::SinkFlags sinkFlags = QgsFeatureSink::SinkFlags()
 #ifndef SIP_RUN
-                                               , QString *newLayer = nullptr,
-                                           QgsCoordinateTransformContext transformContext = QgsCoordinateTransformContext(),
-                                           FieldNameSource fieldNameSource = Original
+                                             , QString *newLayer = nullptr,
+                                         QgsCoordinateTransformContext transformContext = QgsCoordinateTransformContext(),
+                                         FieldNameSource fieldNameSource = Original
 #endif
-                                         ) SIP_DEPRECATED;
+                                       ) SIP_DEPRECATED;
 
     /**
      * Create a new vector file writer.
@@ -614,24 +614,24 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
      * \note not available in Python bindings
      * \deprecated Use create() instead.
      */
-    Q_DECL_DEPRECATED QgsVectorFileWriter( const QString &vectorFileName,
-                                           const QString &fileEncoding,
-                                           const QgsFields &fields,
-                                           QgsWkbTypes::Type geometryType,
-                                           const QgsCoordinateReferenceSystem &srs,
-                                           const QString &driverName,
-                                           const QStringList &datasourceOptions,
-                                           const QStringList &layerOptions,
-                                           QString *newFilename,
-                                           QgsVectorFileWriter::SymbologyExport symbologyExport,
-                                           QgsVectorFileWriter::FieldValueConverter *fieldValueConverter,
-                                           const QString &layerName,
-                                           QgsVectorFileWriter::ActionOnExistingFile action,
-                                           QString *newLayer = nullptr,
-                                           QgsCoordinateTransformContext transformContext = QgsCoordinateTransformContext(),
-                                           QgsFeatureSink::SinkFlags sinkFlags = QgsFeatureSink::SinkFlags(),
-                                           FieldNameSource fieldNameSource = Original
-                                         ) SIP_SKIP;
+    QGIS_DEPRECATED QgsVectorFileWriter( const QString &vectorFileName,
+                                         const QString &fileEncoding,
+                                         const QgsFields &fields,
+                                         QgsWkbTypes::Type geometryType,
+                                         const QgsCoordinateReferenceSystem &srs,
+                                         const QString &driverName,
+                                         const QStringList &datasourceOptions,
+                                         const QStringList &layerOptions,
+                                         QString *newFilename,
+                                         QgsVectorFileWriter::SymbologyExport symbologyExport,
+                                         QgsVectorFileWriter::FieldValueConverter *fieldValueConverter,
+                                         const QString &layerName,
+                                         QgsVectorFileWriter::ActionOnExistingFile action,
+                                         QString *newLayer = nullptr,
+                                         QgsCoordinateTransformContext transformContext = QgsCoordinateTransformContext(),
+                                         QgsFeatureSink::SinkFlags sinkFlags = QgsFeatureSink::SinkFlags(),
+                                         FieldNameSource fieldNameSource = Original
+                                       ) SIP_SKIP;
 
     //! QgsVectorFileWriter cannot be copied.
     QgsVectorFileWriter( const QgsVectorFileWriter &rh ) = delete;
@@ -973,7 +973,7 @@ class CORE_EXPORT QgsVectorFileWriter : public QgsFeatureSink
      * This is safe to call in a background thread.
      * \deprecated Use writeAsVectorFormatV2() instead.
      */
-    Q_DECL_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( PreparedWriterDetails &details,
+    QGIS_DEPRECATED static QgsVectorFileWriter::WriterError writeAsVectorFormat( PreparedWriterDetails &details,
         const QString &fileName,
         const QgsVectorFileWriter::SaveVectorOptions &options,
         QString *newFilename = nullptr,

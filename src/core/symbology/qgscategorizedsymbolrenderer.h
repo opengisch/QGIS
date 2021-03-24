@@ -461,13 +461,13 @@ class CORE_EXPORT QgsCategorizedSymbolRenderer : public QgsFeatureRenderer
     /**
      * \deprecated No longer used, will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED QgsSymbol *skipRender() SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsSymbol *skipRender() SIP_DEPRECATED;
 
     /**
      * Returns the matching symbol corresponding to an attribute \a value.
      * \deprecated use variant which takes a second bool argument instead.
      */
-    Q_DECL_DEPRECATED QgsSymbol *symbolForValue( const QVariant &value ) const SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsSymbol *symbolForValue( const QVariant &value ) const SIP_DEPRECATED;
 
     // TODO QGIS 4.0 - rename Python method to symbolForValue
 

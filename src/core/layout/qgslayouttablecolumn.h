@@ -166,7 +166,7 @@ class CORE_EXPORT QgsLayoutTableColumn
      * \see sortOrder()
      * \deprecated since QGIS 3.14 the order is now hold in a dedicated model
      */
-    Q_DECL_DEPRECATED int sortByRank() const SIP_DEPRECATED { return mSortByRank; }
+    QGIS_DEPRECATED int sortByRank() const SIP_DEPRECATED { return mSortByRank; }
 
     /**
      * Sets the sort \a rank for the column. If the sort rank is > 0 then the column
@@ -181,14 +181,14 @@ class CORE_EXPORT QgsLayoutTableColumn
      * \see setSortOrder()
      * \deprecated since QGIS 3.14 the order is now hold in a dedicated model
      */
-    Q_DECL_DEPRECATED void setSortByRank( int rank ) SIP_DEPRECATED { mSortByRank = rank; }
+    QGIS_DEPRECATED void setSortByRank( int rank ) SIP_DEPRECATED { mSortByRank = rank; }
 
     /**
      * Creates a duplicate column which is a deep copy of this column.
      * \returns a new QgsLayoutTableColumn with same properties as this column.
      * \deprecated since QGIS 3.14 use a copy instead
      */
-    Q_DECL_DEPRECATED QgsLayoutTableColumn *clone() SIP_DEPRECATED SIP_FACTORY {return new QgsLayoutTableColumn( *this );}
+    QGIS_DEPRECATED QgsLayoutTableColumn *clone() SIP_DEPRECATED SIP_FACTORY {return new QgsLayoutTableColumn( *this );}
 
     bool operator==( const QgsLayoutTableColumn &other )
     {

@@ -281,7 +281,7 @@ Returns whether the faces are active for particular dataset
         const QVector<QgsMeshDataBlock> &datasetValues,
         const QVector<QgsMeshDataBlock> &datasetActive,
         const QVector<double> &times
-                                                      ) /Deprecated/;
+                                                    ) /Deprecated/;
 %Docstring
 Creates a new dataset group from a data and
 persists it into a destination path

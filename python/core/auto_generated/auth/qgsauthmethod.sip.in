@@ -173,7 +173,6 @@ Sets the support expansions (points in providers where the authentication is inj
 Sets list of data providers this auth method supports
 %End
 
-
 };
 QFlags<QgsAuthMethod::Expansion> operator|(QgsAuthMethod::Expansion f1, QFlags<QgsAuthMethod::Expansion> f2);
 

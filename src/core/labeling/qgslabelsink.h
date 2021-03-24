@@ -83,7 +83,7 @@ class QgsRuleBasedLabelSinkProvider : public QgsRuleBasedLabelProvider
      * Reinitialize the subproviders with QgsLabelSinkProviders
      * \deprecated since QGIS 3.12
      */
-    Q_DECL_DEPRECATED void reinit( QgsVectorLayer *layer );
+    QGIS_DEPRECATED void reinit( QgsVectorLayer *layer );
 
     void drawLabel( QgsRenderContext &context, pal::LabelPosition *label ) const override;
 

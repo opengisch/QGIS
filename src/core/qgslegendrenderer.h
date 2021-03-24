@@ -86,7 +86,7 @@ class CORE_EXPORT QgsLegendRenderer
      *
      * \deprecated Use the variant which accepts a QgsRenderContext instead.
      */
-    Q_DECL_DEPRECATED void drawLegend( QPainter *painter ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void drawLegend( QPainter *painter ) SIP_DEPRECATED;
 
     /**
      * Draws the legend using a given render \a context. The legend will occupy the area reported in legendSize().

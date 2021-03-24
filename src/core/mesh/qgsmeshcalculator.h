@@ -73,12 +73,12 @@ class CORE_EXPORT QgsMeshCalculator
      *
      * \deprecated QGIS 3.12
      */
-    Q_DECL_DEPRECATED QgsMeshCalculator( const QString &formulaString,
-                                         const QString &outputFile,
-                                         const QgsRectangle &outputExtent,
-                                         double startTime,
-                                         double endTime,
-                                         QgsMeshLayer *layer ) SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsMeshCalculator( const QString &formulaString,
+                                       const QString &outputFile,
+                                       const QgsRectangle &outputExtent,
+                                       double startTime,
+                                       double endTime,
+                                       QgsMeshLayer *layer ) SIP_DEPRECATED;
 
     /**
      * Creates calculator with geometry mask
@@ -91,12 +91,12 @@ class CORE_EXPORT QgsMeshCalculator
      *
      * \deprecated QGIS 3.12
      */
-    Q_DECL_DEPRECATED QgsMeshCalculator( const QString &formulaString,
-                                         const QString &outputFile,
-                                         const QgsGeometry &outputMask,
-                                         double startTime,
-                                         double endTime,
-                                         QgsMeshLayer *layer ) SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsMeshCalculator( const QString &formulaString,
+                                       const QString &outputFile,
+                                       const QgsGeometry &outputMask,
+                                       double startTime,
+                                       double endTime,
+                                       QgsMeshLayer *layer ) SIP_DEPRECATED;
 
     /**
      * Creates calculator with bounding box (rectangular) mask
@@ -199,7 +199,7 @@ class CORE_EXPORT QgsMeshCalculator
      *
      * \deprecated QGIS 3.12 - use expressionIsValid
      */
-    Q_DECL_DEPRECATED static Result expression_valid( const QString &formulaString,
+    QGIS_DEPRECATED static Result expression_valid( const QString &formulaString,
         QgsMeshLayer *layer ) SIP_DEPRECATED;
 
     /**

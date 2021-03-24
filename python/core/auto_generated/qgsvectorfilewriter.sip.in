@@ -254,7 +254,7 @@ Creates a clone of the FieldValueConverter.
         bool includeZ = false,
         const QgsAttributeList &attributes = QgsAttributeList(),
         QgsVectorFileWriter::FieldValueConverter *fieldValueConverter = 0
-                                                                                 ) /Deprecated/;
+                                                                               ) /Deprecated/;
 %Docstring
 Write contents of vector layer to an (OGR supported) vector format
 
@@ -303,7 +303,7 @@ Write contents of vector layer to an (OGR supported) vector format
         bool includeZ = false,
         const QgsAttributeList &attributes = QgsAttributeList(),
         QgsVectorFileWriter::FieldValueConverter *fieldValueConverter = 0
-                                                                                 ) /Deprecated/;
+                                                                               ) /Deprecated/;
 %Docstring
 Writes a layer out to a vector file.
 
@@ -399,7 +399,7 @@ Constructor
         const QgsVectorFileWriter::SaveVectorOptions &options,
         QString *newFilename = 0,
         QString *errorMessage /Out/ = 0
-                                                                                 ) /Deprecated/;
+                                                                               ) /Deprecated/;
 %Docstring
 Writes a layer out to a vector file.
 
@@ -416,17 +416,17 @@ Writes a layer out to a vector file.
 %End
 
  QgsVectorFileWriter( const QString &vectorFileName,
-                                           const QString &fileEncoding,
-                                           const QgsFields &fields,
-                                           QgsWkbTypes::Type geometryType,
-                                           const QgsCoordinateReferenceSystem &srs = QgsCoordinateReferenceSystem(),
-                                           const QString &driverName = "GPKG",
-                                           const QStringList &datasourceOptions = QStringList(),
-                                           const QStringList &layerOptions = QStringList(),
-                                           QString *newFilename = 0,
-                                           QgsVectorFileWriter::SymbologyExport symbologyExport = QgsVectorFileWriter::NoSymbology,
-                                           QgsFeatureSink::SinkFlags sinkFlags = QgsFeatureSink::SinkFlags()
-                                         ) /Deprecated/;
+                                         const QString &fileEncoding,
+                                         const QgsFields &fields,
+                                         QgsWkbTypes::Type geometryType,
+                                         const QgsCoordinateReferenceSystem &srs = QgsCoordinateReferenceSystem(),
+                                         const QString &driverName = "GPKG",
+                                         const QStringList &datasourceOptions = QStringList(),
+                                         const QStringList &layerOptions = QStringList(),
+                                         QString *newFilename = 0,
+                                         QgsVectorFileWriter::SymbologyExport symbologyExport = QgsVectorFileWriter::NoSymbology,
+                                         QgsFeatureSink::SinkFlags sinkFlags = QgsFeatureSink::SinkFlags()
+                                       ) /Deprecated/;
 
 
 

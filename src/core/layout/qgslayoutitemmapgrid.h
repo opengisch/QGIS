@@ -597,7 +597,7 @@ class CORE_EXPORT QgsLayoutItemMapGrid : public QgsLayoutItemMapItem
      * \see annotationFont()
      * \deprecated use setAnnotationTextFormat() instead
      */
-    Q_DECL_DEPRECATED void setAnnotationFont( const QFont &font ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setAnnotationFont( const QFont &font ) SIP_DEPRECATED;
 
     /**
      * Returns the font used for drawing grid annotations.
@@ -605,7 +605,7 @@ class CORE_EXPORT QgsLayoutItemMapGrid : public QgsLayoutItemMapItem
      * \see setAnnotationFont()
      * \deprecated use annotationTextFormat() instead
      */
-    Q_DECL_DEPRECATED QFont annotationFont() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QFont annotationFont() const SIP_DEPRECATED;
 
     /**
      * Sets the font \a color used for drawing grid annotations.
@@ -613,7 +613,7 @@ class CORE_EXPORT QgsLayoutItemMapGrid : public QgsLayoutItemMapItem
      * \see annotationFontColor()
      * \deprecated use setAnnotationTextFormat() instead
      */
-    Q_DECL_DEPRECATED void setAnnotationFontColor( const QColor &color ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setAnnotationFontColor( const QColor &color ) SIP_DEPRECATED;
 
     /**
      * Returns the font color used for drawing grid annotations.
@@ -621,7 +621,7 @@ class CORE_EXPORT QgsLayoutItemMapGrid : public QgsLayoutItemMapItem
      * \see setAnnotationFontColor()
      * \deprecated use annotationTextFormat() instead
      */
-    Q_DECL_DEPRECATED QColor annotationFontColor() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QColor annotationFontColor() const SIP_DEPRECATED;
 
     /**
      * Sets the coordinate \a precision for grid annotations.

@@ -1664,7 +1664,7 @@ class CORE_EXPORT QgsMapLayer : public QObject
      * this method is now deprecated and always return FALSE, because circular dependencies are now correctly managed.
      * \deprecated since QGIS 3.10
      */
-    Q_DECL_DEPRECATED bool hasDependencyCycle( const QSet<QgsMapLayerDependency> & ) const {return false;}
+    QGIS_DEPRECATED bool hasDependencyCycle( const QSet<QgsMapLayerDependency> & ) const {return false;}
 
     bool mIsRefreshOnNofifyEnabled = false;
     QString mRefreshOnNofifyMessage;

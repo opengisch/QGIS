@@ -649,7 +649,7 @@ class CORE_EXPORT QgsFeatureRequest
      * \deprecated Use timeout() instead.
      * \since QGIS 3.0
      */
-    Q_DECL_DEPRECATED int connectionTimeout() const SIP_DEPRECATED;
+    QGIS_DEPRECATED int connectionTimeout() const SIP_DEPRECATED;
 
     /**
      * Sets the timeout (in milliseconds) for how long we should wait for a connection if none is available from the pool
@@ -660,7 +660,7 @@ class CORE_EXPORT QgsFeatureRequest
      * \deprecated Use setTimeout() instead.
      * \since QGIS 3.0
      */
-    Q_DECL_DEPRECATED QgsFeatureRequest &setConnectionTimeout( int connectionTimeout ) SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsFeatureRequest &setConnectionTimeout( int connectionTimeout ) SIP_DEPRECATED;
 
     /**
      * Returns the timeout (in milliseconds) for the maximum time we should wait during feature requests before a

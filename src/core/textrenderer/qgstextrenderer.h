@@ -155,9 +155,9 @@ class CORE_EXPORT QgsTextRenderer
      *
      * \deprecated Private API only, will be removed in 4.0
      */
-    Q_DECL_DEPRECATED static void drawPart( const QRectF &rect, double rotation, HAlignment alignment, const QStringList &textLines,
-                                            QgsRenderContext &context, const QgsTextFormat &format,
-                                            TextPart part, bool drawAsOutlines = true ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static void drawPart( const QRectF &rect, double rotation, HAlignment alignment, const QStringList &textLines,
+                                          QgsRenderContext &context, const QgsTextFormat &format,
+                                          TextPart part, bool drawAsOutlines = true ) SIP_DEPRECATED;
 
     /**
      * Draws a single component of rendered text using the specified settings.
@@ -177,9 +177,9 @@ class CORE_EXPORT QgsTextRenderer
      *
      * \deprecated Private API only, will be removed in 4.0
      */
-    Q_DECL_DEPRECATED static void drawPart( QPointF origin, double rotation, HAlignment alignment, const QStringList &textLines,
-                                            QgsRenderContext &context, const QgsTextFormat &format,
-                                            TextPart part, bool drawAsOutlines = true ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static void drawPart( QPointF origin, double rotation, HAlignment alignment, const QStringList &textLines,
+                                          QgsRenderContext &context, const QgsTextFormat &format,
+                                          TextPart part, bool drawAsOutlines = true ) SIP_DEPRECATED;
 
     /**
      * Returns the font metrics for the given text \a format, when rendered

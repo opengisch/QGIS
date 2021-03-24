@@ -94,11 +94,11 @@ class QgsCoordinateTransformPrivate : public QSharedData
     //! QgsCoordinateReferenceSystem of the destination (map canvas) coordinate system
     QgsCoordinateReferenceSystem mDestCRS;
 
-    Q_DECL_DEPRECATED QString mSourceProjString;
-    Q_DECL_DEPRECATED QString mDestProjString;
+    QGIS_DEPRECATED QString mSourceProjString;
+    QGIS_DEPRECATED QString mDestProjString;
 
-    Q_DECL_DEPRECATED int mSourceDatumTransform = -1;
-    Q_DECL_DEPRECATED int mDestinationDatumTransform = -1;
+    QGIS_DEPRECATED int mSourceDatumTransform = -1;
+    QGIS_DEPRECATED int mDestinationDatumTransform = -1;
     QString mProjCoordinateOperation;
     bool mShouldReverseCoordinateOperation = false;
     bool mAllowFallbackTransforms = true;

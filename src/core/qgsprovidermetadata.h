@@ -184,7 +184,7 @@ class CORE_EXPORT QgsProviderMetadata : public QObject
      * \since QGIS 3.0
      * \deprecated QGIS 3.10
      */
-    SIP_SKIP Q_DECL_DEPRECATED QgsProviderMetadata( const QString &key, const QString &description, const QgsProviderMetadata::CreateDataProviderFunction &createFunc );
+    SIP_SKIP QGIS_DEPRECATED QgsProviderMetadata( const QString &key, const QString &description, const QgsProviderMetadata::CreateDataProviderFunction &createFunc );
 
     //! dtor
     virtual ~QgsProviderMetadata();
@@ -224,7 +224,7 @@ class CORE_EXPORT QgsProviderMetadata : public QObject
      *
      * \deprecated QGIS 3.10 - providers may not need to be loaded from a library (empty string returned)
      */
-    Q_DECL_DEPRECATED QString library() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QString library() const SIP_DEPRECATED;
 
     /**
      * Returns a pointer to the direct provider creation function, if supported
@@ -233,7 +233,7 @@ class CORE_EXPORT QgsProviderMetadata : public QObject
      * \since QGIS 3.0
      * \deprecated QGIS 3.10
      */
-    SIP_SKIP Q_DECL_DEPRECATED CreateDataProviderFunction createFunction() const;
+    SIP_SKIP QGIS_DEPRECATED CreateDataProviderFunction createFunction() const;
 
     /**
       * Initialize the provider

@@ -50,7 +50,7 @@ class CORE_EXPORT QgsNumericScaleBarRenderer: public QgsScaleBarRenderer
                              const QgsScaleBarSettings &settings,
                              const QgsScaleBarRenderer::ScaleBarContext &scaleContext ) const override;
 
-    Q_DECL_DEPRECATED QSizeF calculateBoxSize( const QgsScaleBarSettings &settings, const QgsScaleBarRenderer::ScaleBarContext &scaleContext ) const override SIP_DEPRECATED ;
+    QGIS_DEPRECATED QSizeF calculateBoxSize( const QgsScaleBarSettings &settings, const QgsScaleBarRenderer::ScaleBarContext &scaleContext ) const override SIP_DEPRECATED ;
 
   private:
 

@@ -210,7 +210,7 @@ class CORE_EXPORT QgsRasterLayer : public QgsMapLayer
      * Set the data provider.
      * \deprecated Use the version with ProviderOptions instead.
      */
-    Q_DECL_DEPRECATED void setDataProvider( const QString &provider ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setDataProvider( const QString &provider ) SIP_DEPRECATED;
 
     /**
      * Set the data provider.
@@ -349,7 +349,7 @@ class CORE_EXPORT QgsRasterLayer : public QgsMapLayer
      *
      * \deprecated use QgsRasterRenderer::createLegendNodes() instead.
      */
-    Q_DECL_DEPRECATED QgsLegendColorList legendSymbologyItems() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QgsLegendColorList legendSymbologyItems() const SIP_DEPRECATED;
 
     bool isSpatial() const override { return true; }
 

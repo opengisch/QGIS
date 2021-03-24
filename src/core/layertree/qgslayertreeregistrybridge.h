@@ -21,6 +21,7 @@
 
 #include "qgis_core.h"
 #include "qgis_sip.h"
+#include "qgis.h"
 
 class QgsLayerTreeGroup;
 class QgsLayerTreeNode;
@@ -75,7 +76,7 @@ class CORE_EXPORT QgsLayerTreeRegistryBridge : public QObject
      * By default it is root group with zero index.
      * \deprecated since QGIS 3.10 use setLayerInsertionPoint( const InsertionPoint &insertionPoint ) instead
      */
-    Q_DECL_DEPRECATED void setLayerInsertionPoint( QgsLayerTreeGroup *parentGroup, int index ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLayerInsertionPoint( QgsLayerTreeGroup *parentGroup, int index ) SIP_DEPRECATED;
 
     /**
      * Set where the new layers should be inserted - can be used to follow current selection.

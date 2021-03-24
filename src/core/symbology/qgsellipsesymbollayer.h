@@ -81,7 +81,7 @@ class CORE_EXPORT QgsEllipseSymbolLayer: public QgsMarkerSymbolLayer
      * \see shape()
      * \deprecated since QGIS 3.20
      */
-    Q_DECL_DEPRECATED void setSymbolName( const QString &name ) SIP_DEPRECATED { mShape = decodeShape( name ); }
+    QGIS_DEPRECATED void setSymbolName( const QString &name ) SIP_DEPRECATED { mShape = decodeShape( name ); }
 
     /**
      * Returns the shape name for the rendered ellipse marker symbol.
@@ -89,7 +89,7 @@ class CORE_EXPORT QgsEllipseSymbolLayer: public QgsMarkerSymbolLayer
      * \see setShape()
      * \deprecated since QGIS 3.20
      */
-    Q_DECL_DEPRECATED QString symbolName() const SIP_DEPRECATED { return encodeShape( mShape ); }
+    QGIS_DEPRECATED QString symbolName() const SIP_DEPRECATED { return encodeShape( mShape ); }
 
     /**
      * Returns the shape for the rendered ellipse marker symbol.

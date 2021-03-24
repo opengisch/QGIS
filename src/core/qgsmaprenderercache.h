@@ -24,6 +24,12 @@
 #include "qgsrectangle.h"
 #include "qgsmaplayer.h"
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#define QGIS_DEPRECATED QGIS_DEPRECATED
+#else
+#define QGIS_DEPRECATED
+#endif
+
 
 /**
  * \ingroup core
@@ -63,7 +69,7 @@ class CORE_EXPORT QgsMapRendererCache : public QObject
      * \returns flag whether the parameters are the same as last time
      * \deprecated since QGIS 3.18 - will be removed in QGIS 4.0. Use the updateParameters() and clear()
      */
-    bool Q_DECL_DEPRECATED init( const QgsRectangle &extent, double scale ) SIP_DEPRECATED;
+    bool QGIS_DEPRECATED init( const QgsRectangle &extent, double scale ) SIP_DEPRECATED;
 
     /**
      * Sets extent and scale parameters

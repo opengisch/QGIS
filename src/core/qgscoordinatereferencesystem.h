@@ -265,7 +265,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      * \param type One of the types described in CrsType
      * \deprecated QGIS 3.10 We encourage you to use EPSG codes or WKT to describe CRSes in your code wherever possible. Internal QGIS CRS IDs are not guaranteed to be permanent / involatile, and Proj strings are a lossy format.
      */
-    Q_DECL_DEPRECATED explicit QgsCoordinateReferenceSystem( long id, CrsType type = PostgisCrsId ) SIP_DEPRECATED;
+    QGIS_DEPRECATED explicit QgsCoordinateReferenceSystem( long id, CrsType type = PostgisCrsId ) SIP_DEPRECATED;
 
     //! Copy constructor
     QgsCoordinateReferenceSystem( const QgsCoordinateReferenceSystem &srs );
@@ -313,7 +313,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      * \see createFromProj()
      * \deprecated QGIS 3.10 Use fromProj() instead.
     */
-    Q_DECL_DEPRECATED static QgsCoordinateReferenceSystem fromProj4( const QString &proj4 ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static QgsCoordinateReferenceSystem fromProj4( const QString &proj4 ) SIP_DEPRECATED;
 
     /**
      * Creates a CRS from a proj style formatted string.
@@ -352,7 +352,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      * \returns TRUE on success else FALSE
      * \deprecated QGIS 3.10 We encourage you to use EPSG code or WKT to describe CRSes in your code wherever possible. Internal QGIS CRS IDs are not guaranteed to be permanent / involatile, and Proj strings are a lossy format.
      */
-    Q_DECL_DEPRECATED bool createFromId( long id, CrsType type = PostgisCrsId ) SIP_DEPRECATED;
+    QGIS_DEPRECATED bool createFromId( long id, CrsType type = PostgisCrsId ) SIP_DEPRECATED;
 
     // TODO QGIS 4: remove "QGIS" and "CUSTOM", only support "USER" (also returned by authid())
 
@@ -377,7 +377,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      *
      * \deprecated QGIS 3.10 Use alternative methods for SRS construction instead -- this method was specifically created for use by the postgres provider alone, and using it elsewhere will lead to subtle bugs.
      */
-    Q_DECL_DEPRECATED bool createFromSrid( long srid ) SIP_DEPRECATED;
+    QGIS_DEPRECATED bool createFromSrid( long srid ) SIP_DEPRECATED;
 
     /**
      * Sets this CRS using a WKT definition.
@@ -430,7 +430,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      * \see fromProj()
      * \deprecated QGIS 3.10 Use createFromProj() instead
      */
-    Q_DECL_DEPRECATED bool createFromProj4( const QString &projString ) SIP_DEPRECATED;
+    QGIS_DEPRECATED bool createFromProj4( const QString &projString ) SIP_DEPRECATED;
 
     /**
      * Sets this CRS by passing it a PROJ style formatted string.
@@ -511,7 +511,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      * For more details refer to OGRSpatialReference::morphFromESRI() .
      * \deprecated QGIS 3.10 Not used on builds based on Proj version 6 or later
      */
-    Q_DECL_DEPRECATED static void setupESRIWktFix() SIP_DEPRECATED;
+    QGIS_DEPRECATED static void setupESRIWktFix() SIP_DEPRECATED;
 
     //! Returns whether this CRS is correctly initialized and usable
     bool isValid() const;
@@ -539,7 +539,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      *  \returns long the SrsId of the matched CRS, zero if no match was found
      * \deprecated QGIS 3.10 Not used in Proj >= 6 based builds
      */
-    Q_DECL_DEPRECATED long findMatchingProj() SIP_DEPRECATED;
+    QGIS_DEPRECATED long findMatchingProj() SIP_DEPRECATED;
 
     /**
      * Overloaded == operator used to compare to CRS's.
@@ -708,7 +708,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      * \see toWkt()
      * \deprecated QGIS 3.10 Use toProj() instead.
      */
-    Q_DECL_DEPRECATED QString toProj4() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QString toProj4() const SIP_DEPRECATED;
 
     /**
      * Returns a Proj string representation of this CRS.
@@ -835,7 +835,7 @@ class CORE_EXPORT QgsCoordinateReferenceSystem
      * \returns list of srsid for recently used projections
      * \deprecated QGIS 3.10 Use recentCoordinateReferenceSystems() instead.
      */
-    Q_DECL_DEPRECATED static QStringList recentProjections() SIP_DEPRECATED;
+    QGIS_DEPRECATED static QStringList recentProjections() SIP_DEPRECATED;
 
     /**
      * Returns a list of recently used CRS.

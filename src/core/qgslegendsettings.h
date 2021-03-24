@@ -382,22 +382,22 @@ class CORE_EXPORT QgsLegendSettings
     /**
      * \deprecated Use scale factor from render contexts instead.
      */
-    Q_DECL_DEPRECATED double mmPerMapUnit() const SIP_DEPRECATED;
+    QGIS_DEPRECATED double mmPerMapUnit() const SIP_DEPRECATED;
 
     /**
      * \deprecated Set scale factor on render contexts instead.
      */
-    Q_DECL_DEPRECATED void setMmPerMapUnit( double mmPerMapUnit ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setMmPerMapUnit( double mmPerMapUnit ) SIP_DEPRECATED;
 
     /**
      * \deprecated Use flags from render contexts instead.
      */
-    Q_DECL_DEPRECATED bool useAdvancedEffects() const SIP_DEPRECATED;
+    QGIS_DEPRECATED bool useAdvancedEffects() const SIP_DEPRECATED;
 
     /**
      * \deprecated Set flag on render contexts instead.
      */
-    Q_DECL_DEPRECATED void setUseAdvancedEffects( bool use ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setUseAdvancedEffects( bool use ) SIP_DEPRECATED;
 
     /**
      * Returns the legend map scale.
@@ -405,7 +405,7 @@ class CORE_EXPORT QgsLegendSettings
      * \see setMapScale()
      * \deprecated take this property from the render context instead
      */
-    Q_DECL_DEPRECATED double mapScale() const SIP_DEPRECATED;
+    QGIS_DEPRECATED double mapScale() const SIP_DEPRECATED;
 
     /**
      * Sets the legend map \a scale.
@@ -413,31 +413,31 @@ class CORE_EXPORT QgsLegendSettings
      * \see mapScale()
      * \deprecated set this property on the render context instead
      */
-    Q_DECL_DEPRECATED void setMapScale( double scale ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setMapScale( double scale ) SIP_DEPRECATED;
 
     /**
      * Returns the factor of map units per pixel for symbols with size given in map units calculated by dpi and mmPerMapUnit
      * \see setMapUnitsPerPixel()
      * \deprecated take these properties on render contexts instead
      */
-    Q_DECL_DEPRECATED double mapUnitsPerPixel() const SIP_DEPRECATED;
+    QGIS_DEPRECATED double mapUnitsPerPixel() const SIP_DEPRECATED;
 
     /**
      * Sets the mmPerMapUnit calculated by \a mapUnitsPerPixel mostly taken from the map settings.
      * \see mapUnitsPerPixel()
      * \deprecated set these properties on render contexts instead
      */
-    Q_DECL_DEPRECATED void setMapUnitsPerPixel( double mapUnitsPerPixel ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setMapUnitsPerPixel( double mapUnitsPerPixel ) SIP_DEPRECATED;
 
     /**
      * \deprecated Take dpi from render contexts instead.
      */
-    Q_DECL_DEPRECATED int dpi() const SIP_DEPRECATED;
+    QGIS_DEPRECATED int dpi() const SIP_DEPRECATED;
 
     /**
      * \deprecated Set dpi on render contexts instead.
      */
-    Q_DECL_DEPRECATED void setDpi( int dpi ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setDpi( int dpi ) SIP_DEPRECATED;
 
 // utility functions
 

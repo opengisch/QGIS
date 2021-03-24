@@ -10,6 +10,7 @@
 
 
 
+
 class QgsMapRendererCache : QObject
 {
 %Docstring(signature="appended")

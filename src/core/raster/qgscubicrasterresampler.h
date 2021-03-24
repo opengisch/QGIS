@@ -40,7 +40,7 @@ class CORE_EXPORT QgsCubicRasterResampler: public QgsRasterResamplerV2
     QgsCubicRasterResampler *clone() const override SIP_FACTORY;
 
     QImage resampleV2( const QImage &source, const QSize &size ) override;
-    Q_DECL_DEPRECATED void resample( const QImage &srcImage, QImage &dstImage ) override SIP_DEPRECATED;
+    QGIS_DEPRECATED void resample( const QImage &srcImage, QImage &dstImage ) override SIP_DEPRECATED;
     QString type() const override;
     int tileBufferPixels() const override;
 };

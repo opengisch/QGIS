@@ -101,7 +101,7 @@ class CORE_EXPORT QgsProviderRegistry
      *
      * \deprecated QGIS 3.10 - providers may not need to be loaded from a library (empty string returned)
      */
-    Q_DECL_DEPRECATED QString library( const QString &providerKey ) const SIP_DEPRECATED;
+    QGIS_DEPRECATED QString library( const QString &providerKey ) const SIP_DEPRECATED;
 
     //! Returns list of provider plugins found
     QString pluginList( bool asHtml = false ) const;
@@ -152,7 +152,7 @@ class CORE_EXPORT QgsProviderRegistry
      * \since QGIS 2.6
      * \deprecated QGIS 3.10 (use instead capabilities() method of individual data item provider)
      */
-    Q_DECL_DEPRECATED int providerCapabilities( const QString &providerKey ) const SIP_DEPRECATED;
+    QGIS_DEPRECATED int providerCapabilities( const QString &providerKey ) const SIP_DEPRECATED;
 
     /**
      * Creates new empty vector layer
@@ -212,7 +212,7 @@ class CORE_EXPORT QgsProviderRegistry
      * responsible for deleting the returned widget.
      * \deprecated QGIS 3.10 - use QgsGui::sourceSelectProviderRegistry()->createDataSourceWidget() instead
      */
-    Q_DECL_DEPRECATED QWidget *createSelectionWidget( const QString &providerKey, QWidget *parent = nullptr, Qt::WindowFlags fl = Qt::WindowFlags(), QgsProviderRegistry::WidgetMode widgetMode = QgsProviderRegistry::WidgetMode::None ) SIP_DEPRECATED;
+    QGIS_DEPRECATED QWidget *createSelectionWidget( const QString &providerKey, QWidget *parent = nullptr, Qt::WindowFlags fl = Qt::WindowFlags(), QgsProviderRegistry::WidgetMode widgetMode = QgsProviderRegistry::WidgetMode::None ) SIP_DEPRECATED;
 
     /**
      * Returns list of data item providers of the provider
@@ -283,7 +283,7 @@ class CORE_EXPORT QgsProviderRegistry
      *
      * \deprecated QGIS 3.10 - any provider functionality should be accessed through QgsProviderMetadata
      */
-    Q_DECL_DEPRECATED QFunctionPointer function( const QString &providerKey, const QString &functionName ) SIP_DEPRECATED;
+    QGIS_DEPRECATED QFunctionPointer function( const QString &providerKey, const QString &functionName ) SIP_DEPRECATED;
 
     /**
      * Returns a new QLibrary for the specified \a providerKey. Ownership of the returned
@@ -294,7 +294,7 @@ class CORE_EXPORT QgsProviderRegistry
      *
      * \deprecated QGIS 3.10 - providers may not need to be loaded from a library
      */
-    Q_DECL_DEPRECATED QLibrary *createProviderLibrary( const QString &providerKey ) const SIP_FACTORY SIP_DEPRECATED;
+    QGIS_DEPRECATED QLibrary *createProviderLibrary( const QString &providerKey ) const SIP_FACTORY SIP_DEPRECATED;
 
     //! Returns list of available providers by their keys
     QStringList providerList() const;
@@ -602,7 +602,7 @@ class CORE_EXPORT QgsProviderRegistry
     /**
      * \deprecated since QGIS 3.10 - does nothing - use QgsGui::providerGuiRegistry()
      */
-    Q_DECL_DEPRECATED void registerGuis( QWidget *widget ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void registerGuis( QWidget *widget ) SIP_DEPRECATED;
 
     /**
      * \brief register a new vector data provider from its \a providerMetadata

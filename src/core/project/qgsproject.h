@@ -298,7 +298,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      * \see fileName()
      * \deprecated since QGIS 3.2 use absoluteFilePath(), baseName() or lastModifiedTime() instead
      */
-    Q_DECL_DEPRECATED QFileInfo fileInfo() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QFileInfo fileInfo() const SIP_DEPRECATED;
 
     /**
      * Returns pointer to project storage implementation that handles read/write of the project file.
@@ -836,19 +836,19 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      * Set a list of layers which should not be taken into account on map identification
      * \deprecated since QGIS 3.4 use QgsMapLayer::setFlags() instead
      */
-    Q_DECL_DEPRECATED void setNonIdentifiableLayers( const QList<QgsMapLayer *> &layers );
+    QGIS_DEPRECATED void setNonIdentifiableLayers( const QList<QgsMapLayer *> &layers );
 
     /**
      * Set a list of layers which should not be taken into account on map identification
      * \deprecated since QGIS 3.4 use QgsMapLayer::setFlags() instead
      */
-    Q_DECL_DEPRECATED void setNonIdentifiableLayers( const QStringList &layerIds );
+    QGIS_DEPRECATED void setNonIdentifiableLayers( const QStringList &layerIds );
 
     /**
      * Gets the list of layers which currently should not be taken into account on map identification
      * \deprecated since QGIS 3.4 use QgsMapLayer::setFlags() instead
      */
-    Q_DECL_DEPRECATED QStringList nonIdentifiableLayers() const;
+    QGIS_DEPRECATED QStringList nonIdentifiableLayers() const;
 
     /**
      * Transactional editing means that on supported datasources (postgres databases) the edit state of
@@ -1364,7 +1364,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      * \deprecated since QGIS 3.4 use QgsMapLayer::flags() instead
      * \since QGIS 3.2
      */
-    Q_DECL_DEPRECATED QSet<QgsMapLayer *> requiredLayers() const;
+    QGIS_DEPRECATED QSet<QgsMapLayer *> requiredLayers() const;
 
     /**
      * Configures a set of map layers that are required in the project and therefore they should not get
@@ -1374,7 +1374,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      * \deprecated since QGIS 3.4 use QgsMapLayer::setFlags() instead
      * \since QGIS 3.2
      */
-    Q_DECL_DEPRECATED void setRequiredLayers( const QSet<QgsMapLayer *> &layers );
+    QGIS_DEPRECATED void setRequiredLayers( const QSet<QgsMapLayer *> &layers );
 
     /**
      * Sets the \a colors for the project's color scheme (see QgsProjectColorScheme).
@@ -1427,7 +1427,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      *
      * \deprecated Use viewSettings() instead
      */
-    Q_DECL_DEPRECATED void setMapScales( const QVector<double> &scales ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setMapScales( const QVector<double> &scales ) SIP_DEPRECATED;
 
     /**
      * Returns the list of custom project map scales.
@@ -1440,7 +1440,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      *
      * \deprecated Use viewSettings() instead
      */
-    Q_DECL_DEPRECATED QVector<double> mapScales() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QVector<double> mapScales() const SIP_DEPRECATED;
 
     /**
      * Sets whether project mapScales() are \a enabled.
@@ -1450,7 +1450,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      *
      * \deprecated Use viewSettings() instead
      */
-    Q_DECL_DEPRECATED void setUseProjectScales( bool enabled ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setUseProjectScales( bool enabled ) SIP_DEPRECATED;
 
     /**
      * Returns TRUE if project mapScales() are enabled.
@@ -1460,7 +1460,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      *
      * \deprecated Use viewSettings() instead
      */
-    Q_DECL_DEPRECATED bool useProjectScales() const SIP_DEPRECATED;
+    QGIS_DEPRECATED bool useProjectScales() const SIP_DEPRECATED;
 
     /**
      * Triggers the collection strings of .qgs to be included in ts file and calls writeTsFile()
@@ -1578,7 +1578,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      * Emitted when the list of layer which are excluded from map identification changes
      * \deprecated since QGIS 3.4
      */
-    Q_DECL_DEPRECATED void nonIdentifiableLayersChanged( QStringList nonIdentifiableLayers );
+    QGIS_DEPRECATED void nonIdentifiableLayersChanged( QStringList nonIdentifiableLayers );
 
     //! Emitted when the file name of the project changes
     void fileNameChanged();
@@ -1847,7 +1847,7 @@ class CORE_EXPORT QgsProject : public QObject, public QgsExpressionContextGenera
      *
      * \deprecated Use viewSettings() instead
      */
-    Q_DECL_DEPRECATED void mapScalesChanged() SIP_DEPRECATED;
+    QGIS_DEPRECATED void mapScalesChanged() SIP_DEPRECATED;
 
   public slots:
 

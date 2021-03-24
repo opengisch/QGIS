@@ -382,7 +382,6 @@ Returns the path to user's style.
 %Docstring
 Returns the short name regular expression for line edit validator
 %End
-
     static QRegularExpression shortNameRegularExpression();
 %Docstring
 Returns the short name regular expression for line edit validator

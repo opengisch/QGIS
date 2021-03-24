@@ -123,8 +123,8 @@ Draws text at a point origin using the specified settings.
 %End
 
  static void drawPart( const QRectF &rect, double rotation, HAlignment alignment, const QStringList &textLines,
-                                            QgsRenderContext &context, const QgsTextFormat &format,
-                                            TextPart part, bool drawAsOutlines = true ) /Deprecated/;
+                                          QgsRenderContext &context, const QgsTextFormat &format,
+                                          TextPart part, bool drawAsOutlines = true ) /Deprecated/;
 %Docstring
 Draws a single component of rendered text using the specified settings.
 
@@ -147,8 +147,8 @@ Draws a single component of rendered text using the specified settings.
 %End
 
  static void drawPart( QPointF origin, double rotation, HAlignment alignment, const QStringList &textLines,
-                                            QgsRenderContext &context, const QgsTextFormat &format,
-                                            TextPart part, bool drawAsOutlines = true ) /Deprecated/;
+                                          QgsRenderContext &context, const QgsTextFormat &format,
+                                          TextPart part, bool drawAsOutlines = true ) /Deprecated/;
 %Docstring
 Draws a single component of rendered text using the specified settings.
 

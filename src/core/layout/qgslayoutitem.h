@@ -453,7 +453,7 @@ class CORE_EXPORT QgsLayoutItem : public QgsLayoutObject, public QGraphicsRectIt
      *
      * \deprecated Use nextExportPart() and exportLayerBehavior() instead.
      */
-    Q_DECL_DEPRECATED virtual int numberExportLayers() const SIP_DEPRECATED;
+    QGIS_DEPRECATED virtual int numberExportLayers() const SIP_DEPRECATED;
 
     /**
      * Starts a multi-layer export operation.

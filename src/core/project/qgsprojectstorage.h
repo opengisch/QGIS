@@ -111,21 +111,21 @@ class CORE_EXPORT QgsProjectStorage
      * The name may be translatable and ideally unique as well.
      * \deprecated since QGIS 3.10 - use QgsProjectStorageGuiProvider for GUI-related project storage functionality
      */
-    Q_DECL_DEPRECATED virtual QString visibleName() SIP_DEPRECATED { return QString(); }
+    QGIS_DEPRECATED virtual QString visibleName() SIP_DEPRECATED { return QString(); }
 
     /**
      * Opens GUI to allow user to select a project to be loaded (GUI specific to this storage type).
      * Returns project URI if user has picked a project or empty string if the GUI was canceled.
      * \deprecated since QGIS 3.10 - use QgsProjectStorageGuiProvider for GUI-related project storage functionality
      */
-    Q_DECL_DEPRECATED virtual QString showLoadGui() SIP_DEPRECATED { return QString(); }
+    QGIS_DEPRECATED virtual QString showLoadGui() SIP_DEPRECATED { return QString(); }
 
     /**
      * Opens GUI to allow user to select where a project should be saved (GUI specific to this storage type).
      * Returns project URI if user has picked a destination or empty string if the GUI was canceled.
      * \deprecated since QGIS 3.10 - use QgsProjectStorageGuiProvider for GUI-related project storage functionality
      */
-    Q_DECL_DEPRECATED virtual QString showSaveGui() SIP_DEPRECATED { return QString(); }
+    QGIS_DEPRECATED virtual QString showSaveGui() SIP_DEPRECATED { return QString(); }
 
 };
 

@@ -160,7 +160,7 @@ class CORE_EXPORT QgsBrowserModel : public QAbstractItemModel
     /**
      * \deprecated Deprecated since QGIS 3.4 -- this method has no effect, and is dangerous to call in earlier QGIS versions. Any usage should be removed (and will have no harmful side-effects!).
      */
-    Q_DECL_DEPRECATED void connectItem( QgsDataItem *item ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void connectItem( QgsDataItem *item ) SIP_DEPRECATED;
 
     /**
      * Returns TRUE if the model has been initialized.

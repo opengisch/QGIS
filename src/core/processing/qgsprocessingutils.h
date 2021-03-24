@@ -264,7 +264,7 @@ class CORE_EXPORT QgsProcessingUtils
      * will be used to transform the layer's extent to the desired output reference system.
      * \deprecated Use version with QgsProcessingContext argument instead
      */
-    Q_DECL_DEPRECATED static QgsRectangle combineLayerExtents( const QList<QgsMapLayer *> &layers, const QgsCoordinateReferenceSystem &crs = QgsCoordinateReferenceSystem() ) SIP_DEPRECATED;
+    QGIS_DEPRECATED static QgsRectangle combineLayerExtents( const QList<QgsMapLayer *> &layers, const QgsCoordinateReferenceSystem &crs = QgsCoordinateReferenceSystem() ) SIP_DEPRECATED;
 
     /**
      * Converts an \a input parameter value for use in source iterating mode, where one individual sink
@@ -451,7 +451,7 @@ class CORE_EXPORT QgsProcessingUtils
      *
      * \deprecated use mapLayerFromString() that takes QgsCoordinateTransformContext as an argument instead
      */
-    Q_DECL_DEPRECATED static QgsMapLayer *loadMapLayerFromString( const QString &string, LayerHint typeHint = LayerHint::UnknownType ) SIP_DEPRECATED ;
+    QGIS_DEPRECATED static QgsMapLayer *loadMapLayerFromString( const QString &string, LayerHint typeHint = LayerHint::UnknownType ) SIP_DEPRECATED ;
 
     static void parseDestinationString( QString &destination, QString &providerKey, QString &uri, QString &layerName, QString &format, QMap<QString, QVariant> &options, bool &useWriter, QString &extension );
 

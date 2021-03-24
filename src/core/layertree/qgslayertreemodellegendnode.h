@@ -179,13 +179,13 @@ class CORE_EXPORT QgsLayerTreeModelLegendNode : public QObject
        * Top-left corner of the legend item.
        * \deprecated Use top, columnLeft, columnRight instead.
        */
-      Q_DECL_DEPRECATED QPointF point;
+      QGIS_DEPRECATED QPointF point;
 
       /**
        * Offset from the left side where label should start.
        * \deprecated use columnLeft, columnRight instead.
        */
-      Q_DECL_DEPRECATED double labelXOffset = 0.0;
+      QGIS_DEPRECATED double labelXOffset = 0.0;
 
       /**
        * Top y-position of legend item.

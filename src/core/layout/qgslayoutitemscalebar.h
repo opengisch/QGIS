@@ -341,14 +341,14 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see setFont()
      * \deprecated use textFormat() instead
      */
-    Q_DECL_DEPRECATED QFont font() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QFont font() const SIP_DEPRECATED;
 
     /**
      * Sets the \a font used for drawing text in the scalebar.
      * \see font()
      * \deprecated use setTextFormat() instead
      */
-    Q_DECL_DEPRECATED void setFont( const QFont &font ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setFont( const QFont &font ) SIP_DEPRECATED;
 
     /**
      * Returns the color used for drawing text in the scalebar.
@@ -356,7 +356,7 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see font()
      * \deprecated use textFormat() instead
      */
-    Q_DECL_DEPRECATED QColor fontColor() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QColor fontColor() const SIP_DEPRECATED;
 
     /**
      * Sets the \a color used for drawing text in the scalebar.
@@ -364,7 +364,7 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see setFont()
      * \deprecated use setTextFormat() instead
      */
-    Q_DECL_DEPRECATED void setFontColor( const QColor &color ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setFontColor( const QColor &color ) SIP_DEPRECATED;
 
     /**
      * Returns the color used for fills in the scalebar.
@@ -372,7 +372,7 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see fillColor2()
      * \deprecated use fillSymbol() instead
      */
-    Q_DECL_DEPRECATED QColor fillColor() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QColor fillColor() const SIP_DEPRECATED;
 
     /**
      * Sets the \a color used for fills in the scalebar.
@@ -380,7 +380,7 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see setFillColor2()
      * \deprecated use setFillSymbol() instead
      */
-    Q_DECL_DEPRECATED void setFillColor( const QColor &color ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setFillColor( const QColor &color ) SIP_DEPRECATED;
 
     /**
      * Returns the secondary color used for fills in the scalebar.
@@ -388,7 +388,7 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see fillColor()
      * \deprecated use alternateFillSymbol() instead
      */
-    Q_DECL_DEPRECATED QColor fillColor2() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QColor fillColor2() const SIP_DEPRECATED;
 
     /**
      * Sets the secondary \a color used for fills in the scalebar.
@@ -396,42 +396,42 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see setFillColor2()
      * \deprecated use setAlternateFillSymbol() instead
      */
-    Q_DECL_DEPRECATED void setFillColor2( const QColor &color ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setFillColor2( const QColor &color ) SIP_DEPRECATED;
 
     /**
      * Returns the color used for lines in the scalebar.
      * \see setLineColor()
      * \deprecated use lineSymbol() instead
      */
-    Q_DECL_DEPRECATED QColor lineColor() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QColor lineColor() const SIP_DEPRECATED;
 
     /**
      * Sets the \a color used for lines in the scalebar.
      * \see lineColor()
      * \deprecated use setLineSymbol() instead
      */
-    Q_DECL_DEPRECATED void setLineColor( const QColor &color ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLineColor( const QColor &color ) SIP_DEPRECATED;
 
     /**
      * Returns the line width in millimeters for lines in the scalebar.
      * \see setLineWidth()
      * \deprecated use lineSymbol() instead
      */
-    Q_DECL_DEPRECATED double lineWidth() const SIP_DEPRECATED;
+    QGIS_DEPRECATED double lineWidth() const SIP_DEPRECATED;
 
     /**
      * Sets the line \a width in millimeters for lines in the scalebar.
      * \see lineWidth()
      * \deprecated use setLineSymbol() instead
      */
-    Q_DECL_DEPRECATED void setLineWidth( double width ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLineWidth( double width ) SIP_DEPRECATED;
 
     /**
      * Returns the pen used for drawing outlines in the scalebar.
      * \see brush()
      * \deprecated use lineSymbol() instead
      */
-    Q_DECL_DEPRECATED QPen pen() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QPen pen() const SIP_DEPRECATED;
 
     /**
      * Returns the primary brush for the scalebar.
@@ -440,7 +440,7 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see pen
      * \deprecated use fillSymbol() instead
      */
-    Q_DECL_DEPRECATED QBrush brush() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QBrush brush() const SIP_DEPRECATED;
 
     /**
      * Returns the secondary brush for the scalebar. This is used for alternating color style scalebars, such
@@ -449,7 +449,7 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see brush
      * \deprecated use alternateFillSymbol() instead
      */
-    Q_DECL_DEPRECATED QBrush brush2() const SIP_DEPRECATED;
+    QGIS_DEPRECATED QBrush brush2() const SIP_DEPRECATED;
 
     /**
      * Returns the scalebar height (in millimeters).
@@ -556,28 +556,28 @@ class CORE_EXPORT QgsLayoutItemScaleBar: public QgsLayoutItem
      * \see setLineJoinStyle()
      * \deprecated use lineSymbol() instead
      */
-    Q_DECL_DEPRECATED Qt::PenJoinStyle lineJoinStyle() const SIP_DEPRECATED;
+    QGIS_DEPRECATED Qt::PenJoinStyle lineJoinStyle() const SIP_DEPRECATED;
 
     /**
      * Sets the join \a style used when drawing the lines in the scalebar
      * \see lineJoinStyle()
      * \deprecated use setLineSymbol() instead
      */
-    Q_DECL_DEPRECATED void setLineJoinStyle( Qt::PenJoinStyle style ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLineJoinStyle( Qt::PenJoinStyle style ) SIP_DEPRECATED;
 
     /**
      * Returns the cap style used for drawing lines in the scalebar.
      * \see setLineCapStyle()
      * \deprecated use lineSymbol() instead
      */
-    Q_DECL_DEPRECATED Qt::PenCapStyle lineCapStyle() const SIP_DEPRECATED;
+    QGIS_DEPRECATED Qt::PenCapStyle lineCapStyle() const SIP_DEPRECATED;
 
     /**
      * Sets the cap \a style used when drawing the lines in the scalebar.
      * \see lineCapStyle()
      * \deprecated use setLineSymbol() instead
      */
-    Q_DECL_DEPRECATED void setLineCapStyle( Qt::PenCapStyle style ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLineCapStyle( Qt::PenCapStyle style ) SIP_DEPRECATED;
 
     /**
      * Applies the default scalebar settings to the scale bar.

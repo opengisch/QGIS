@@ -104,7 +104,7 @@ class CORE_EXPORT QgsMapLayerProxyModel : public QSortFilterProxyModel
      *
      * \deprecated use setLayerAllowList()
      */
-    Q_DECL_DEPRECATED void setLayerWhitelist( const QList<QgsMapLayer *> &layers ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setLayerWhitelist( const QList<QgsMapLayer *> &layers ) SIP_DEPRECATED;
 
     /**
      * Sets an allowlist of \a layers to include within the model. Only layers
@@ -129,7 +129,7 @@ class CORE_EXPORT QgsMapLayerProxyModel : public QSortFilterProxyModel
      *
      * \deprecated use layerAllowlist() instead
      */
-    Q_DECL_DEPRECATED QList<QgsMapLayer *> layerWhitelist() SIP_DEPRECATED {return mLayerAllowlist;}
+    QGIS_DEPRECATED QList<QgsMapLayer *> layerWhitelist() SIP_DEPRECATED {return mLayerAllowlist;}
 
     /**
      * Returns the list of layers which are excluded from the model.

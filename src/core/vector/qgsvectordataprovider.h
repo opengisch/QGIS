@@ -568,7 +568,7 @@ class CORE_EXPORT QgsVectorDataProvider : public QgsDataProvider, public QgsFeat
     /**
      * \deprecated QGIS 3.12 - will be removed in QGIS 4.0 - use reloadData instead
      */
-    Q_DECL_DEPRECATED virtual void forceReload() SIP_DEPRECATED { reloadData(); }
+    QGIS_DEPRECATED virtual void forceReload() SIP_DEPRECATED { reloadData(); }
 
     /**
      * Gets the list of layer ids on which this layer depends. This in particular determines the order of layer loading.

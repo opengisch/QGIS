@@ -140,7 +140,7 @@ class CORE_EXPORT QgsSpatialIndex : public QgsFeatureSink
      * Adds a \a feature to the index.
      * \deprecated Use addFeature() instead
      */
-    Q_DECL_DEPRECATED bool insertFeature( const QgsFeature &feature ) SIP_DEPRECATED;
+    QGIS_DEPRECATED bool insertFeature( const QgsFeature &feature ) SIP_DEPRECATED;
 
     /**
      * Adds a \a feature to the index.
@@ -165,7 +165,7 @@ class CORE_EXPORT QgsSpatialIndex : public QgsFeatureSink
      * \returns TRUE if feature was successfully added to index.
      * \deprecated Use addFeature() instead
     */
-    Q_DECL_DEPRECATED bool insertFeature( QgsFeatureId id, const QgsRectangle &bounds ) SIP_DEPRECATED;
+    QGIS_DEPRECATED bool insertFeature( QgsFeatureId id, const QgsRectangle &bounds ) SIP_DEPRECATED;
 
     /**
      * Add a feature \a id to the index with a specified bounding box.

@@ -194,7 +194,7 @@ class CORE_EXPORT QgsProcessingAlgorithm
      * \see shortHelpString()
      * \deprecated Unused, will be removed in QGIS 4.0
      */
-    Q_DECL_DEPRECATED virtual QString helpString() const SIP_DEPRECATED;
+    QGIS_DEPRECATED virtual QString helpString() const SIP_DEPRECATED;
 
     /**
      * Returns a url pointing to the algorithm's help page.

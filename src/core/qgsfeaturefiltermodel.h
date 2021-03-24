@@ -54,7 +54,7 @@ class CORE_EXPORT QgsFeatureFilterModel : public QgsFeaturePickerModelBase
      * If there are several identifier fields defined, the behavior is not guaranteed
      * \deprecated since QGIS 3.10 use identifierFields instead
      */
-    Q_DECL_DEPRECATED QString identifierField() const;
+    QGIS_DEPRECATED QString identifierField() const;
 
     /**
      * The identifier field should be a unique field that can be used to identify individual features.

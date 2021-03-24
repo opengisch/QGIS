@@ -93,14 +93,14 @@ class CORE_EXPORT QgsLayoutReportContext : public QObject
      * \see predefinedScales()
      * \deprecated Use QgsLayoutRenderContext::setPredefinedScales()
      */
-    Q_DECL_DEPRECATED void setPredefinedScales( const QVector<qreal> &scales ) SIP_DEPRECATED;
+    QGIS_DEPRECATED void setPredefinedScales( const QVector<qreal> &scales ) SIP_DEPRECATED;
 
     /**
      * Returns the current list of predefined scales for use with the layout.
      * \see setPredefinedScales()
      * \deprecated Use QgsLayoutRenderContext::predefinedScales()
      */
-    Q_DECL_DEPRECATED QVector<qreal> predefinedScales() const SIP_DEPRECATED { return mPredefinedScales; }
+    QGIS_DEPRECATED QVector<qreal> predefinedScales() const SIP_DEPRECATED { return mPredefinedScales; }
 
   signals:
 

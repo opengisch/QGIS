@@ -60,7 +60,7 @@ class CORE_EXPORT QgsRasterResampler
      *
      * \deprecated since QGIS 3.10.1, use the more efficient QgsRasterResamplerV2 interface instead.
      */
-    Q_DECL_DEPRECATED virtual void resample( const QImage &srcImage, QImage &dstImage ) = 0 SIP_DEPRECATED;
+    QGIS_DEPRECATED virtual void resample( const QImage &srcImage, QImage &dstImage ) = 0 SIP_DEPRECATED;
 
     /**
      * Gets a descriptive type identifier for this raster resampler.
