@@ -43,4 +43,4 @@ cmake -GNinja \
  -DWERROR=TRUE \
  ..
 
-ninja
+ninja pyqgis_core
