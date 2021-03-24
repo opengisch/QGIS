@@ -27,6 +27,7 @@
 #include <QTime>
 #include <QDir>
 #include <QFileInfo>
+#include <QRandomGenerator>
 
 //////////////
 
@@ -401,7 +402,7 @@ QList<QColor> QgsLimitedRandomColorRamp::randomColors( int count,
   int safeValMin = std::min( valMin, valMax );
 
   //start hue at random angle
-  double currentHueAngle = 360.0 * static_cast< double >( qrand() ) / RAND_MAX;
+  double currentHueAngle = 360.0 * static_cast< double >( QRandomGenerator::system()->generate() ) / RAND_MAX;
 
   colors.reserve( count );
   for ( int i = 0; i < count; ++i )
