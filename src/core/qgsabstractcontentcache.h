@@ -214,6 +214,9 @@ class CORE_EXPORT QgsAbstractContentCache : public QgsAbstractContentCacheBase
                              long maxCacheSize = 20000000,
                              int fileModifiedCheckTimeout = 30000 )
       : QgsAbstractContentCacheBase( parent )
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+      , mMutex( QMutex::Recursive )
+#endif
       , mMaxCacheSize( maxCacheSize )
       , mFileModifiedCheckTimeout( fileModifiedCheckTimeout )
       , mTypeString( typeString.isEmpty() ? QObject::tr( "Content" ) : typeString )
