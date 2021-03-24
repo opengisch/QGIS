@@ -27,7 +27,11 @@
 #include "qgsnetworkcontentfetchertask.h"
 
 #include <QObject>
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+#include <QMutex>
+#else
 #include <QRecursiveMutex>
+#endif
 #include <QCache>
 #include <QSet>
 #include <QDateTime>
@@ -547,8 +551,11 @@ class CORE_EXPORT QgsAbstractContentCache : public QgsAbstractContentCacheBase
 
       return currentEntry;
     }
-
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    mutable QMutex mMutex;
+#else
     mutable QRecursiveMutex mMutex;
+#endif
     //! Estimated total size of all cached content
     long mTotalSize = 0;
 
