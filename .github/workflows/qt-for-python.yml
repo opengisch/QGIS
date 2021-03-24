@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           image_name: qgis3-qt6-build-deps
-          dockerfile: .docker/qgis3-qt6-build-deps.dockerfile
+          dockerfile: .docker/qgis3-build-deps-qt-for-python-fedora.dockerfile
           push_git_tag: true
           push_image_and_stages: on:push
           pull_image_and_stages: ${{ github.event_name != 'workflow_dispatch' }}
