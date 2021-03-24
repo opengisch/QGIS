@@ -944,7 +944,7 @@ endif()
 
 set (WITH_PYSIDE FALSE CACHE BOOL "Enable (broken, experimental) PySide support")
 if (WITH_PYSIDE)
-  add_subdirector(qt-for-python)
+  add_subdirectory(qt-for-python)
 endif()
 
 if (WITH_CORE AND WITH_BINDINGS AND NOT WITH_QT6)
