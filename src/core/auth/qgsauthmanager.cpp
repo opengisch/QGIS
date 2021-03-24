@@ -101,8 +101,8 @@ QgsAuthManager *QgsAuthManager::instance()
 
 QgsAuthManager::QgsAuthManager()
 {
-  mMutex.reset( new QMutex( QMutex::Recursive ) );
-  mMasterPasswordMutex.reset( new QMutex( QMutex::Recursive ) );
+  mMutex = std::make_unique<QRecursiveMutex>();
+  mMasterPasswordMutex = std::make_unique<QRecursiveMutex>();
   connect( this, &QgsAuthManager::messageOut,
            this, &QgsAuthManager::writeToConsole );
 }

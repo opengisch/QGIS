@@ -20,7 +20,7 @@
 #include "qgis_core.h"
 #include "qgis_sip.h"
 #include <QObject>
-#include <QMutex>
+#include <QRecursiveMutex>
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSqlDatabase>
@@ -870,8 +870,8 @@ class CORE_EXPORT QgsAuthManager : public QObject
     bool mScheduledDbEraseRequestEmitted = false;
     int mScheduledDbEraseRequestCount = 0;
 
-    std::unique_ptr<QMutex> mMutex;
-    std::unique_ptr<QMutex> mMasterPasswordMutex;
+    std::unique_ptr<QRecursiveMutex> mMutex;
+    std::unique_ptr<QRecursiveMutex> mMasterPasswordMutex;
 
 #ifndef QT_NO_SSL
     // mapping of sha1 digest and cert source and cert

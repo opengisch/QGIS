@@ -6328,7 +6328,7 @@ const QList<QgsExpressionFunction *> &QgsExpression::Functions()
   // crashes in the WFS provider may occur, since it can parse expressions
   // in parallel.
   // The mutex needs to be recursive.
-  static QMutex sFunctionsMutex( QMutex::Recursive );
+  static QRecursiveMutex sFunctionsMutex;
   QMutexLocker locker( &sFunctionsMutex );
 
   QList<QgsExpressionFunction *> &functions = *sFunctions();
