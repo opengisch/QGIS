@@ -27,6 +27,7 @@
 #include <QSet>
 #include <QDomDocument>
 #include <QDomElement>
+#include <QMatrix4x4>
 
 QgsEllipseSymbolLayer::QgsEllipseSymbolLayer()
   : mStrokeColor( QColor( 35, 35, 35 ) )
@@ -272,11 +273,11 @@ void QgsEllipseSymbolLayer::renderPoint( QPointF point, QgsSymbolRenderContext &
     return;
   }
 
-  QMatrix transform;
+  QMatrix4x4 transform;
   transform.translate( point.x() + offset.x(), point.y() + offset.y() );
   if ( !qgsDoubleNear( angle, 0.0 ) )
   {
-    transform.rotate( angle );
+    transform.rotate( angle, 0, 0 );
   }
 
   if ( shapeIsFilled( shape ) )
@@ -289,7 +290,7 @@ void QgsEllipseSymbolLayer::renderPoint( QPointF point, QgsSymbolRenderContext &
     p->setPen( context.selected() ? mSelPen : mPen );
     p->setBrush( QBrush() );
   }
-  p->drawPath( transform.map( mPainterPath ) );
+  p->drawPath( transform.toTransform().map( mPainterPath ) );
 }
 
 
@@ -773,13 +774,13 @@ QRectF QgsEllipseSymbolLayer::bounds( QPointF point, QgsSymbolRenderContext &con
   double angle = 0;
   calculateOffsetAndRotation( context, size.width(), size.height(), hasDataDefinedRotation, offset, angle );
 
-  QMatrix transform;
+  QMatrix4x4 transform;
 
   // move to the desired position
   transform.translate( point.x() + offset.x(), point.y() + offset.y() );
 
   if ( !qgsDoubleNear( angle, 0.0 ) )
-    transform.rotate( angle );
+    transform.rotate( angle, 0, 0 );
 
   double penWidth = mStrokeWidth;
   if ( mDataDefinedProperties.isActive( QgsSymbolLayer::PropertyStrokeWidth ) )

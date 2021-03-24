@@ -33,6 +33,7 @@
 #include <QDir>
 #include <QDomDocument>
 #include <QDomElement>
+#include <QMatrix4x4>
 
 #include <cmath>
 
@@ -2747,12 +2748,12 @@ QRectF QgsSvgMarkerSymbolLayer::bounds( QPointF point, QgsSymbolRenderContext &c
     }
   }
 
-  QMatrix transform;
+  QMatrix4x4 transform;
   // move to the desired position
   transform.translate( point.x() + outputOffset.x(), point.y() + outputOffset.y() );
 
   if ( !qgsDoubleNear( angle, 0.0 ) )
-    transform.rotate( angle );
+    transform.rotate( angle, 0, 0 );
 
   //antialiasing
   strokeWidth += 1.0 / 2.0;
@@ -3154,13 +3155,13 @@ QRectF QgsRasterMarkerSymbolLayer::bounds( QPointF point, QgsSymbolRenderContext
   double angle = 0.0;
   calculateOffsetAndRotation( context, scaledSize, scaledSize * ( height / width ), outputOffset, angle );
 
-  QMatrix transform;
+  QMatrix4x4 transform;
 
   // move to the desired position
   transform.translate( point.x() + outputOffset.x(), point.y() + outputOffset.y() );
 
   if ( !qgsDoubleNear( angle, 0.0 ) )
-    transform.rotate( angle );
+    transform.rotate( angle, 0, 0 );
 
   QRectF symbolBounds = transform.mapRect( QRectF( -width / 2.0,
                         -height / 2.0,
@@ -3606,13 +3607,13 @@ QRectF QgsFontMarkerSymbolLayer::bounds( QPointF point, QgsSymbolRenderContext &
   calculateOffsetAndRotation( context, scaledSize, hasDataDefinedRotation, offset, angle );
   scaledSize = context.renderContext().convertToPainterUnits( scaledSize, mSizeUnit, mSizeMapUnitScale );
 
-  QMatrix transform;
+  QMatrix4x4 transform;
 
   // move to the desired position
   transform.translate( point.x() + offset.x(), point.y() + offset.y() );
 
   if ( !qgsDoubleNear( angle, 0.0 ) )
-    transform.rotate( angle );
+    transform.rotate( angle, 0, 0 );
 
   QRectF symbolBounds = transform.mapRect( QRectF( -chrWidth / 2.0,
                         -scaledSize / 2.0,
