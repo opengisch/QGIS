@@ -3,7 +3,7 @@
 set -e
 
 mkdir -p /usr/src/qgis/build-pyside2
-cd /usr/src/qgis/build || exit 1
+cd /usr/src/qgis/build-pyside2 || exit 1
 
 CLANG_WARNINGS="-Wrange-loop-construct"
 
