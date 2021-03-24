@@ -26,6 +26,7 @@
 #include <deque>
 #include <QSet>
 #include "qgis_core.h"
+#include "qgis.h"
 
 #ifndef SIP_RUN
 
