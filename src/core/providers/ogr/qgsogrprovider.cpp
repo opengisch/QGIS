@@ -603,7 +603,7 @@ QgsOgrProvider::QgsOgrProvider( QString const &uri, const ProviderOptions &optio
   mLayerMetadata.setType( QStringLiteral( "dataset" ) );
   if ( mOgrOrigLayer )
   {
-    QMutex *mutex = nullptr;
+    QRecursiveMutex *mutex = nullptr;
     OGRLayerH layer = mOgrOrigLayer->getHandleAndMutex( mutex );
     QMutexLocker locker( mutex );
     const QString identifier = GDALGetMetadataItem( layer, "IDENTIFIER", nullptr );
@@ -1104,7 +1104,7 @@ void QgsOgrProvider::loadFields()
   }
   else
   {
-    QMutex *mutex = nullptr;
+    QRecursiveMutex *mutex = nullptr;
     OGRLayerH ogrLayer = mOgrLayer->getHandleAndMutex( mutex );
     QMutexLocker locker( mutex );
     mOGRGeomType = getOgrGeomType( mGDALDriverName, ogrLayer );
@@ -1314,7 +1314,7 @@ QString QgsOgrProvider::storageType() const
 
 void QgsOgrProvider::setRelevantFields( bool fetchGeometry, const QgsAttributeList &fetchAttributes ) const
 {
-  QMutex *mutex = nullptr;
+  QRecursiveMutex *mutex = nullptr;
   OGRLayerH ogrLayer = mOgrLayer->getHandleAndMutex( mutex );
   QMutexLocker locker( mutex );
   QgsOgrProviderUtils::setRelevantFields( ogrLayer, mAttributeFields.count(), fetchGeometry, fetchAttributes, mFirstFieldIsFid, mSubsetString );
@@ -1904,7 +1904,7 @@ bool QgsOgrProvider::addFeatures( QgsFeatureList &flist, Flags flags )
   if ( !( flags & QgsFeatureSink::FastInsert ) &&
        ( mGDALDriverName == QLatin1String( "CSV" ) || mGDALDriverName == QLatin1String( "XLSX" ) || mGDALDriverName == QLatin1String( "ODS" ) ) )
   {
-    QMutex *mutex = nullptr;
+    QRecursiveMutex *mutex = nullptr;
     OGRLayerH layer = mOgrOrigLayer->getHandleAndMutex( mutex );
     {
       QMutexLocker locker( mutex );
@@ -2275,7 +2275,7 @@ bool QgsOgrProvider::_setSubsetString( const QString &theSQL, bool updateFeature
 
   if ( !theSQL.isEmpty() )
   {
-    QMutex *mutex = nullptr;
+    QRecursiveMutex *mutex = nullptr;
     OGRLayerH layer = mOgrOrigLayer->getHandleAndMutex( mutex );
     GDALDatasetH ds = mOgrOrigLayer->getDatasetHandleAndMutex( mutex );
     OGRLayerH subsetLayerH;
@@ -2304,7 +2304,7 @@ bool QgsOgrProvider::_setSubsetString( const QString &theSQL, bool updateFeature
   {
     mOgrSqlLayer.reset();
     mOgrLayer = mOgrOrigLayer.get();
-    QMutex *mutex = nullptr;
+    QRecursiveMutex *mutex = nullptr;
     OGRLayerH layer = mOgrOrigLayer->getHandleAndMutex( mutex );
     {
       QMutexLocker locker( mutex );
@@ -2714,7 +2714,7 @@ bool QgsOgrProvider::createSpatialIndex()
   else if ( mGDALDriverName == QLatin1String( "GPKG" ) ||
             mGDALDriverName == QLatin1String( "SQLite" ) )
   {
-    QMutex *mutex = nullptr;
+    QRecursiveMutex *mutex = nullptr;
     OGRLayerH layer = mOgrOrigLayer->getHandleAndMutex( mutex );
     QByteArray sql = QByteArray( "SELECT CreateSpatialIndex(" + quotedIdentifier( layerName ) + ","
                                  + quotedIdentifier( OGR_L_GetGeometryColumn( layer ) ) + ") " ); // quote the layer name so spaces are handled
@@ -6905,7 +6905,7 @@ QString QgsOgrProviderMetadata::getStyleById( const QString &uri, QString styleI
     return QString();
   }
 
-  QMutex *mutex1 = nullptr;
+  QRecursiveMutex *mutex1 = nullptr;
   OGRLayerH hLayer = layerStyles->getHandleAndMutex( mutex1 );
   QMutexLocker lock1( mutex1 );
 
