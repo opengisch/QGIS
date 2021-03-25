@@ -1,3 +1,12 @@
+
+
+list(REMOVE_ITEM CMAKE_CXX_FLAGS "-Werror")
+
+message(${CMAKE_CXX_FLAGS})
+
+set(PYTHON_VERSION "3.9" CACHE STRING  "Use specific python version to build the project.")
+find_package(Python3 ${PYTHON_VERSION} REQUIRED COMPONENTS Interpreter Development)
+
 if (WITH_QT6)
     find_package(Shiboken6 REQUIRED)
     find_package(PySide6 ${Qt5Widgets_VERSION} EXACT REQUIRED)
