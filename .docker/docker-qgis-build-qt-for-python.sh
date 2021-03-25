@@ -2,10 +2,25 @@
 
 set -e
 
+##############
+# Setup ccache
+##############
+export CCACHE_TEMPDIR=/tmp
+# Github workflow cache max size is 2.0, but ccache data get compressed (roughly 1/5?)
+ccache -M 2.0G
+
+# Temporarily uncomment to debug ccache issues
+# export CCACHE_LOGFILE=/tmp/cache.debug
+ccache -z
+
 mkdir -p /usr/src/qgis/build-pyside2
 cd /usr/src/qgis/build-pyside2 || exit 1
 
 CLANG_WARNINGS="-Wrange-loop-construct"
+
+export CC=/usr/lib/ccache/clang
+export CXX=/usr/lib/ccache/clang++
+
 
 cmake -GNinja \
  -DWITH_PYSIDE=ON \
@@ -44,3 +59,9 @@ cmake -GNinja \
  ..
 
 ninja pyqgis_core
+
+########################
+# Show ccache statistics
+########################
+echo "ccache statistics"
+ccache -s
