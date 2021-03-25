@@ -101,7 +101,6 @@ void QgsFileDownloader::onSslErrors( QNetworkReply *reply, const QList<QSslError
     QStringList errorMessages;
     errorMessages.reserve( errors.size() + 1 );
     errorMessages <<  QStringLiteral( "SSL Errors: " );
-<<<<<<< HEAD
 
     for ( const QSslError &error : errors )
       errorMessages << error.errorString();
