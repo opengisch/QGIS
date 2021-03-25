@@ -1,6 +1,6 @@
 
 
-list(REMOVE_ITEM CMAKE_CXX_FLAGS "-Werror")
+string(REPLACE ".Werror" " " CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
 message(${CMAKE_CXX_FLAGS})
 
