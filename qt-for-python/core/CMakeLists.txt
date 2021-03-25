@@ -13,6 +13,7 @@ set(pyqgis_core_SRC
 set(pyqgis_core_include_paths
     $<JOIN:$<TARGET_PROPERTY:qgis_core,INTERFACE_INCLUDE_DIRECTORIES>,${PATH_SEP}>
 )
+message("${pyqgis_core_include_paths}")
 
 # Set list of paths where shiboken should look for typesystem
 set(pyqgis_core_typesystem_paths
