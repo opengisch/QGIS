@@ -70,4 +70,10 @@ jobs:
 
 
       - name: Setup tmate session
+        if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 180
+
+      - name: Create Pull Request
+        if: ${{ always() }}
+        uses: peter-evans/create-pull-request@v3
