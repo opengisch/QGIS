@@ -136,7 +136,7 @@ macro(CREATE_PYTHON_BINDINGS
         endif()
 
         target_include_directories(${TARGET_NAME} PUBLIC
-            ${TARGET_INCLUDE_DIRS}
+          ${TARGET_INCLUDE_DIRS}
         )
 
         target_link_libraries(${TARGET_NAME}
