@@ -1,6 +1,6 @@
 
 
-string(REPLACE ".Werror" " " CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+string(REPLACE "-Werror" " " CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
 message(${CMAKE_CXX_FLAGS})
 
