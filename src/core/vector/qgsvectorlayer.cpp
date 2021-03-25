@@ -1275,6 +1275,7 @@ QgsGeometry::OperationResult QgsVectorLayer::addRing( QgsCurve *ring, QgsFeature
   return result;
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 QgsGeometry::OperationResult QgsVectorLayer::addPart( const QList<QgsPointXY> &points )
 {
   QgsPointSequence pts;
@@ -1285,6 +1286,7 @@ QgsGeometry::OperationResult QgsVectorLayer::addPart( const QList<QgsPointXY> &p
   }
   return addPart( pts );
 }
+#endif
 
 QgsGeometry::OperationResult QgsVectorLayer::addPart( const QVector<QgsPointXY> &points )
 {
