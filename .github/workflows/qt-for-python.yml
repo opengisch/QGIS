@@ -70,7 +70,8 @@ jobs:
 
 
       - name: Setup tmate session
-        if: ${{ failure() }}
+        if: ${{ always() }}
+        # if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
         timeout-minutes: 180
 
