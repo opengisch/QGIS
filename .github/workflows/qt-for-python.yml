@@ -49,6 +49,11 @@ jobs:
 
       - name: Run build
         run: |
-          docker run -v $(pwd):/usr/src/qgis ${DOCKER_IMAGE} /usr/src/qgis/.docker/docker-qgis-build-qt-for-python.sh
+          docker run -v --name qgis_container $(pwd):/usr/src/qgis ${DOCKER_IMAGE} /usr/src/qgis/.docker/docker-qgis-build-qt-for-python.sh
+          docker commit qgis_container qgis_image
         env:
           DOCKER_IMAGE: ${{ steps.docker-build.outputs.FULL_IMAGE_NAME }}
+
+
+      - name: Setup tmate session
+          uses: mxschmitt/action-tmate@v3
