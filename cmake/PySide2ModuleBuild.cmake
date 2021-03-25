@@ -136,7 +136,6 @@ macro(CREATE_PYTHON_BINDINGS
         endif()
 
         target_include_directories(${TARGET_NAME} PUBLIC
-          ${CMAKE_SOURCE_DIR}/src/core/geometry  
           ${TARGET_INCLUDE_DIRS}
         )
 
