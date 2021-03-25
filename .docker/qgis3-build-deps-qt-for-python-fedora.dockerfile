@@ -38,4 +38,4 @@ RUN dnf -y install \
     python3-pyside2-devel \
     pyside2-tools
 
-RUN dnf -y install ccache
+RUN dnf -y install ccache python3-devel
