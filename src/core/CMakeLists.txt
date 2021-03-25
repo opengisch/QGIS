@@ -1753,6 +1753,7 @@ target_include_directories(qgis_core SYSTEM PUBLIC
   ${ZLIB_INCLUDE_DIRS}
 )
 
+#   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/geometry> 
 target_include_directories(qgis_core PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}
