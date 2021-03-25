@@ -1754,7 +1754,8 @@ target_include_directories(qgis_core SYSTEM PUBLIC
 )
 
 target_include_directories(qgis_core PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}
+$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/geometry> 
+${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_BINARY_DIR}
   3d
   annotations

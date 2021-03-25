@@ -2,16 +2,17 @@
 # Auto-Generate files - every class will have a cpp and h file
 set(pyqgis_core_SRC
     # individual classes
-    ${CMAKE_CURRENT_BINARY_DIR}/core_qgswkbtypes_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/core_qgswkbtypes_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.h
     # global module wrapper
-    ${CMAKE_CURRENT_BINARY_DIR}/core_module_wrapper.cpp
-    ${CMAKE_CURRENT_BINARY_DIR}/core_python.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/core_module_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/core_python.h
 )
 
 # The includes are needed to parse and build classes specified in our typesystem
 set(pyqgis_core_include_paths
-    $<JOIN:$<TARGET_PROPERTY:qgis_core,INTERFACE_INCLUDE_DIRECTORIES>,${PATH_SEP}>
+  ${PYTHON_INCLUDE_PATH}
+  $<JOIN:$<TARGET_PROPERTY:qgis_core,INTERFACE_INCLUDE_DIRECTORIES>,${PATH_SEP}>
 )
 message("${pyqgis_core_include_paths}")
 
@@ -32,6 +33,7 @@ set(pyqgis_core_target_link_libraries
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets
+    ${PYTHON_LIBRARY}
 )
 
 # Dependencies - changes on these files should trigger new bindings
