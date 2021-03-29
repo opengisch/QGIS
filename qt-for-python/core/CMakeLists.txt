@@ -11,6 +11,7 @@ set(pyqgis_core_SRC
 
 # The includes are needed to parse and build classes specified in our typesystem
 set(pyqgis_core_include_paths
+  ${Python_INCLUDE_DIRS}
   $<JOIN:$<TARGET_PROPERTY:qgis_core,INTERFACE_INCLUDE_DIRECTORIES>,${PATH_SEP}>
 )
 message("${pyqgis_core_include_paths}")
