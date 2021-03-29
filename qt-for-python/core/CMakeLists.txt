@@ -11,7 +11,6 @@ set(pyqgis_core_SRC
 
 # The includes are needed to parse and build classes specified in our typesystem
 set(pyqgis_core_include_paths
-  ${PYTHON_INCLUDE_PATH}
   $<JOIN:$<TARGET_PROPERTY:qgis_core,INTERFACE_INCLUDE_DIRECTORIES>,${PATH_SEP}>
 )
 message("${pyqgis_core_include_paths}")
@@ -33,7 +32,7 @@ set(pyqgis_core_target_link_libraries
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets
-    ${PYTHON_LIBRARY}
+    ${Python_LIBRARIES}
 )
 
 # Dependencies - changes on these files should trigger new bindings
