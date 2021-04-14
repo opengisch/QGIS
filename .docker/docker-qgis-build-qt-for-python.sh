@@ -24,6 +24,7 @@ export CXX=/usr/lib/ccache/clang++
 
 cmake -GNinja \
  -DPYTHON_LIBRARY=/usr/lib64/libpython3.9.so.1.0 \
+ -DENABLE_TESTING=ON \
  -DWITH_PYSIDE=ON \
  -DWITH_QT6=OFF \
  -DWITH_EPT=OFF \
