@@ -34,4 +34,9 @@
         <enum-type name="Type"/>
     </object-type>
 
+    <value-type name="QgsField">
+    </value-type>
+
+
+
 </typesystem>
