@@ -4,5 +4,7 @@
 // Make "signals:", "slots:" visible as access specifiers
 #define QT_ANNOTATE_ACCESS_SPECIFIER(a) __attribute__((annotate(#a)))
 
-#include <qgswkbtypes.h>
+#include <qgsinterval.h>
 #include <qgsfield.h>
+#include <qgsunittypes.h>
+#include <qgswkbtypes.h>
