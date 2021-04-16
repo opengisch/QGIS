@@ -34,15 +34,15 @@
         <enum-type name="Type"/>
     </object-type>
 
-    <object-type name="QgsUnitTypes" >
+    <object-type name="QgsUnitTypes" copyable="no">
     </object-type>
-
+<!--
     <value-type name="QgsField">
     </value-type>
 
     <value-type name="QgsInterval">
     </value-type>
-
+-->
 
 
 </typesystem>
