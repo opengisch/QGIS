@@ -4,6 +4,12 @@ set(pyqgis_core_SRC
     # individual classes
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.h
+    # ${CMAKE_CURRENT_BINARY_DIR}/core/qgsinterval_wrapper.cpp
+    # ${CMAKE_CURRENT_BINARY_DIR}/core/qgsinterval_wrapper.h
     # global module wrapper
     ${CMAKE_CURRENT_BINARY_DIR}/core/core_module_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/core/core_python.h
@@ -39,6 +45,9 @@ set(pyqgis_core_target_link_libraries
 # Dependencies - changes on these files should trigger new bindings
 set(pyqgis_core_DEPENDS
    ${CMAKE_SOURCE_DIR}/src/core/geometry/qgswkbtypes.h
+   ${CMAKE_SOURCE_DIR}/src/core/qgsunittypes.h
+   ${CMAKE_SOURCE_DIR}/src/core/qgsfield.h
+   ${CMAKE_SOURCE_DIR}/src/core/qgsfeature.h
 )
 
 CREATE_PYTHON_BINDINGS(

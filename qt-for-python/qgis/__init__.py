@@ -11,6 +11,6 @@ except Exception:
 # PyKDDockWidgets.KDDockWidgets.KDDockWidgets.MainWindow
 # (There is a bug PYSIDE-1325 to get this namespace duplication fixed.)
 # To avoid this, we use this workaround:
-from .core import core as _priv
+# from .core import core as _priv
 
-core = _priv
+# core = _priv
