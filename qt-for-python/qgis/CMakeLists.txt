@@ -8,6 +8,44 @@ set(pyqgis_core_SRC
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontext_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontext_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeature_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeature_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturerequest_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturerequest_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsgeometry_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsgeometry_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeedback_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeedback_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectorlayer_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectorlayer_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayer_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayer_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayerrenderer_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayerrenderer_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrendercontext_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrendercontext_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsreadwritecontext_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsreadwritecontext_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatetransformcontext_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatetransformcontext_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfields_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfields_wrapper.h
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesource_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesource_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesink_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesink_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscopegenerator_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscopegenerator_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscope_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscope_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextgenerator_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextgenerator_wrapper.cpp
+
     # ${CMAKE_CURRENT_BINARY_DIR}/core/qgsinterval_wrapper.cpp
     # ${CMAKE_CURRENT_BINARY_DIR}/core/qgsinterval_wrapper.h
     # global module wrapper
@@ -18,6 +56,7 @@ set(pyqgis_core_SRC
 # The includes are needed to parse and build classes specified in our typesystem
 set(pyqgis_core_include_paths
   $<JOIN:$<TARGET_PROPERTY:qgis_core,INTERFACE_INCLUDE_DIRECTORIES>,${PATH_SEP}>
+  ${CMAKE_BINARY_DIR}
 )
 message("${pyqgis_core_include_paths}")
 
@@ -31,6 +70,7 @@ set(pyqgis_core_typesystem_paths
 set(pyqgis_core_target_include_directories
     ${Python_INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}
+    ${CMAKE_BINARY_DIR}
 )
 
 # Libraries necessary to link the target for the command 'target_link_libraries'
@@ -39,6 +79,7 @@ set(pyqgis_core_target_link_libraries
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets
+    Qt5::Xml
     ${Python_LIBRARIES}
 )
 
@@ -48,6 +89,7 @@ set(pyqgis_core_DEPENDS
    ${CMAKE_SOURCE_DIR}/src/core/qgsunittypes.h
    ${CMAKE_SOURCE_DIR}/src/core/qgsfield.h
    ${CMAKE_SOURCE_DIR}/src/core/qgsfeature.h
+   ${CMAKE_SOURCE_DIR}/src/core/qgsmaplayerrenderer.h
 )
 
 CREATE_PYTHON_BINDINGS(

@@ -5,6 +5,7 @@
         PySide has one typesystem for each module, so here we use only the
         Widgets typesystem because it already includes gui and core
         typesystems -->
+    <primitive-type name="bool" default-constructor="false"/>
     <load-typesystem name="typesystem_core.xml" generate="no"/>
     <!--<load-typesystem name="typesystem_widgets.xml" generate="no"/>-->
 
@@ -29,6 +30,9 @@
     <!-- DockWidgetBase contains an internal enum, so we declare it
          inside of the object-type -->
 
+<!--
+    <typedef-type name="QgsFeatureList" source="QList&lt;QgsFeature&gt;" />
+-->
     <object-type name="QgsWkbTypes" >
         <enum-type name="GeometryType"/>
         <enum-type name="Type"/>
@@ -40,6 +44,66 @@
 
     <value-type name="QgsField">
     </value-type>
+
+    <value-type name="QgsFeature">
+    </value-type>
+
+    <value-type name="QgsCoordinateReferenceSystem">
+    </value-type>
+
+    <value-type name="QgsFields">
+    </value-type>
+
+    <value-type name="QgsGeometry">
+    </value-type>
+
+    <value-type name="QgsMapLayerRenderer">
+    </value-type>
+
+    <value-type name="QgsExpressionContext">
+    </value-type>
+
+    <value-type name="QgsExpressionContextGenerator">
+    </value-type>
+
+    <value-type name="QgsExpressionContextScopeGenerator">
+    </value-type>
+
+    <value-type name="QgsExpressionContextScope">
+    </value-type>
+
+    <value-type name="QgsFeatureSink">
+    </value-type>
+
+    <value-type name="QgsFeatureSource">
+    </value-type>
+
+    <value-type name="QgsFeatureIterator">
+    </value-type>
+
+    <value-type name="QgsFeatureRequest">
+    </value-type>
+
+    <value-type name="QgsCoordinateTransformContext">
+    </value-type>
+
+    <value-type name="QgsReadWriteContext">
+    </value-type>
+
+    <object-type name="QgsFeedback">
+    </object-type>
+
+    <object-type name="QgsRenderContext">
+    </object-type>
+
+    <object-type name="QgsVectorLayer">
+    </object-type>
+
+    <object-type name="QgsMapLayer">
+      <enum-type name="StyleCategory"/>
+      <enum-type name="StyleCategories" flags="yes"/>
+    </object-type>
+
 <!--
     <value-type name="QgsInterval">
     </value-type>
