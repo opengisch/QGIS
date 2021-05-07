@@ -30,14 +30,16 @@
     <!-- DockWidgetBase contains an internal enum, so we declare it
          inside of the object-type -->
 
+    <enum-type name="QgsMapLayerType"/>
+
 <!--
     <typedef-type name="QgsFeatureList" source="QList&lt;QgsFeature&gt;" />
 -->
 
     <object-type name="QgsProject">
-      <modify-function signature="attachedFile(QString)" remove="all"/>
+      <modify-function signature="attachedFile(const QString)" remove="all"/>
       <modify-function signature="attachedFiles()" remove="all"/>
-      <modify-function signature="collectAttachedFiles(QString)" remove="all"/>
+      <modify-function signature="collectAttachedFiles(QgsStringMap)" remove="all"/>
     </object-type>
 
     <object-type name="QgsApplication">
@@ -63,8 +65,35 @@
     </object-type>
 
     <object-type name="QgsUnitTypes">
+      <enum-type name="UnitType"/>
+      <enum-type name="DistanceUnit"/>
+      <enum-type name="DistanceUnitType"/>
+      <enum-type name="AreaUnit"/>
+      <enum-type name="VolumeUnit"/>
+      <enum-type name="AngleUnit"/>
+      <enum-type name="TemporalUnit"/>
+      <enum-type name="RenderUnit"/>
+      <enum-type name="LayoutUnit"/>
+      <enum-type name="LayoutUnitType"/>
       <enum-type name="SystemOfMeasurement"/>
     </object-type>
+
+    <value-type name="QgsFieldConstraints">
+      <enum-type name="Constraint" flags="Constraints"/>
+      <enum-type name="ConstraintOrigin"/>
+      <enum-type name="ConstraintStrength"/>
+    </value-type>
+
+    <value-type name="QgsCoordinateReferenceSystem">
+      <enum-type name="CrsType"/>
+      <enum-type name="Format"/>
+      <enum-type name="IdentifierType"/>
+      <enum-type name="WktVariant"/>
+    </value-type>
+
+    <value-type name="QgsField">
+      <enum-type name="ConfigurationFlag" flags="ConfigurationFlags"/>
+    </value-type>
 
 
 @TYPESYSTEM_CONTENT@
@@ -72,6 +101,9 @@
 
     <object-type name="QgsMapLayer">
       <enum-type name="StyleCategory" flags="StyleCategories"/>
+      <enum-type name="PropertyType"/>
+      <enum-type name="LayerFlag"/>
+      <enum-type name="ReadFlag"/>
     </object-type>
 
     <value-type name="QgsExpressionContextScope">
@@ -82,6 +114,12 @@
     </object-type>
 
     <value-type name="QgsGeometry">
+      <enum-type name="OperationResult"/>
+      <enum-type name="ValidityFlag"/>
+      <enum-type name="BufferSide"/>
+      <enum-type name="EndCapStyle"/>
+      <enum-type name="JoinStyle"/>
+      <enum-type name="ValidationMethod"/>
         <add-function signature="__repr__" return-type="PyObject*">
             <inject-code class="target" position="beginning">
 <![CDATA[

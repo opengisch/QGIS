@@ -14,9 +14,8 @@ set(pyqgis_core_OBJECT_CLASSES
 )
 
 set(pyqgis_core_VALUE_CLASSES
-    QgsField
+    QgsAttributes
     QgsFeature
-    QgsCoordinateReferenceSystem
     QgsFields
     QgsExpressionContext
     QgsFeatureIterator
@@ -24,7 +23,6 @@ set(pyqgis_core_VALUE_CLASSES
     QgsCoordinateTransformContext
     QgsReadWriteContext
     QgsVectorLayerJoinInfo
-    QgsFieldConstraints
 )
 
 # Auto-Generate files - every class will have a cpp and h file
@@ -35,10 +33,10 @@ set(pyqgis_core_SRC
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.cpp
-    
+
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsgeometry_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsgeometry_wrapper.cpp
-    
+
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.cpp
 
@@ -53,6 +51,15 @@ set(pyqgis_core_SRC
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsproject_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsproject_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfieldconstraints_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfieldconstraints_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.cpp
 )
 
 # The includes are needed to parse and build classes specified in our typesystem
