@@ -42,62 +42,9 @@
       <enum-type name="SystemOfMeasurement"/>
     </object-type>
 
-    <value-type name="QgsField">
-    </value-type>
 
-    <value-type name="QgsFeature">
-    </value-type>
+@TYPESYSTEM_CONTENT@
 
-    <value-type name="QgsCoordinateReferenceSystem">
-    </value-type>
-
-    <value-type name="QgsFields">
-    </value-type>
-
-    <value-type name="QgsGeometry">
-    </value-type>
-
-    <value-type name="QgsMapLayerRenderer">
-    </value-type>
-
-    <value-type name="QgsExpressionContext">
-    </value-type>
-
-    <value-type name="QgsExpressionContextGenerator">
-    </value-type>
-
-    <value-type name="QgsExpressionContextScopeGenerator">
-    </value-type>
-
-    <value-type name="QgsExpressionContextScope">
-    </value-type>
-
-    <value-type name="QgsFeatureSink">
-    </value-type>
-
-    <value-type name="QgsFeatureSource">
-    </value-type>
-
-    <value-type name="QgsFeatureIterator">
-    </value-type>
-
-    <value-type name="QgsFeatureRequest">
-    </value-type>
-
-    <value-type name="QgsCoordinateTransformContext">
-    </value-type>
-
-    <value-type name="QgsReadWriteContext">
-    </value-type>
-
-    <object-type name="QgsFeedback">
-    </object-type>
-
-    <object-type name="QgsRenderContext">
-    </object-type>
-
-    <object-type name="QgsVectorLayer">
-    </object-type>
 
     <object-type name="QgsMapLayer">
       <enum-type name="StyleCategory"/>
