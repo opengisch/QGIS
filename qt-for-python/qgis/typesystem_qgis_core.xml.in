@@ -51,6 +51,9 @@
       <enum-type name="StyleCategories" flags="yes"/>
     </object-type>
 
+    <value-type name="QgsExpressionContextScope">
+    </value-type>
+
     <value-type name="QgsGeometry">
         <add-function signature="__repr__" return-type="PyObject*">
             <inject-code class="target" position="beginning">
