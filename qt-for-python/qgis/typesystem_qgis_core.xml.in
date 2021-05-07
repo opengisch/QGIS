@@ -37,9 +37,9 @@
 -->
 
     <object-type name="QgsProject">
-      <modify-function signature="attachedFile(const QString)" remove="all"/>
-      <modify-function signature="attachedFiles()" remove="all"/>
-      <modify-function signature="collectAttachedFiles(QgsStringMap)" remove="all"/>
+      <modify-function signature="attachedFile(const QString &amp;) const" remove="all"/>
+      <modify-function signature="attachedFiles() const" remove="all"/>
+      <modify-function signature="collectAttachedFiles(QgsStringMap &amp;)" remove="all"/>
     </object-type>
 
     <object-type name="QgsApplication">
