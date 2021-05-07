@@ -69,11 +69,11 @@ jobs:
           DOCKER_IMAGE: ${{ steps.docker-build.outputs.FULL_IMAGE_NAME }}
 
 
-      - name: Setup tmate session
-        if: ${{ always() }}
-        # if: ${{ failure() }}
-        uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 180
+#      - name: Setup tmate session
+#        if: ${{ always() }}
+#        # if: ${{ failure() }}
+#        uses: mxschmitt/action-tmate@v3
+#        timeout-minutes: 180
 
       - name: Create Pull Request
         if: ${{ always() }}

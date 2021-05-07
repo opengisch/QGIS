@@ -1,4 +1,3 @@
-set(_warnings "")
 
 set(pyqgis_core_OBJECT_CLASSES
   QgsEditorWidgetSetup
@@ -22,7 +21,6 @@ set(pyqgis_core_VALUE_CLASSES
     QgsFeatureRequest
     QgsCoordinateTransformContext
     QgsReadWriteContext
-    QgsVectorLayerJoinInfo
 )
 
 # Auto-Generate files - every class will have a cpp and h file
@@ -127,11 +125,11 @@ CREATE_PYTHON_BINDINGS(
     ${CMAKE_CURRENT_BINARY_DIR}/qgis_core_global.h
     ${CMAKE_CURRENT_BINARY_DIR}/typesystem_qgis_core.xml
     "${pyqgis_core_DEPENDS}"
-    ${CMAKE_CURRENT_BINARY_DIR}
+    ${QGIS_PYTHON_OUTPUT_DIRECTORY}
 )
 
 # Make moduled import from build dir works
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/__init__.py ${CMAKE_CURRENT_BINARY_DIR}/__init__.py)
+# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/__init__.py ${QGIS_PYTHON_OUTPUT_DIRECTORY}/__init__.py)
 
 # install
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py DESTINATION ${Python3_SITELIB}/pyqgis_core)
