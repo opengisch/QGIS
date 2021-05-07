@@ -1,7 +1,6 @@
 set(_warnings "")
 
 set(pyqgis_core_OBJECT_CLASSES
-  QgsProject
   QgsEditorWidgetSetup
   QgsFieldModel
   QgsFieldProxyModel
@@ -51,6 +50,9 @@ set(pyqgis_core_SRC
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayer_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayer_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsproject_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsproject_wrapper.cpp
 )
 
 # The includes are needed to parse and build classes specified in our typesystem

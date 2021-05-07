@@ -34,6 +34,12 @@
     <typedef-type name="QgsFeatureList" source="QList&lt;QgsFeature&gt;" />
 -->
 
+    <object-type name="QgsProject">
+      <modify-function signature="attachedFile(QString)" remove="all"/>
+      <modify-function signature="attachedFiles()" remove="all"/>
+      <modify-function signature="collectAttachedFiles(QString)" remove="all"/>
+    </object-type>
+
     <object-type name="QgsApplication">
       <modify-function signature="QgsApplication(int&amp;,char**,bool,QString,QString)" access="private"/>
       <add-function signature="QgsApplication(QStringList)">
