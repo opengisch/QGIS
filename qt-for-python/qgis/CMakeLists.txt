@@ -47,8 +47,6 @@ foreach(class ${pyqgis_core_VALUE_CLASSES})
     set(TYPESYSTEM_CONTENT "${TYPESYSTEM_CONTENT}\n    <value-type name=\"${class}\"></value-type>")
 endforeach()
 
-message("${TYPESYSTEM_CONTENT}")
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/qgis_core_global.h.in ${CMAKE_CURRENT_BINARY_DIR}/qgis_core_global.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/typesystem_qgis_core.xml.in ${CMAKE_CURRENT_BINARY_DIR}/typesystem_qgis_core.xml)
 
