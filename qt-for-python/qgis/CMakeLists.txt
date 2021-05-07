@@ -10,7 +10,6 @@ set(pyqgis_core_VALUE_CLASSES
     QgsFeature
     QgsCoordinateReferenceSystem
     QgsFields
-    QgsGeometry
     QgsMapLayerRenderer
     QgsExpressionContext
     QgsExpressionContextGenerator
