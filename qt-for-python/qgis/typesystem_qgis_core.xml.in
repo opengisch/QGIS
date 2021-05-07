@@ -5,8 +5,8 @@
         PySide has one typesystem for each module, so here we use only the
         Widgets typesystem because it already includes gui and core
         typesystems -->
-    <primitive-type name="bool" default-constructor="false"/>
     <load-typesystem name="typesystem_core.xml" generate="no"/>
+    <load-typesystem name="typesystem_xml.xml" generate="no"/>
     <!--<load-typesystem name="typesystem_widgets.xml" generate="no"/>-->
 
     <!-- This is used in a public virtual pure function.
@@ -33,6 +33,24 @@
 <!--
     <typedef-type name="QgsFeatureList" source="QList&lt;QgsFeature&gt;" />
 -->
+
+    <object-type name="QgsApplication">
+      <modify-function signature="QgsApplication(int&amp;,char**,bool,QString,QString)" access="private"/>
+      <add-function signature="QgsApplication(QStringList)">
+        <inject-code>
+<![CDATA[
+    static int argc;
+    static char **argv;
+    PyObject *stringlist = PyTuple_GET_ITEM(pyargv, 0);
+    if (Shiboken::listToArgcArgv(stringlist, &argc, &argv, "PySideApp")) {
+        *cptr = new QgsApplicationWrapper(argc, argv, 0);
+        Shiboken::Object::releaseOwnership(reinterpret_cast<SbkObject *>(self));
+        PySide::registerCleanupFunction(&PySide::destroyQCoreApplication);
+    }
+]]>
+        </inject-code>
+      </add-function>
+    </object-type>
     <object-type name="QgsWkbTypes" >
         <enum-type name="GeometryType"/>
         <enum-type name="Type"/>
@@ -47,12 +65,15 @@
 
 
     <object-type name="QgsMapLayer">
-      <enum-type name="StyleCategory"/>
-      <enum-type name="StyleCategories" flags="yes"/>
+      <enum-type name="StyleCategory" flags="StyleCategories"/>
     </object-type>
 
     <value-type name="QgsExpressionContextScope">
     </value-type>
+
+    <object-type name="QgsFeatureSink">
+      <enum-type name="Flag" flags="Flags"/>
+    </object-type>
 
     <value-type name="QgsGeometry">
         <add-function signature="__repr__" return-type="PyObject*">

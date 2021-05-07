@@ -1,8 +1,17 @@
+set(_warnings "")
 
 set(pyqgis_core_OBJECT_CLASSES
+  QgsProject
+  QgsEditorWidgetSetup
+  QgsFieldModel
+  QgsFieldProxyModel
   QgsFeedback
   QgsRenderContext
   QgsVectorLayer
+  QgsFeatureSource
+  QgsMapLayerRenderer
+  QgsExpressionContextGenerator
+  QgsExpressionContextScopeGenerator
 )
 
 set(pyqgis_core_VALUE_CLASSES
@@ -10,16 +19,13 @@ set(pyqgis_core_VALUE_CLASSES
     QgsFeature
     QgsCoordinateReferenceSystem
     QgsFields
-    QgsMapLayerRenderer
     QgsExpressionContext
-    QgsExpressionContextGenerator
-    QgsExpressionContextScopeGenerator
-    QgsFeatureSink
-    QgsFeatureSource
     QgsFeatureIterator
     QgsFeatureRequest
     QgsCoordinateTransformContext
     QgsReadWriteContext
+    QgsVectorLayerJoinInfo
+    QgsFieldConstraints
 )
 
 # Auto-Generate files - every class will have a cpp and h file
@@ -27,6 +33,24 @@ set(pyqgis_core_SRC
     # global module wrapper
     ${CMAKE_CURRENT_BINARY_DIR}/core/core_module_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/core/core_python.h
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgswkbtypes_wrapper.cpp
+    
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsgeometry_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsgeometry_wrapper.cpp
+    
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesink_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesink_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscope_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscope_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayer_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsmaplayer_wrapper.cpp
 )
 
 # The includes are needed to parse and build classes specified in our typesystem
