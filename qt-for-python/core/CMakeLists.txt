@@ -5,11 +5,13 @@ set(pyqgis_core_OBJECT_CLASSES
   QgsFieldProxyModel
   QgsFeedback
   QgsRenderContext
-  QgsVectorLayer
   QgsFeatureSource
   QgsMapLayerRenderer
+  QgsTemporalRangeObject
   QgsExpressionContextGenerator
   QgsExpressionContextScopeGenerator
+  QgsDataProvider
+  QgsProjectTranslator
 )
 
 set(pyqgis_core_VALUE_CLASSES
@@ -21,6 +23,9 @@ set(pyqgis_core_VALUE_CLASSES
     QgsFeatureRequest
     QgsCoordinateTransformContext
     QgsReadWriteContext
+    QgsAction
+    QgsRectangle
+    QgsDefaultValue
 )
 
 # Auto-Generate files - every class will have a cpp and h file
@@ -58,6 +63,9 @@ set(pyqgis_core_SRC
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.cpp
 )
 
 # The includes are needed to parse and build classes specified in our typesystem

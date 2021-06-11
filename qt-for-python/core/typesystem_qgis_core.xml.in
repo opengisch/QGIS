@@ -102,6 +102,12 @@
 @TYPESYSTEM_CONTENT@
 
 
+    <object-type name="QgsAbstractFeatureSource">
+    </object-type>
+
+    <object-type name="QgsVectorDataProvider">
+    </object-type>
+
     <object-type name="QgsMapLayer">
       <enum-type name="StyleCategory" flags="StyleCategories"/>
       <enum-type name="PropertyType"/>
@@ -114,6 +120,7 @@
 
     <object-type name="QgsFeatureSink">
       <enum-type name="Flag" flags="Flags"/>
+      <enum-type name="SinkFlag" flags="SinkFlags"/>
     </object-type>
 
     <value-type name="QgsGeometry">
@@ -136,7 +143,7 @@
         wkt = wkt.left( 1000 ) + QStringLiteral( "..." );
       str = QStringLiteral( "<QgsGeometry: %1>" ).arg( wkt );
     }
-    %PYARG_0 = PyUnicode_FromString( str.toUtf8().constData() );
+    %PYARG_0 = PyUnicode_FromString( str.toUtf8().constData() ); 
 ]]>
             </inject-code>
         </add-function>
