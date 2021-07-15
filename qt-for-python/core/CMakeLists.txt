@@ -12,6 +12,7 @@ set(pyqgis_core_OBJECT_CLASSES
   QgsExpressionContextScopeGenerator
   QgsDataProvider
   QgsProjectTranslator
+  QgsFeatureSink
 )
 
 set(pyqgis_core_VALUE_CLASSES
@@ -66,8 +67,12 @@ set(pyqgis_core_SRC
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsapplication_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsapplication_wrapper.cpp
-    #    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.h
-    #    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectorlayer_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectorlayer_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.cpp
 )
 
 # The includes are needed to parse and build classes specified in our typesystem

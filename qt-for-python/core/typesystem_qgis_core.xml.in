@@ -106,14 +106,20 @@
     <object-type name="QgsAbstractFeatureSource">
     </object-type>
 
-    <object-type name="QgsVectorDataProvider">
-    </object-type>
-
     <object-type name="QgsMapLayer">
       <enum-type name="StyleCategory" flags="StyleCategories"/>
       <enum-type name="PropertyType"/>
       <enum-type name="LayerFlag"/>
       <enum-type name="ReadFlag"/>
+      <modify-function signature="dataProvider() const" remove="all"/>
+    </object-type>
+
+    <object-type name="QgsVectorLayer">
+      <modify-function signature="dataProvider() const" remove="all"/>
+    </object-type>
+
+    <object-type name="QgsVectorDataProvider">
+      <enum-type name="Capability"/>
     </object-type>
 
     <value-type name="QgsExpressionContextScope">
