@@ -43,9 +43,6 @@ set(pyqgis_core_SRC
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsunittypes_wrapper.cpp
 
-    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesink_wrapper.h
-    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfeaturesink_wrapper.cpp
-
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscope_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsexpressioncontextscope_wrapper.cpp
 
@@ -64,8 +61,13 @@ set(pyqgis_core_SRC
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgscoordinatereferencesystem_wrapper.cpp
 
-    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.h
-    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsabstractfeaturesource_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsabstractfeaturesource_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsapplication_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsapplication_wrapper.cpp
+    #    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.h
+    #    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.cpp
 )
 
 # The includes are needed to parse and build classes specified in our typesystem
