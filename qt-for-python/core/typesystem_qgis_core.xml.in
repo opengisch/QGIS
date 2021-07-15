@@ -45,10 +45,11 @@
       <modify-function signature="collectAttachedFiles(QMap&lt;QString,QString&gt; &amp;)" remove="all"/>
     </object-type>
 
+
     <object-type name="QgsApplication">
       <modify-function signature="QgsApplication(int&amp;,char**,bool,QString,QString)" access="private"/>
       <add-function signature="QgsApplication(QStringList)">
-        <inject-code>
+	      <!--        <inject-code>
 <![CDATA[
     static int argc;
     static char **argv;
@@ -59,7 +60,7 @@
         PySide::registerCleanupFunction(&PySide::destroyQCoreApplication);
     }
 ]]>
-        </inject-code>
+	      </inject-code> -->
       </add-function>
     </object-type>
     <object-type name="QgsWkbTypes" >
