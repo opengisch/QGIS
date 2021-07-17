@@ -60,7 +60,7 @@ cmake -GNinja \
  -DWERROR=TRUE \
  ..
 
-ninja pyqgis_core pyutils pyqtcompat
+ninja pyqgis_core pyutils pyqtcompat pytesting
 
 ########################
 # Show ccache statistics
