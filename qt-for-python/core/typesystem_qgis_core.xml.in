@@ -37,6 +37,57 @@
     <typedef-type name="QgsFeatureList" source="QList&lt;QgsFeature&gt;" />
 -->
 
+    <value-type name="QgsFields">
+        <add-function signature="__getitem__">
+            <inject-code class="target" position="beginning">
+		            if (_i &lt; -%CPPSELF.size() || _i &gt;= %CPPSELF.size())
+		            {
+                  PyErr_SetString(PyExc_IndexError, "index out of bounds");
+                  return 0;
+                }
+                const size_t idx = _i % %CPPSELF.size();
+
+			          PyObject *pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast&lt;SbkObjectType *&gt;(SbkcoreTypes[SBK_QGSFIELD_IDX]), &amp;%CPPSELF.operator[](idx));
+		            if (PyErr_Occurred() || !pyResult)
+		            {
+                  Py_XDECREF(pyResult);
+		            }
+
+                return pyResult;
+            </inject-code>
+        </add-function>
+        <add-function signature="__mgetitem__">
+            <inject-code class="target" position="beginning">
+    PythonToCppFunc pythonToCpp{};
+    ::QString keyName;
+    pythonToCpp(_key, &amp;keyName);
+
+    const ssize_t fieldIdx = cppSelf->indexFromName( keyName );
+    if (fieldIdx == -1)
+    {
+      PyErr_SetString( PyExc_KeyError, keyName.toLatin1() ); 
+      return 0;
+    }
+
+    PyObject *pyResult = Shiboken::Conversions::copyToPython(reinterpret_cast&lt;SbkObjectType *&gt;(SbkcoreTypes[SBK_QGSFIELD_IDX]), &amp;cppSelf->operator[]( fieldIdx ));
+    if (PyErr_Occurred() || !pyResult)
+    {
+        Py_XDECREF(pyResult);
+    }
+
+    return pyResult;
+            </inject-code>
+        </add-function>
+        <modify-function signature="remove(int)">
+          <inject-code class="target" position="beginning">
+             if ( cppArg0 &lt; 0 || cppArg0 &gt;= cppSelf->count() )
+             {
+               PyErr_SetString( PyExc_KeyError, QByteArray::number( cppArg0 ) );
+               return {};
+             }
+          </inject-code>
+        </modify-function>
+    </value-type>
     <object-type name="QgsProject">
       <enum-type name="ReadFlag" flags="ReadFlags"/>
       <enum-type name="FileFormat"/>
@@ -47,21 +98,53 @@
 
 
     <object-type name="QgsApplication">
-      <modify-function signature="QgsApplication(int&amp;,char**,bool,QString,QString)" access="private"/>
-      <add-function signature="QgsApplication(QStringList)">
-	      <!--        <inject-code>
+      <modify-function signature="QgsApplication(int&amp;,char**,bool,const QString&amp;,const QString&amp;)">
+	<modify-argument index="0">
+	  <remove-argument/>
+	      </modify-argument>
+	<modify-argument index="1">
+		<replace-type modified-type="QStringList"/>
+	</modify-argument>
+	<modify-argument index="2">
+	  <replace-default-expression with="false"/> 
+	</modify-argument>
+	<modify-argument index="3">
+	  <replace-default-expression with="QString()"/> 
+	</modify-argument>
+	<modify-argument index="4">
+	  <replace-default-expression with="desktop"/> 
+	</modify-argument>
+
+	    <inject-code class='target' position='beginning'>
+            char **xx;
+	    int x = 0;
+	    QString appName = QStringLiteral( "QGIS" );
+	    QString platform = QStringLiteral( "desktop" );
+            %0 = new QgsApplicationWrapper(x, xx, false, appName, platform);
+            </inject-code>
+</modify-function>
+	    <!--
+      <inject-code>
+	      <![CDATA[
+		      // cptr = new ::QgsApplicationWrapper(cppArg0, &cppArg1, cppArg2, cppArg3, cppArg4);
+		]]>
+      </inject-code>
+	     -->
+	    <!--      <modify-function signature="QgsApplication(int&amp;, char*&amp;, bool&amp;, QString&amp;, QString&amp;)" visibility="private"/>
+      
+      <add-function signature="QgsApplication(QStringList, bool)">
+      <inject-code>
 <![CDATA[
     static int argc;
     static char **argv;
-    PyObject *stringlist = PyTuple_GET_ITEM(pyargv, 0);
-    if (Shiboken::listToArgcArgv(stringlist, &argc, &argv, "PySideApp")) {
-        *cptr = new QgsApplicationWrapper(argc, argv, 0);
+    if (Shiboken::listToArgcArgv(pyArgs[0], &argc, &argv, "QGIS")) {
+        cptr = new QgsApplicationWrapper(argc, argv, cppArg1);
         Shiboken::Object::releaseOwnership(reinterpret_cast<SbkObject *>(self));
         PySide::registerCleanupFunction(&PySide::destroyQCoreApplication);
     }
 ]]>
-	      </inject-code> -->
-      </add-function>
+      </inject-code>
+	    </add-function>-->
     </object-type>
     <object-type name="QgsWkbTypes" >
         <enum-type name="GeometryType"/>

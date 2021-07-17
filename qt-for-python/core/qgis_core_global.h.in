@@ -7,5 +7,6 @@
 #include <qgsproject.h>
 #include <qgsapplication.h>
 #include <qgsvectorlayer.h>
+#include <qgsfields.h>
 
 @GLOBAL_HEADER_CONTENT@

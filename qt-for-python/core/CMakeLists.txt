@@ -13,12 +13,12 @@ set(pyqgis_core_OBJECT_CLASSES
   QgsDataProvider
   QgsProjectTranslator
   QgsFeatureSink
+  QgsMessageLog
 )
 
 set(pyqgis_core_VALUE_CLASSES
     QgsAttributes
     QgsFeature
-    QgsFields
     QgsExpressionContext
     QgsFeatureIterator
     QgsFeatureRequest
@@ -27,6 +27,7 @@ set(pyqgis_core_VALUE_CLASSES
     QgsAction
     QgsRectangle
     QgsDefaultValue
+    QgsRenderChecker
 )
 
 # Auto-Generate files - every class will have a cpp and h file
@@ -55,6 +56,9 @@ set(pyqgis_core_SRC
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfield_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfields_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfields_wrapper.cpp
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfieldconstraints_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsfieldconstraints_wrapper.cpp
