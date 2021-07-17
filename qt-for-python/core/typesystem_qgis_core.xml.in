@@ -255,11 +255,10 @@
     <value-type name="QgsField">
       <enum-type name="ConfigurationFlag" flags="ConfigurationFlags"/>
       <modify-function signature="convertCompatible(QVariant &amp;,QString *)const">
-<!--
         <modify-argument index="2">
           <remove-argument/>
         </modify-argument>
--->
+
         <inject-code class="target" position="beginning">
 <![CDATA[
     bool isSuccess;
