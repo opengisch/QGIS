@@ -68,6 +68,9 @@ jobs:
         env:
           DOCKER_IMAGE: ${{ steps.docker-build.outputs.FULL_IMAGE_NAME }}
 
+      - name: Run tests
+        run: |
+          docker run -v $(pwd):/usr/src/qgis -w /usr/src/qgis/build-pyside2 qgis_image ctest
 
 #      - name: Setup tmate session
 #        if: ${{ always() }}
@@ -75,6 +78,6 @@ jobs:
 #        uses: mxschmitt/action-tmate@v3
 #        timeout-minutes: 180
 
-      - name: Create Pull Request
-        if: ${{ always() }}
-        uses: peter-evans/create-pull-request@v3
+#      - name: Create Pull Request
+#        if: ${{ always() }}
+#        uses: peter-evans/create-pull-request@v3

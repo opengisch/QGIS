@@ -60,8 +60,6 @@ cmake -GNinja \
  -DWERROR=TRUE \
  ..
 
-
-exit
 ninja pyqgis_core
 
 ########################
