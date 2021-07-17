@@ -72,11 +72,13 @@ jobs:
         run: |
           docker run -v $(pwd):/usr/src/qgis -w /usr/src/qgis/build-pyside2 qgis_image ctest -V
 
-#      - name: Setup tmate session
-#        if: ${{ always() }}
-#        # if: ${{ failure() }}
-#        uses: mxschmitt/action-tmate@v3
-#        timeout-minutes: 180
+      - name: Setup tmate session
+        if: failure()
+        uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 180
+        with:
+          limit-access-to-actor: true
+
 
 #      - name: Create Pull Request
 #        if: ${{ always() }}
