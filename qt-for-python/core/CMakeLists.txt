@@ -14,6 +14,8 @@ set(pyqgis_core_OBJECT_CLASSES
   QgsProjectTranslator
   QgsFeatureSink
   QgsMessageLog
+  QgsRasterInterface
+  QgsRasterBlock
 )
 
 set(pyqgis_core_VALUE_CLASSES
@@ -28,6 +30,7 @@ set(pyqgis_core_VALUE_CLASSES
     QgsRectangle
     QgsDefaultValue
     QgsRenderChecker
+    QgsPointXY
 )
 
 # Auto-Generate files - every class will have a cpp and h file
@@ -77,6 +80,18 @@ set(pyqgis_core_SRC
 
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.h
     ${CMAKE_CURRENT_BINARY_DIR}/core/qgsvectordataprovider_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrasterlayer_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrasterlayer_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrasterdataprovider_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrasterdataprovider_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgis_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgis_wrapper.cpp
+
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrasterblockfeedback_wrapper.h
+    ${CMAKE_CURRENT_BINARY_DIR}/core/qgsrasterblockfeedback_wrapper.cpp
 )
 
 # The includes are needed to parse and build classes specified in our typesystem

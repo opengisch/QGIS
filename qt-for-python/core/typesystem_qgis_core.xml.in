@@ -312,8 +312,21 @@
       <modify-function signature="dataProvider() const" remove="all"/>
     </object-type>
 
+    <object-type name="QgsRasterLayer">
+    </object-type>
+
+    <object-type name="QgsRasterBlockFeedback">
+    </object-type>
+
     <object-type name="QgsVectorDataProvider">
       <enum-type name="Capability"/>
+    </object-type>
+
+    <object-type name="QgsRasterDataProvider">
+    </object-type>
+
+    <object-type name="Qgis">
+      <enum-type name="DataType"/>
     </object-type>
 
     <value-type name="QgsExpressionContextScope">
