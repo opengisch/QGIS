@@ -70,7 +70,7 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run -v $(pwd):/usr/src/qgis -w /usr/src/qgis/build-pyside2 qgis_image xvfb-run ctest -R PyQgs --output-on-error
+          docker run -v $(pwd):/usr/src/qgis -w /usr/src/qgis/build-pyside2 qgis_image xvfb-run ctest -R PyQgs --output-on-failure
 
 #      - name: Setup tmate session
 #        if: failure()
