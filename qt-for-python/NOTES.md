@@ -29,7 +29,13 @@ See https://doc.qt.io/qtforpython/considerations.html
 - NULL (should this be replaced/aliased by None?)
 - QVariant (PySide2 ignores it, should we try to build a compat layer?)
 - Should we have some helpers/porters that modify imports and code instead?
+- More an API improvement, but still: tuple (with boolean) return values instead of exceptions (e.g. stringToDistanceUnit())
 
 # Thoughts about sipify V2
 
 - Normalizing method signatures
+
+# TODO
+
+ - [ ] QgsRasterDataProvider -> is abstract and doesn't compile
+ - [ ] QgsVectorLayer::dataProvider() -> is currently removed because problems with covariant return type. Non-issue according to gitter... Not sure what's wrong here.
