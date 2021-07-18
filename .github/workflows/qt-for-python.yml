@@ -26,6 +26,7 @@ on:
     - '.ci/**'
     - '.docker/**'
     - 'qt-for-python/**'
+    - 'cmake'
 
 jobs:
   build:
