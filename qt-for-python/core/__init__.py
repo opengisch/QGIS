@@ -14,3 +14,5 @@ except Exception:
 # from .core import core as _priv
 
 # core = _priv
+
+NULL = None

@@ -113,6 +113,7 @@ set(pyqgis_core_target_include_directories
     ${CMAKE_BINARY_DIR}
 )
 
+
 # Libraries necessary to link the target for the command 'target_link_libraries'
 set(pyqgis_core_target_link_libraries
     qgis_core
