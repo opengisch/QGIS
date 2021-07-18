@@ -115,19 +115,11 @@ macro(CREATE_PYTHON_BINDINGS
                 --include-paths=${shiboken_include_dirs}
                 --typesystem-paths=${shiboken_typesystem_dirs}
                 ${shiboken_framework_include_dirs_option}
-                --output-directory=${CMAKE_CURRENT_BINARY_DIR}/gen
+                --output-directory=${CMAKE_CURRENT_BINARY_DIR}
                 ${TYPESYSTEM_XML}
         DEPENDS ${TYPESYSTEM_XML} ${DEPENDS}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMENT "Running generator for ${LIBRARY_NAME} binding..."
-    )
-
-    file(GLOB SRCS ${CMAKE_CURRENT_BINARY_DIR}/gen/*)
-    add_custom_command(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}"
-        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/gen"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${SRCS}" "${CMAKE_CURRENT_BINARY_DIR}"
     )
 
     set(TARGET_NAME "pyqgis_${LIBRARY_NAME}")
