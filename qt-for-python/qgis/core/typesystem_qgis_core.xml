@@ -294,7 +294,37 @@
     </value-type>
 
 
-@TYPESYSTEM_CONTENT@
+
+    <object-type name="QgsEditorWidgetSetup"></object-type>
+    <object-type name="QgsFieldModel"></object-type>
+    <object-type name="QgsFieldProxyModel"></object-type>
+    <object-type name="QgsFeedback"></object-type>
+    <object-type name="QgsRenderContext"></object-type>
+    <object-type name="QgsFeatureSource"></object-type>
+    <object-type name="QgsMapLayerRenderer"></object-type>
+    <object-type name="QgsTemporalRangeObject"></object-type>
+    <object-type name="QgsExpressionContextGenerator"></object-type>
+    <object-type name="QgsExpressionContextScopeGenerator"></object-type>
+    <object-type name="QgsDataProvider"></object-type>
+    <object-type name="QgsProjectTranslator"></object-type>
+    <object-type name="QgsFeatureSink"></object-type>
+    <object-type name="QgsMessageLog"></object-type>
+    <object-type name="QgsRasterInterface"></object-type>
+    <object-type name="QgsRasterBlock"></object-type>
+
+
+    <value-type name="QgsAttributes"></value-type>
+    <value-type name="QgsFeature"></value-type>
+    <value-type name="QgsExpressionContext"></value-type>
+    <value-type name="QgsFeatureIterator"></value-type>
+    <value-type name="QgsFeatureRequest"></value-type>
+    <value-type name="QgsCoordinateTransformContext"></value-type>
+    <value-type name="QgsReadWriteContext"></value-type>
+    <value-type name="QgsAction"></value-type>
+    <value-type name="QgsRectangle"></value-type>
+    <value-type name="QgsDefaultValue"></value-type>
+    <value-type name="QgsRenderChecker"></value-type>
+    <value-type name="QgsPointXY"></value-type>
 
 
     <object-type name="QgsAbstractFeatureSource">

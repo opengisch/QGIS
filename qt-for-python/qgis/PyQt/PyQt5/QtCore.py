@@ -25,7 +25,10 @@ from PySide2.QtCore import *
 
 from types import MethodType
 
-class _QVariant(object): pass
+class _QVariant(object):
+    def __init__(self, param):
+        pass
+
 QVariant = _QVariant
 QVariant.Int = int
 QVariant.String = str

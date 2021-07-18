@@ -56,5 +56,4 @@ else()
     set(PYSIDE_MAJOR_VERSION "2")
 endif()
 
-add_subdirectory(PyQt)
-add_subdirectory(core)
+add_subdirectory(qgis)

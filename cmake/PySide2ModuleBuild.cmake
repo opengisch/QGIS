@@ -115,42 +115,51 @@ macro(CREATE_PYTHON_BINDINGS
                 --include-paths=${shiboken_include_dirs}
                 --typesystem-paths=${shiboken_typesystem_dirs}
                 ${shiboken_framework_include_dirs_option}
-                --output-directory=${CMAKE_CURRENT_BINARY_DIR}
+                --output-directory=${CMAKE_CURRENT_BINARY_DIR}/gen
                 ${TYPESYSTEM_XML}
         DEPENDS ${TYPESYSTEM_XML} ${DEPENDS}
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        COMMENT "Running generator for ${LIBRARY_NAME} binding...")
+        COMMENT "Running generator for ${LIBRARY_NAME} binding..."
+    )
 
-        set(TARGET_NAME "pyqgis_${LIBRARY_NAME}")
-        set(MODULE_NAME "${LIBRARY_NAME}")
-        add_library(${TARGET_NAME} MODULE ${OUTPUT_SOURCES})
+    file(GLOB SRCS ${CMAKE_CURRENT_BINARY_DIR}/gen/*)
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}"
+        DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/gen"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${SRCS}" "${CMAKE_CURRENT_BINARY_DIR}"
+    )
 
-        set_target_properties(${TARGET_NAME} PROPERTIES
-            PREFIX ""
-            OUTPUT_NAME ${MODULE_NAME}
-            LIBRARY_OUTPUT_DIRECTORY ${MODULE_OUTPUT_DIR}
-        )
+    set(TARGET_NAME "pyqgis_${LIBRARY_NAME}")
+    set(MODULE_NAME "${LIBRARY_NAME}")
+    add_library(${TARGET_NAME} MODULE ${OUTPUT_SOURCES})
 
-        if(WIN32)
-            set_target_properties(${TARGET_NAME} PROPERTIES SUFFIX ".pyd")
-        endif()
+    set_target_properties(${TARGET_NAME} PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME ${MODULE_NAME}
+        LIBRARY_OUTPUT_DIRECTORY ${MODULE_OUTPUT_DIR}
+    )
 
-        target_include_directories(${TARGET_NAME} PUBLIC
-          ${TARGET_INCLUDE_DIRS}
-        )
+    if(WIN32)
+        set_target_properties(${TARGET_NAME} PROPERTIES SUFFIX ".pyd")
+    endif()
 
-        target_link_libraries(${TARGET_NAME}
-            ${TARGET_LINK_LIBRARIES}
-            PySide2::pyside2
-            Shiboken2::libshiboken
-        )
-        target_compile_definitions(${TARGET_NAME}
-            PRIVATE Py_LIMITED_API=0x03050000
-        )
-        if(APPLE)
-            set_property(TARGET ${TARGET_NAME} APPEND PROPERTY
-                LINK_FLAGS "-undefined dynamic_lookup")
-        endif()
-        install(TARGETS ${TARGET_NAME}
-            LIBRARY DESTINATION ${${PROJECT_NAME}_PYTHON_BINDINGS_INSTALL_PREFIX}/${TARGET_NAME})
+    target_include_directories(${TARGET_NAME} PUBLIC
+      ${TARGET_INCLUDE_DIRS}
+    )
+
+    target_link_libraries(${TARGET_NAME}
+        ${TARGET_LINK_LIBRARIES}
+        PySide2::pyside2
+        Shiboken2::libshiboken
+    )
+    target_compile_definitions(${TARGET_NAME}
+        PRIVATE Py_LIMITED_API=0x03050000
+    )
+    if(APPLE)
+        set_property(TARGET ${TARGET_NAME} APPEND PROPERTY
+            LINK_FLAGS "-undefined dynamic_lookup")
+    endif()
+    install(TARGETS ${TARGET_NAME}
+        LIBRARY DESTINATION ${${PROJECT_NAME}_PYTHON_BINDINGS_INSTALL_PREFIX}/${TARGET_NAME})
 endmacro()

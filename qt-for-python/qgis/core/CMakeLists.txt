@@ -126,7 +126,7 @@ set(pyqgis_core_target_link_libraries
 
 # Dependencies - changes on these files should trigger new bindings
 set(pyqgis_core_DEPENDS
-   ${CMAKE_SOURCE_DIR}/src/core/geometry/qgswkbtypes.h
+#    ${CMAKE_SOURCE_DIR}/src/core/geometry/qgswkbtypes.h
 )
 
 set(TYPESYSTEM_CONTENT "")
@@ -147,7 +147,11 @@ foreach(class ${pyqgis_core_VALUE_CLASSES})
     set(TYPESYSTEM_CONTENT "${TYPESYSTEM_CONTENT}\n    <value-type name=\"${class}\"></value-type>")
 endforeach()
 
-set_source_files_properties(${pyqgis_core_SRC} PROPERTIES COMPILE_FLAGS "-Wno-missing-field-initializers -Wno-cast-function-type -Wno-unused-parameter")
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+  set_source_files_properties(
+    ${pyqgis_core_SRC}
+    PROPERTIES COMPILE_FLAGS "-Wno-missing-field-initializers -Wno-cast-function-type -Wno-unused-parameter")
+endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/qgis_core_global.h.in ${CMAKE_CURRENT_BINARY_DIR}/qgis_core_global.h)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/typesystem_qgis_core.xml.in ${CMAKE_CURRENT_BINARY_DIR}/typesystem_qgis_core.xml)
@@ -162,11 +166,19 @@ CREATE_PYTHON_BINDINGS(
     ${CMAKE_CURRENT_BINARY_DIR}/qgis_core_global.h
     ${CMAKE_CURRENT_BINARY_DIR}/typesystem_qgis_core.xml
     "${pyqgis_core_DEPENDS}"
-    ${QGIS_PYTHON_OUTPUT_DIRECTORY}
+    ${QGIS_PYTHON_OUTPUT_DIRECTORY}/core
 )
 
-# Make moduled import from build dir works
-# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/__init__.py ${QGIS_PYTHON_OUTPUT_DIRECTORY}/__init__.py)
+add_dependencies(pyqgis_core pyqgis)
 
-# install
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py DESTINATION ${Python3_SITELIB}/pyqgis_core)
+set(PY_FILES __init__.py)
+foreach(pyfile ${PY_FILES})
+  add_custom_command(TARGET pyqgis_core
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${QGIS_PYTHON_OUTPUT_DIRECTORY}/core"
+    COMMAND ${CMAKE_COMMAND} -E copy ${pyfile} "${QGIS_PYTHON_OUTPUT_DIRECTORY}/core"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    DEPENDS ${pyfile}
+  )
+  PY_COMPILE(pyutils "${QGIS_PYTHON_OUTPUT_DIRECTORY}/${pyfile}")
+endforeach(pyfile)
