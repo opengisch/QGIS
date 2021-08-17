@@ -1,3 +1,7 @@
+Based on
+
+https://github.com/qgis/QGIS-Enhancement-Proposals/issues/163
+
 # Typesystem
 
 Members are automatically detected, only enums need to be specifically mentioned in the typesystem file
@@ -13,6 +17,28 @@ See https://doc.qt.io/qtforpython/considerations.html
 
 - Handwritten code is similar but different (what a surprise ... ;-) )
   - E.g. parameter with type `const QString &` (CPP) is available as `QString *` (SIP) and `const QString &` (PySide2)
+
+# Ownership
+
+https://doc.qt.io/qtforpython/shiboken6/typesystem_ownership.html
+
+The ownership system of qt-for-python is well-documented including "common usage" examples.
+
+It covers scenarios like transferring ownership both directions between python/c++. It also
+covers concepts like the Qt parent/child relationship.
+It even offers some "heuristics" to discover parent/child relationships, it needs to be
+checked how these play in the QGIS scenario, very likely they will require to rename some
+parameters to `parent` and/or be made explicit.
+The documentation is encouraging and the fact that it has been used to create python bindings
+for the Qt frameweork as well.
+QGIS already now contains very good in-code annotations of memory management thanks to the work
+for SIP compatibility.
+
+Both facts, the existing annotations as well as the apparent good support for ownership management
+of qt-for-python are encouraging for a smooth transition.
+However, due to the fact that the different memory management models of C++ and Python offer a
+challenge for any bindings, the risk persists that additional work on the mapping of SIP to the
+qt-for-python models needs to be done. It's unlikely that this will be a blocker.
 
 ## Compatibility layer? Deprecation?
 
@@ -49,6 +75,19 @@ We identify 3 ways to produce these files:
 
 - Normalizing method signatures
 
+# Tooling
+
+## pyuic and pyrcc
+
+The tools pyuic and pyrcc are utilities to compile .ui and .rc files to python files.
+
+Next to the possibility to load these files at runtime and skipping the compiling
+step altogether, there are equivalents available for qt-for-python.
+These have not been assessed in detail.
+
+https://doc.qt.io/qt-6/uic.html
+https://doc.qt.io/qtforpython/tutorials/basictutorial/qrcfiles.html
+
 # Further considerations
 
 ## community support
@@ -78,14 +117,9 @@ Solution would be to either
 * build an ad-hoc tool using gettext which can mimic what lupdate is supposed to do
 
 
-# TODO
-
- - [ ] QgsRasterDataProvider -> is abstract and doesn't compile
- - [ ] QgsVectorLayer::dataProvider() -> is currently removed because problems with covariant return type. Non-issue according to gitter... Not sure what's wrong here.
-
-
 # Opportunities and risks to switch
 
+ - 
 
 # Estimation of the work load for a switch
 
