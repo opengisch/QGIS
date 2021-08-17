@@ -69,6 +69,15 @@ https://gitter.im/PySide/pyside2
 QScintilla needs to be ported to PySide. The tool has been developped by Riverbank. 
 TODO: check regarding license if we can do this.
 
+# Translations
+
+There is no corresponding tool for pylupdate with Qt for Python (see https://github.com/qgis/QGIS-Enhancement-Proposals/issues/163#issuecomment-804375040). 
+Solution would be to either 
+* rely on PyQt6
+* add support for Python in the lupdate Qt tool
+* build an ad-hoc tool using gettext which can mimic what lupdate is supposed to do
+
+
 # TODO
 
  - [ ] QgsRasterDataProvider -> is abstract and doesn't compile
