@@ -78,6 +78,7 @@ jobs:
           
       - name: Push docker
         run: |
+          docker cp $(pwd) qgis_image:/usr/src/qgis
           docker tag qgis_image opengisch/qgis-qt-for-python:${{ github.run_number }}
           docker push opengisch/qgis-qt-for-python:${{ github.run_number }}
           docker tag opengisch/qgis-qt-for-python:${{ github.run_number }} opengisch/qgis-qt-for-python:latest
@@ -85,7 +86,7 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run -v $(pwd):/usr/src/qgis -w /usr/src/qgis/build-pyside2 qgis_image xvfb-run ctest -R PyQgs --output-on-failure
+          docker run -w /usr/src/qgis/build-pyside2 qgis_image xvfb-run ctest -R PyQgs --output-on-failure
 
 #      - name: Setup tmate session
 #        if: failure()
