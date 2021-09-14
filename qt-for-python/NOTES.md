@@ -1,24 +1,51 @@
-Based on
 
-https://github.com/qgis/QGIS-Enhancement-Proposals/issues/163
+# Context
 
-# Typesystem
+This is the report of the investigation of switching to Qt-for-Python for QGIS Python bindings.
+This is based on the QEP https://github.com/qgis/QGIS-Enhancement-Proposals/issues/163
 
-Members are automatically detected, only enums need to be specifically mentioned in the typesystem file
+# Approach
+
+We have decided to give a trial at setting up Qt-for-Python to generate PyQGIS bindings.
+All this work has been done and is available at https://github.com/opengisch/QGIS/edit/qt-for-python-qt5/qt-for-python.
+
+At first, we have considered using PySide6 (Qt6) and have put some energy into patching the code base to make it compliant with Qt6. This has been merged to the main branch of the official repo, and thanks to other devs, some tests are now running for QGIS core on the CI.
+
+Due to the amount of work required at that time, we have opted to use PySide2 (Qt5). A global switch is available in the CMake configuration (https://github.com/opengisch/QGIS/blob/qt-for-python-qt5/CMakeLists.txt#L949). The idea is that both can live at the same time in the code base, so that Qt-for-Python can be evaluated while SIP/PyQt would be still maintained.
+
+The goal was to have the code to compile, to be able to call some PyQGIS object and run a test using the new bindings. This would allow us to estimate the effort required to migrate the bindings and spot places where the migration would be problematic.
 
 
-# Differences
+# Quick technical summary of Qt-for-Python
 
-## Qt for Python vs PyQt/SIP
+Qt-for-Python is maintained by Qt Group and is available under the same licence than Qt.
 
-> One of the goals of PySide6 is to be API compatible with PyQt, with certain exceptions.
+Qt-for-Python includes both
+* PySide being the Python bindings of the Qt libraries. Currently QGIS uses PyQt.
+* shiboken being the generator of the bindings for QGIS. Currently QGIS uses SIP. The generator uses both the QGIS core headers and some auxiliary files (XML typesystem files)
 
-See https://doc.qt.io/qtforpython/considerations.html
 
-- Handwritten code is similar but different (what a surprise ... ;-) )
-  - E.g. parameter with type `const QString &` (CPP) is available as `QString *` (SIP) and `const QString &` (PySide2)
+# Technical outcomes
 
-# Ownership
+## Typesystem files generation
+
+Shiboken, Qt-for-Python's generator, relies on XML auxiliary files to produce the bindings (similarly, sip relies on sip files).
+
+With shiboken, members are automatically detected. This means that the typesystem file shall only contains:
+* enums
+* parts of the code which require special handling (ownership, argument manipulation, code injection)
+
+The question rising is the way to write or produce these typesystem files.
+One possibility is to write them manually  as this used to be the case in the past for QGIS, before sipify was created. But it has proven to be problematic: the files were often outdated and not produced from start when developing new API endpoints.
+The other approach is to produce them automatically based on the content of the header. We can either:
+1. write the whole content of the XML file in the header within #ifdefs
+2. Use a combination of simple macros (similarly to what is done currently, see https://github.com/qgis/QGIS/blob/master/src/core/qgis_sip.h) and #ifdefs for things like code injection. In such case, we then need a tool to produce the XML either using a non-parsing tool like sipify or a tool based on a code parser.
+
+While the simplest approaches sound nice, they would probably prove to be too limitating, mainly for applying global changes for the API documentation for instance (automatically generating the Python docs from the C++ docs).
+
+Qt has apparently developed a commercial GUI tool, but based on an open-source example https://code.qt.io/cgit/pyside/pyside-setup.git/tree/sources/shiboken6/tests/dumpcodemodel. We would recommend testing this tool to see if it can reasonably easily extended to our needs.
+
+## Ownership
 
 https://doc.qt.io/qtforpython/shiboken6/typesystem_ownership.html
 
@@ -40,86 +67,97 @@ However, due to the fact that the different memory management models of C++ and 
 challenge for any bindings, the risk persists that additional work on the mapping of SIP to the
 qt-for-python models needs to be done. It's unlikely that this will be a blocker.
 
-## Compatibility layer? Deprecation?
+## QVariant
 
-### NULL 
-(should this be replaced/aliased by None?)
+As QVariant was removed, any function expecting it can receive any Python object (`None` is an invalid QVariant). The same rule is valid when returning something: the returned QVariant will be converted to its original Python object type.
 
-### QVariant 
-
-As QVariant was removed, any function expecting it can receive any Python object (None is an invalid QVariant). The same rule is valid when returning something: the returned QVariant will be converted to its original Python object type.
-
-When a method expects a QVariant::Type the programmer can use a string (the type name) or the type itself.
+When a method expects a `QVariant::Type` the programmer can use a string (the type name) or the type itself.
 https://pyside.github.io/docs/pyside/pysideapi2.html#qvariant
 
-Should we try to build a compat layer?
-Should we have some helpers/porters that modify imports and code instead?
+### NULL
+Since QVariant was removed, it might be an opportunity to drop QGIS' `NULL` in favor of Python's None.
 
-### QSignalSpy
 
-QSignalSpy has just been added to Qt 6.1
+## Compatibility layer
+
+One of the goals of PySide6 is to be API compatible with PyQt, with certain exceptions (see https://doc.qt.io/qtforpython/considerations.html).
+
+Therefore it would be easy and useful to propose a compatibility layer, similarly to what we did for PyQt5/6: i.e. `qgis.PyQt.QtCore = PySide.QtCore`.
+
+
+## Missing PySide bindings
+
+Some objects are not (yet?) part of PySide bindings, especially PySide2.
 https://wiki.qt.io/Qt_for_Python_Missing_Bindings
 
-- More an API improvement, but still: tuple (with boolean) return values instead of exceptions (e.g. stringToDistanceUnit())
+We don't see any particular risk here, as objects are regularly being integrated.
 
-# Sipify
+## Raising exceptions instead of returning tuples
 
-Like sip files, Qt-for-Python requires XML sidecar files.
-We identify 3 ways to produce these files:
-
-1) written by-hand, like it used to be some years ago with sip files
-2) adapt sipify to produce them
-3) re-write a similar tool based on clang-parser
-
-- Code in xml needs some encoding &lt; &amp; etc. --> paniful to write --> we need some generator like sifipfy
-
-- Normalizing method signatures
-
-# Tooling
+In several places of QGIS' API, we tend to return a tuple with the result and with a boolean for the success (e.g. see `QgsUnitTypes.stringToDistanceUnit` method).
+We would recommend to raise Python exception instead, and only return the result instead.
 
 ## pyuic and pyrcc
 
 The tools pyuic and pyrcc are utilities to compile .ui and .rc files to python files.
 
 Next to the possibility to load these files at runtime and skipping the compiling
-step altogether, there are equivalents available for qt-for-python.
+step altogether, there are equivalents available for Qt-for-Python.
 These have not been assessed in detail.
 
 https://doc.qt.io/qt-6/uic.html
 https://doc.qt.io/qtforpython/tutorials/basictutorial/qrcfiles.html
 
-# Further considerations
-
-## community support
-
-- gitter very active and helpful
-https://gitter.im/PySide/pyside2
-
-## documentation
-
-  - https://doc.qt.io/qtforpython/shiboken2/
-  - https://doc.qt.io/qtforpython/shiboken2/typesystem.html
-  - Concepts are well explained
-  - Reference documentation for the typesystem not always up to date, best to check the sample code in tests instead
-    - https://code.qt.io/cgit/pyside/pyside-setup.git/tree/sources/shiboken6/tests/samplebinding/typesystem_sample.xml
-
 ## QScintilla
 
-QScintilla needs to be ported to PySide. The tool has been developped by Riverbank. 
-TODO: check regarding license if we can do this.
+QScintilla needs to be ported to PySide. The tool has been developed by Riverbank.
+We would need to also write the bindings for it, meaning probably integrating its source code within QGIS to be sure that the bindings and the source are at the same version.
 
-# Translations
+## Code injection
 
-There is no corresponding tool for pylupdate with Qt for Python (see https://github.com/qgis/QGIS-Enhancement-Proposals/issues/163#issuecomment-804375040). 
-Solution would be to either 
+Handwritten code is similar but different.
+https://doc.qt.io/qtforpython/shiboken6/typesystem_codeinjection.html
+E.g. parameter with type `const QString &` (CPP) is available as `QString *` (SIP) and `const QString &` (PySide2).
+
+## Translations
+
+There is no corresponding tool for pylupdate with Qt for Python (see https://github.com/qgis/QGIS-Enhancement-Proposals/issues/163#issuecomment-804375040 or https://bugreports.qt.io/browse/PYSIDE-1552).
+Solution would be to either
 * rely on PyQt6
 * add support for Python in the lupdate Qt tool
 * build an ad-hoc tool using gettext which can mimic what lupdate is supposed to do
 
+We think that building an ad-hoc tool is the best approach as we are not mixing solutions and avoid a risky development.
+Some tools with similar functionality already exist (https://github.com/danhper/python-i18n).
+
+
+# Further considerations
+
+## Community support
+
+Gitter channel is quite active and helpful (https://gitter.im/PySide/pyside2)
+We have got close support for a R&D Manager at The Qt Company who is responsible of the Qt-for-Python development.
+
+## Documentation
+
+Documentation is well accessible, concepts are well explained.
+  - https://doc.qt.io/qtforpython/shiboken2/
+  - https://doc.qt.io/qtforpython/shiboken2/typesystem.html
+  - Reference documentation for the typesystem is not always up to date, we had to check the sample code in tests instead
+    - https://code.qt.io/cgit/pyside/pyside-setup.git/tree/sources/shiboken6/tests/samplebinding/typesystem_sample.xml
+
+
+
+
+# Integration into QGIS code base
+
+As demonstrated during our testings, the code base can live with the two systems in parallel, allowing a continuous of Qt-for-Python.
+
+A complete switch to Qt-for-Python would quite certainly be bound to the switch to Qt6 / QGIS 4. While we could certainly offer a compatibility layer, asking plugin developers to switch at the same time than Qt6 sounds much more reasonable. Also, the bindings are not (yet?) complete under Qt5 (for instance QSignalSpy comes with Qt 6.1).
 
 # Opportunities and risks to switch
 
- - 
+ - discussion of Qt6
 
 # Estimation of the work load for a switch
 
@@ -130,4 +168,3 @@ If there is an interest to switch, we propose to proceed as follows:
 2) The present report is published and we (the authors) collect feedback
 3) PSC nominates a group of expert to formulate a decision (go/no-go)
 4) PSC validates the decision
-
