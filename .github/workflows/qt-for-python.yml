@@ -81,7 +81,7 @@ jobs:
           docker tag qgis_image opengisch/qgis-qt-for-python:${{ github.run_number }}
           docker push opengisch/qgis-qt-for-python:${{ github.run_number }}
           docker tag opengisch/qgis-qt-for-python:${{ github.run_number }} opengisch/qgis-qt-for-python:latest
-          opengisch/qgis-qt-for-python:latest
+          docker push opengisch/qgis-qt-for-python:latest
 
       - name: Run tests
         run: |
