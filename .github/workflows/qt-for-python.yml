@@ -65,7 +65,6 @@ jobs:
             -v /home/runner/QGIS/.ccache:/root/.ccache \
             -v $(pwd):/usr/src/qgis \
             ${DOCKER_IMAGE} /usr/src/qgis/.docker/docker-qgis-build-qt-for-python.sh
-          docker commit qgis_container qgis_image
         env:
           DOCKER_IMAGE: ${{ steps.docker-build.outputs.FULL_IMAGE_NAME }}
           
@@ -78,7 +77,8 @@ jobs:
           
       - name: Push docker
         run: |
-          docker cp $(pwd) qgis_image:/usr/src/qgis
+          docker cp $(pwd) qgis_container:/usr/src/qgis
+          docker commit qgis_container qgis_image
           docker tag qgis_image opengisch/qgis-qt-for-python:${{ github.run_number }}
           docker push opengisch/qgis-qt-for-python:${{ github.run_number }}
           docker tag opengisch/qgis-qt-for-python:${{ github.run_number }} opengisch/qgis-qt-for-python:latest
