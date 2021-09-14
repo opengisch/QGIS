@@ -77,13 +77,11 @@ jobs:
           
       - name: Push docker
         run: |
+          docker cp $(pwd) qgis_container:/usr/src/qgis
           docker commit qgis_container qgis_image
-          docker run --name qgis_container_data qgis_image
-          docker cp $(pwd) qgis_container_data:/usr/src/qgis
-          docker commit qgis_container_data qgis_image_data
-          docker tag qgis_image_data opengisch/qgis-qt-for-python:${{ github.run_number }}
+          docker tag qgis_image opengisch/qgis-qt-for-python:${{ github.run_number }}
+          docker tag qgis_image opengisch/qgis-qt-for-python:latest
           docker push opengisch/qgis-qt-for-python:${{ github.run_number }}
-          docker tag opengisch/qgis-qt-for-python:${{ github.run_number }} opengisch/qgis-qt-for-python:latest
           docker push opengisch/qgis-qt-for-python:latest
 
       - name: Run tests
