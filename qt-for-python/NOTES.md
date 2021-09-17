@@ -102,8 +102,7 @@ We would recommend to raise Python exception instead, and only return the result
 The tools pyuic and pyrcc are utilities to compile .ui and .rc files to python files.
 
 Next to the possibility to load these files at runtime and skipping the compiling
-step altogether, there are equivalents available for Qt-for-Python.
-These have not been assessed in detail.
+step altogether, there are equivalents available for Qt-for-Python (pyside6-uic and pyside6-rcc).
 
 https://doc.qt.io/qt-6/uic.html
 https://doc.qt.io/qtforpython/tutorials/basictutorial/qrcfiles.html
@@ -130,6 +129,10 @@ Solution would be to either
 We think that building an ad-hoc tool is the best approach as we are not mixing solutions and avoid a risky development.
 Some tools with similar functionality already exist (https://github.com/danhper/python-i18n).
 
+## API Documentation
+
+The generated bindings do not contain API documentation from the C++ API. Using the typesystem generation tool, we need to translate them as we are currently doing for SIP bindings.
+
 
 # Further considerations
 
@@ -148,23 +151,48 @@ Documentation is well accessible, concepts are well explained.
 
 
 
-
 # Integration into QGIS code base
 
 As demonstrated during our testings, the code base can live with the two systems in parallel, allowing a continuous of Qt-for-Python.
 
 A complete switch to Qt-for-Python would quite certainly be bound to the switch to Qt6 / QGIS 4. While we could certainly offer a compatibility layer, asking plugin developers to switch at the same time than Qt6 sounds much more reasonable. Also, the bindings are not (yet?) complete under Qt5 (for instance QSignalSpy comes with Qt 6.1).
 
-# Opportunities and risks to switch
+# Opportunities and risks to switch or stick to current solution
 
- - discussion of Qt6
+While writing the QEP, we identified the following reasons to evaluate moving away from PyQt:
+* it's a solution developed by a single person (hitting bus factor)
+* it offers very limited contribution opportunities, poor community experience (no issue tracker, no road-map)
+* we have a history of issues which either took a lot of time/energy to get solved or were never solved
+* Riverbank did not answered positively to 2 requests to work on issues for QGIS.org
+* Qt3D and QtChart are distinct products leading to more solutions to maintain and distribute (mainly for Windows, Android, MacOS and iOS).
 
-# Estimation of the work load for a switch
+Qt-for-Python might offer a better community solution, better integration with Qt and a more future proof solution.
 
-# Moving on
+Recent discussions with the future of Qt regarding open-source shall also be taken into consideration.
+But switching to Qt-for-Python is closely tight to migrating to Qt6. If the path of Qt6 remains, switching to Qt-for-Python should be safe.
 
-If there is an interest to switch, we propose to proceed as follows:
-1) PSC validates the financial engagmenent
-2) The present report is published and we (the authors) collect feedback
-3) PSC nominates a group of expert to formulate a decision (go/no-go)
-4) PSC validates the decision
+The impact on plugin authors is obviously a matter of consideration.
+We would recommend using the compatibility layer instead of directly importing PyQt or PySide: qgis.PyQt (or qgis.Qt) would import the proper bindings depending on the environment. This means replacing the imports in the plugin code. We believe that there is not much more to do on plugins side.
+Other changes such as enum being fully qualified will be required in any case (with PyQt6 too).
+And QGIS4 will probably brings some small API changes at the same time.
+
+# Rough estimation of the work load for a switch
+
+* Writing the generation tool ~20 days
+* Merge existing core part to generate the bindings ~2 days
+* Make existing headers compliant with both sipify and the new generation tool ~5 days
+* Migrate injected codes ~10 days
+* Implement the compatibility layer (NULL/None, QVariant, etc,) ~3 days
+* Tests fixing ~5 days
+
+
+# What's next ?
+
+To move on, we recommend the following approach:
+
+1. The present report is published and feedback is collected (probably on the mailing list or in a Github issue)
+2. PSC calls/nominates a technical committee of 3-6 relevant and interested developers to take a formal technical recommendation and confirm the risks and costs estimates.
+3. PSC validates or reject the technical recommendation.
+4. If the switch to Qt-for-Python is decided, development should start as soon as possible and share among several developers.
+
+N.B.: Chances are high that people involved in the committee would also be developers participating to the migration, which is obviously a risk of neutrality. Integrating several developers from different companies should mitigate this risk.
