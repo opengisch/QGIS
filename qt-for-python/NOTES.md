@@ -70,7 +70,9 @@ qt-for-python models needs to be done. It's unlikely that this will be a blocker
 
 ## QVariant
 
-As QVariant was removed, any function expecting it can receive any Python object (`None` is an invalid QVariant). The same rule is valid when returning something: the returned QVariant will be converted to its original Python object type.
+QVariant was removed and is transparently converted to the corresponding native type.
+Any function expecting it can receive any Python object (`None` is an invalid QVariant).
+The same rule is valid when returning something: the returned QVariant will be converted to its original Python object type.
 
 When a method expects a `QVariant::Type` the programmer can use a string (the type name) or the type itself.
 https://pyside.github.io/docs/pyside/pysideapi2.html#qvariant
@@ -78,6 +80,8 @@ https://pyside.github.io/docs/pyside/pysideapi2.html#qvariant
 ### NULL
 
 Since QVariant was removed, it might be an opportunity to drop QGIS' `NULL` in favor of Python's None.
+Inside QGIS, invalid and null QVariants are treated equally, so this would help to be more aligned with
+QGIS internal handling and being more Pythonic at the same time.
 
 
 ## Compatibility layer
@@ -92,19 +96,22 @@ Therefore it would be easy and useful to propose a compatibility layer, similarl
 Some objects are not (yet?) part of PySide bindings, expecially in PySide2.
 https://wiki.qt.io/Qt_for_Python_Missing_Bindings
 
-We don't see any particular risk here, as objects are regularly being integrated.
+New types get added regularly and in the list of missing bindings, no blocking type could be identified.
+The risk of this is low.
 
 ## Raising exceptions instead of returning tuples
 
 In several places of QGIS' API, we tend to return a tuple with the result and with a boolean for the success (e.g. see `QgsUnitTypes.stringToDistanceUnit` method).
-We would recommend to raise Python exception instead, and only return the result instead.
+It would be more pythonic to raise Python exception instead, and only return the result.
+This change would mean an API break, the opportunity could be taken to change this.
 
 ## pyuic and pyrcc
 
 The tools pyuic and pyrcc are utilities to compile .ui and .rc files to python files.
 
-Next to the possibility to load these files at runtime and skipping the compiling
-step altogether, there are equivalents available for Qt-for-Python (pyside6-uic and pyside6-rcc).
+There is the possibility to load .ui and helper files at runtime and skipping the compiling
+step altogether.
+There are also equivalent tools available for Qt-for-Python (pyside6-uic and pyside6-rcc).
 
 https://doc.qt.io/qt-6/uic.html
 https://doc.qt.io/qtforpython/tutorials/basictutorial/qrcfiles.html
@@ -119,6 +126,7 @@ We would need to also write the bindings for it, meaning probably integrating it
 Handwritten code is similar but different.
 https://doc.qt.io/qtforpython/shiboken6/typesystem_codeinjection.html
 E.g. parameter with type `const QString &` (CPP) is available as `QString *` (SIP) and `const QString &` (PySide2).
+This means that handwritten code cannot just be reused and must be revised.
 
 ## Translations
 
@@ -155,9 +163,11 @@ Documentation is well accessible, concepts are well explained.
 
 # Integration into QGIS code base
 
-As demonstrated during our testings, the code base can live with the two systems in parallel, allowing a continuous of Qt-for-Python.
+As demonstrated during our testings, the code base can live with the two systems in parallel, allowing a continuous integration of Qt-for-Python.
 
-A complete switch to Qt-for-Python would quite certainly be bound to the switch to Qt6 / QGIS 4. While we could certainly offer a compatibility layer, asking plugin developers to switch at the same time than Qt6 sounds much more reasonable. Also, the bindings are not (yet?) complete under Qt5 (for instance QSignalSpy comes with Qt 6.1).
+A complete switch to Qt-for-Python needs to be combined with the switch to Qt6 / QGIS 4.
+While we could certainly offer a compatibility layer, asking plugin developers to switch at the same time than Qt6 sounds much more reasonable.
+Also, the bindings are less complete under Qt5 (for instance QSignalSpy comes with Qt 6.1).
 
 # Opportunities and risks to switch or stick to current solution
 
@@ -171,10 +181,12 @@ While writing the QEP, we identified the following reasons to evaluate moving aw
 Qt-for-Python might offer a better community solution, better integration with Qt and a more future proof solution.
 
 Recent discussions with the future of Qt regarding open-source shall also be taken into consideration.
-But switching to Qt-for-Python is closely tight to migrating to Qt6. If the path of Qt6 remains, switching to Qt-for-Python should be safe.
+But switching to Qt-for-Python is closely tied to migrating to Qt6. If the path of Qt6 remains, switching to Qt-for-Python should be safe.
 
 The impact on plugin authors is obviously a matter of consideration.
-We would recommend using the compatibility layer instead of directly importing PyQt or PySide: qgis.PyQt (or qgis.Qt) would import the proper bindings depending on the environment. This means replacing the imports in the plugin code. We believe that there is not much more to do on plugins side.
+We would recommend using the compatibility layer instead of directly importing PyQt or PySide: qgis.PyQt (or qgis.Qt) would import the proper bindings depending on the environment. This means replacing the imports in the plugin code.
+Additional changes will be required for plugins case dependant but not complicated.
+Common exaples would be `QVariant` usages or exceptions instead of tuple return types.
 Other changes such as enum being fully qualified will be required in any case (with PyQt6 too).
 And QGIS4 will probably brings some small API changes at the same time.
 
@@ -195,6 +207,6 @@ To move on, we recommend the following approach:
 1. The present report is published and feedback is collected (probably on the mailing list or in a Github issue)
 2. PSC calls/nominates a technical committee of 3-6 relevant and interested developers to take a formal technical recommendation and confirm the risks and costs estimates.
 3. PSC validates or reject the technical recommendation.
-4. If the switch to Qt-for-Python is decided, development should start as soon as possible and share among several developers.
+4. If the switch to Qt-for-Python is decided, development should start as soon as possible and shared among several developers.
 
 N.B.: Chances are high that people involved in the committee would also be developers participating to the migration, which is obviously a risk of neutrality. Integrating several developers from different companies should mitigate this risk.
