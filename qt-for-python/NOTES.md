@@ -195,7 +195,7 @@ And QGIS4 will probably brings some small API changes at the same time.
 * Writing the generation tool ~20 days
 * Merge existing core part to generate the bindings ~2 days
 * Make existing headers compliant with both sipify and the new generation tool ~5 days
-* Migrate injected codes ~10 days
+* Migrate handwritten code blocks ~10 days
 * Implement the compatibility layer (NULL/None, QVariant, etc,) ~3 days
 * Tests fixing ~5 days
 
