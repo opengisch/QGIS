@@ -7,11 +7,12 @@ This is based on the QEP https://github.com/qgis/QGIS-Enhancement-Proposals/issu
 # Approach
 
 We have decided to give a trial at setting up Qt-for-Python to generate PyQGIS bindings.
-All this work has been done and is available at https://github.com/opengisch/QGIS/edit/qt-for-python-qt5/qt-for-python.
+All this work has been done and is available at https://github.com/opengisch/QGIS/tree/qt-for-python-qt5/qt-for-python.
 
-At first, we have considered using PySide6 (Qt6) and have put some energy into patching the code base to make it compliant with Qt6. This has been merged to the main branch of the official repo, and thanks to other devs, some tests are now running for QGIS core on the CI.
+A first try using PySide6 (Qt6) was started by making the code base more compliant with Qt6. This work has been merged to the main branch of the official repo, and thanks to other devs, a set of QGIS core tests is now running with Qt6 as well on CI.
+Due to the incomplete state of Qt6 compatibility and amount of work required at that time, we have opted to use PySide2 (Qt5).
 
-Due to the amount of work required at that time, we have opted to use PySide2 (Qt5). A global switch is available in the CMake configuration (https://github.com/opengisch/QGIS/blob/qt-for-python-qt5/CMakeLists.txt#L949). The idea is that both can live at the same time in the code base, so that Qt-for-Python can be evaluated while SIP/PyQt would be still maintained.
+A global switch to enable PySide2 is available in the CMake configuration (https://github.com/opengisch/QGIS/blob/qt-for-python-qt5/CMakeLists.txt#L949). PySide2 and PyQt can live at the same time in the code base, so that Qt-for-Python can be evaluated while SIP/PyQt is still maintained.
 
 The goal was to have the code to compile, to be able to call some PyQGIS object and run a test using the new bindings. This would allow us to estimate the effort required to migrate the bindings and spot places where the migration would be problematic.
 
@@ -22,7 +23,7 @@ Qt-for-Python is maintained by Qt Group and is available under the same licence 
 
 Qt-for-Python includes both
 * PySide being the Python bindings of the Qt libraries. Currently QGIS uses PyQt.
-* shiboken being the generator of the bindings for QGIS. Currently QGIS uses SIP. The generator uses both the QGIS core headers and some auxiliary files (XML typesystem files)
+* shiboken being the generator of the bindings for QGIS. Currently QGIS uses SIP. The generator uses both the QGIS core headers and auxiliary files (XML typesystem files)
 
 
 # Technical outcomes
@@ -31,7 +32,7 @@ Qt-for-Python includes both
 
 Shiboken, Qt-for-Python's generator, relies on XML auxiliary files to produce the bindings (similarly, sip relies on sip files).
 
-With shiboken, members are automatically detected. This means that the typesystem file shall only contains:
+With shiboken, members are automatically detected. This means that the typesystem file only contains:
 * enums
 * parts of the code which require special handling (ownership, argument manipulation, code injection)
 
@@ -43,7 +44,7 @@ The other approach is to produce them automatically based on the content of the 
 
 While the simplest approaches sound nice, they would probably prove to be too limitating, mainly for applying global changes for the API documentation for instance (automatically generating the Python docs from the C++ docs).
 
-Qt has apparently developed a commercial GUI tool, but based on an open-source example https://code.qt.io/cgit/pyside/pyside-setup.git/tree/sources/shiboken6/tests/dumpcodemodel. We would recommend testing this tool to see if it can reasonably easily extended to our needs.
+Qt has apparently developed a commercial GUI tool, but based on an open-source example https://code.qt.io/cgit/pyside/pyside-setup.git/tree/sources/shiboken6/tests/dumpcodemodel. We would recommend testing this tool to see if it can extended to our needs.
 
 ## Ownership
 
@@ -75,6 +76,7 @@ When a method expects a `QVariant::Type` the programmer can use a string (the ty
 https://pyside.github.io/docs/pyside/pysideapi2.html#qvariant
 
 ### NULL
+
 Since QVariant was removed, it might be an opportunity to drop QGIS' `NULL` in favor of Python's None.
 
 
@@ -87,7 +89,7 @@ Therefore it would be easy and useful to propose a compatibility layer, similarl
 
 ## Missing PySide bindings
 
-Some objects are not (yet?) part of PySide bindings, especially PySide2.
+Some objects are not (yet?) part of PySide bindings, expecially in PySide2.
 https://wiki.qt.io/Qt_for_Python_Missing_Bindings
 
 We don't see any particular risk here, as objects are regularly being integrated.
