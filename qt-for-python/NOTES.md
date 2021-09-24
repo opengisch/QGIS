@@ -206,7 +206,7 @@ To move on, we recommend the following approach:
 
 1. The present report is published and feedback is collected (probably on the mailing list or in a Github issue)
 2. PSC calls/nominates a technical committee of 3-6 relevant and interested developers to take a formal technical recommendation and confirm the risks and costs estimates.
-3. PSC validates or reject the technical recommendation.
+3. PSC validates or rejects the technical recommendation.
 4. If the switch to Qt-for-Python is decided, development should start as soon as possible and shared among several developers.
 
 N.B.: Chances are high that people involved in the committee would also be developers participating to the migration, which is obviously a risk of neutrality. Integrating several developers from different companies should mitigate this risk.
