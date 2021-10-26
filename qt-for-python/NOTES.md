@@ -93,7 +93,7 @@ Therefore it would be easy and useful to propose a compatibility layer, similarl
 
 ## Missing PySide bindings
 
-Some objects are not (yet?) part of PySide bindings, expecially in PySide2.
+Some objects are not (yet?) part of PySide bindings, especially in PySide2.
 https://wiki.qt.io/Qt_for_Python_Missing_Bindings
 
 New types get added regularly and in the list of missing bindings, no blocking type could be identified.
