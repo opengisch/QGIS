@@ -199,6 +199,8 @@ And QGIS4 will probably brings some small API changes at the same time.
 * Implement the compatibility layer (NULL/None, QVariant, etc,) ~3 days
 * Tests fixing ~5 days
 
+Total: ~45 days
+
 
 # What's next ?
 
