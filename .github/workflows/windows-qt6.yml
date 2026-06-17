@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - blacksmith
       - release-**
   pull_request:
   release:
