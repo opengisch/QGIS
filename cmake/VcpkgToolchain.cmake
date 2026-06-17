@@ -46,6 +46,7 @@ endif()
 
 # Binarycache can only be used on Windows or if mono is available.
 find_program(_VCPKG_MONO mono)
+message(STATUS "NUGET TOKEN: ${NUGET_TOKEN}, HOST: ${CMAKE_HOST_WIN32}")
 if(NOT "${NUGET_TOKEN}" STREQUAL "" AND (CMAKE_HOST_WIN32 OR EXISTS "${_VCPKG_MONO}"))
   if(CMAKE_HOST_WIN32)
     set(_VCPKG_EXECUTABLE "$ENV{VCPKG_ROOT}/vcpkg.exe")
