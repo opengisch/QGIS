@@ -19,7 +19,7 @@ permissions:
 jobs:
   build:
     name: build (windows)
-    runs-on: windows-2022
+    runs-on: blacksmith-16vcpu-windows-2025
 
     steps:
       - name: 🐣 Checkout
@@ -96,6 +96,7 @@ jobs:
                 -D WITH_QTWEBENGINE=OFF \
                 -D VCPKG_INSTALL_OPTIONS="--x-buildtrees-root=C:/src" \
                 -D "NUGET_USERNAME=${GITHUB_ACTOR}" \
+                -D "NUGET_SOURCE=https://nuget.pkg.github.com/opengisch/index.json"
                 -D NUGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
       - name: 🌋 Build
