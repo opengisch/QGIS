@@ -79,6 +79,8 @@ jobs:
                 -B "${BUILD_DIR}" \
                 -G Ninja \
                 -D CMAKE_BUILD_TYPE=Release \
+                -D CMAKE_C_COMPILER=clang-cl \
+                -D CMAKE_CXX_COMPILER=clang-cl \
                 -D WITH_VCPKG=ON \
                 -D CREATE_ZIP=ON \
                 -D VCPKG_TARGET_TRIPLET=x64-windows-release \
