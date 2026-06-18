@@ -104,6 +104,8 @@ jobs:
         env:
           CCACHE_DEBUG: 1
           CCACHE_LOGFILE: ${{ github.workspace }}/ccache.log
+          CCACHE_BASEDIR: ${{ github.workspace }}
+          CCACHE_NOHASHDIR: "true"
         shell: bash
         run: |
           cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
