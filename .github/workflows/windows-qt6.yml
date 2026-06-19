@@ -116,7 +116,6 @@ jobs:
           echo "CCACHE_DIR=$CCACHE_DIR"
           ccache --show-config
           ccache --show-stats
-          ls -al $CCACHE_DIR | head -n 50
           cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
 
       - name: 📤 Upload ccache debug
