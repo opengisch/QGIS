@@ -59,12 +59,20 @@ jobs:
           max-size: 1G
           key: build-ccache-win64-qt6-${{ github.event.pull_request.base.ref || github.ref_name }}
           save: ${{ github.event_name == 'push' }}
+          append-timestamp: false
 
       - name: 🛍️ Tune ccache configuration
         shell: bash
         run: |
           # To make ccache work properly with precompiled headers
           ccache --set-config sloppiness=pch_defines,time_macros,include_file_mtime,include_file_ctime
+
+#      - name: Restore cache
+#        uses: actions/cache@v5
+#        with:
+#          path: |
+#            ${{ github.workspace }}/.ccache
+#          key: build-ccache-win64-qt6-${{ github.event.pull_request.base.ref || github.ref_name }}        
 
       - name: 🌱 Install dependencies and generate project files
         id: cmake-configure
