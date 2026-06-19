@@ -54,7 +54,7 @@ jobs:
           extract: true
 
       - name: 🛍️ Setup ccache
-        uses: hendrikmuhs/ccache-action@d62db5f07c26379fc4b4e0916f098a92573c3b03 #v1.2
+        uses: hendrikmuhs/ccache-action@v1.2.23
         with:
           max-size: 1G
           key: build-ccache-win64-qt6-${{ github.event.pull_request.base.ref || github.ref_name }}
