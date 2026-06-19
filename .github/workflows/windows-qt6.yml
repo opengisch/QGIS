@@ -117,6 +117,7 @@ jobs:
           CCACHE_LOGFILE: ${{ github.workspace }}/ccache.log
           CCACHE_BASEDIR: ${{ github.workspace }}
           CCACHE_NOHASHDIR: "true"
+          CCACHE_CPP2: "yes"
         shell: bash
         run: |
           CCACHE_DIR="$(ccache -k cache_dir)"
