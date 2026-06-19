@@ -72,7 +72,7 @@ jobs:
         env:
           X_VCPKG_ASSET_SOURCES: x-azurl,https://assetcache.open-vcpkg.org/assetcache,,read
         run: |
-          if (Test-Path $env:CCACHE_DIR) { Write-Host "ccache dir exists" } else { Write-Host "ccache dir missing" }
+          du -hs $CCACHE_DIR
           BUILD_DIR=$( cygpath "${{ github.workspace }}/build" )
           SOURCE_DIR=$( cygpath "${{ github.workspace }}" )
 
@@ -109,12 +109,11 @@ jobs:
           CCACHE_NOHASHDIR: "true"
         shell: bash
         run: |
-          if (Test-Path $env:CCACHE_DIR) { Write-Host "ccache dir exists" } else { Write-Host "ccache dir missing" }
-          echo "CCACHE_DIR=$env:CCACHE_DIR"
+          du -hs $CCACHE_DIR
+          echo "CCACHE_DIR=$CCACHE_DIR"
           ccache --show-config
           ccache --show-stats
-          Get-ChildItem -Force $env:CCACHE_DIR
-          Get-ChildItem -Recurse -Force $env:CCACHE_DIR | Select-Object -First 50
+          ls -al $CCACHE_DIR | head -n 50
           cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
 
       - name: 📤 Upload ccache debug
