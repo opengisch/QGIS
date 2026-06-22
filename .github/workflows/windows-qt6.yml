@@ -111,144 +111,56 @@ jobs:
                 -D "NUGET_SOURCE=https://nuget.pkg.github.com/opengisch/index.json" \
                 -D NUGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
-      - name: Reproduce qgsconfig.h include tracing
+      - name: Write cl response file
         shell: pwsh
         working-directory: C:\runner\_work\QGIS\QGIS\build
         run: |
-          $ErrorActionPreference = 'Stop'
+          @'
+          /nologo
+          /TP
+          /external:W0
+          /showIncludes
+          /EHsc
+          /utf-8
+          /permissive-
+          /O2
+          /Ob2
+          /DNDEBUG
+          /std:c++20
+          /MD
+          /Zc:__cplusplus
+          /FS
+          /c
+          /Fosrc\core\CMakeFiles\qgis_core.dir\layout\qgslayoutitemgroupundocommand.cpp.obj
+          /Fdsrc\core\CMakeFiles\qgis_core.dir\
+          /DABSL_CONSUME_DLL
+          /DCMAKE_SOURCE_DIR="C:/runner/_work/QGIS/QGIS"
+          /DTEST_DATA_DIR="C:/runner/_work/QGIS/QGIS/tests/testdata"
+          /DUNICODE
+          /DWIN32
+          /DWIN32_LEAN_AND_MEAN
+          /DWIN64
+          /D_UNICODE
+          /D_WIN64
+          /Dqgis_core_EXPORTS
+          /IC:\runner\_work\QGIS\QGIS\build
+          /IC:\runner\_work\QGIS\QGIS\src\core
+          /IC:\runner\_work\QGIS\QGIS\build\src\core
+          /external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include
+          /external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include\Qt6
+          C:\runner\_work\QGIS\QGIS\src\core\layout\qgslayoutitemgroupundocommand.cpp
+          '@ | Set-Content repro-cl.rsp
       
-          $logDir = "C:\runner\_work\QGIS\QGIS\build\ccache-debug"
-          New-Item -ItemType Directory -Force -Path $logDir | Out-Null
-      
+      - name: Run direct cl repro
+        shell: pwsh
+        working-directory: C:\runner\_work\QGIS\QGIS\build
+        env:
+          CCACHE_DISABLE: "1"
+        run: |
+          New-Item -ItemType Directory -Force -Path .\ccache-debug | Out-Null
           $cl = "C:\PROGRA~2\MICROS~1\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe"
-      
-          & $cl `
-            /nologo /TP `
-            -DABSL_CONSUME_DLL `
-            -DCMAKE_SOURCE_DIR=\"C:/runner/_work/QGIS/QGIS\" `
-            -DMESHOPTIMIZER_ALLOC_EXPORT `
-            '-DMESHOPTIMIZER_API=__declspec(dllimport)' `
-            -DNOMINMAX `
-            -DPDAL_DLL_EXPORT=1 `
-            -DPROTOBUF_USE_DLLS `
-            -DQT_CONCURRENT_LIB `
-            -DQT_CORE5COMPAT_LIB `
-            -DQT_CORE_LIB `
-            -DQT_GUI_LIB `
-            -DQT_MULTIMEDIA_LIB `
-            -DQT_NETWORK_LIB `
-            -DQT_NO_CAST_TO_ASCII `
-            -DQT_NO_DEBUG `
-            -DQT_NO_DEPRECATED_WARNINGS `
-            -DQT_NO_FOREACH `
-            -DQT_POSITIONING_LIB `
-            -DQT_PRINTSUPPORT_LIB `
-            -DQT_SERIALPORT_LIB `
-            -DQT_SQL_LIB `
-            -DQT_SVG_LIB `
-            -DQT_USE_QSTRINGBUILDER `
-            -DQT_WIDGETS_LIB `
-            -DQT_XML_LIB `
-            -DSIP_VERSION=0x060f03 `
-            -DTEST_DATA_DIR=\"C:/runner/_work/QGIS/QGIS/tests/testdata\" `
-            -DUNICODE `
-            -DWIN32 `
-            -DWIN32_LEAN_AND_MEAN `
-            -DWIN64 `
-            -DWITH_COPC `
-            -DWITH_EPT `
-            -DWITH_SFCGAL `
-            -D_CRT_NONSTDC_NO_WARNINGS `
-            -D_CRT_SECURE_NO_WARNINGS `
-            -D_ENABLE_EXTENDED_ALIGNED_STORAGE `
-            -D_HAS_AUTO_PTR_ETC=1 `
-            -D_HAVE_WINDOWS_H_ `
-            -D_UNICODE `
-            -D_USE_MATH_DEFINES `
-            -D_WIN64 `
-            -Dqgis_core_EXPORTS `
-            -IC:\runner\_work\QGIS\QGIS\build `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\ept `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\copc `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\vpc `
-            -IC:\runner\_work\QGIS\QGIS\build\src\core `
-            -IC:\runner\_work\QGIS\QGIS\src\core `
-            -IC:\runner\_work\QGIS\QGIS\src\core\3d `
-            -IC:\runner\_work\QGIS\QGIS\src\core\3d\materials `
-            -IC:\runner\_work\QGIS\QGIS\src\core\actions `
-            -IC:\runner\_work\QGIS\QGIS\src\core\annotations `
-            -IC:\runner\_work\QGIS\QGIS\src\core\auth `
-            -IC:\runner\_work\QGIS\QGIS\src\core\browser `
-            -IC:\runner\_work\QGIS\QGIS\src\core\callouts `
-            -IC:\runner\_work\QGIS\QGIS\src\core\classification `
-            -IC:\runner\_work\QGIS\QGIS\src\core\diagram `
-            -IC:\runner\_work\QGIS\QGIS\src\core\dxf `
-            -IC:\runner\_work\QGIS\QGIS\src\core\editform `
-            -IC:\runner\_work\QGIS\QGIS\src\core\effects `
-            -IC:\runner\_work\QGIS\QGIS\src\core\elevation `
-            -IC:\runner\_work\QGIS\QGIS\src\core\expression `
-            -IC:\runner\_work\QGIS\QGIS\src\core\externalstorage `
-            -IC:\runner\_work\QGIS\QGIS\src\core\fieldformatter `
-            -IC:\runner\_work\QGIS\QGIS\src\core\geometry `
-            -IC:\runner\_work\QGIS\QGIS\src\core\geocoding `
-            -IC:\runner\_work\QGIS\QGIS\src\core\gps `
-            -IC:\runner\_work\QGIS\QGIS\src\core\labeling `
-            -IC:\runner\_work\QGIS\QGIS\src\core\labeling\rules `
-            -IC:\runner\_work\QGIS\QGIS\src\core\layertree `
-            -IC:\runner\_work\QGIS\QGIS\src\core\layout `
-            -IC:\runner\_work\QGIS\QGIS\src\core\locator `
-            -IC:\runner\_work\QGIS\QGIS\src\core\maprenderer `
-            -IC:\runner\_work\QGIS\QGIS\src\core\mesh `
-            -IC:\runner\_work\QGIS\QGIS\src\core\metadata `
-            -IC:\runner\_work\QGIS\QGIS\src\core\multimedia `
-            -IC:\runner\_work\QGIS\QGIS\src\core\network `
-            -IC:\runner\_work\QGIS\QGIS\src\core\numericformats `
-            -IC:\runner\_work\QGIS\QGIS\src\core\painting `
-            -IC:\runner\_work\QGIS\QGIS\src\core\pal `
-            -IC:\runner\_work\QGIS\QGIS\src\core\pdf `
-            -IC:\runner\_work\QGIS\QGIS\src\core\plot `
-            -IC:\runner\_work\QGIS\QGIS\src\core\pointcloud `
-            -IC:\runner\_work\QGIS\QGIS\src\core\pointcloud\expression `
-            -IC:\runner\_work\QGIS\QGIS\src\core\processing `
-            -IC:\runner\_work\QGIS\QGIS\src\core\processing\models `
-            -IC:\runner\_work\QGIS\QGIS\src\core\proj `
-            -IC:\runner\_work\QGIS\QGIS\src\core\project `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\arcgis `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\memory `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\gdal `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\ogr `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\meshmemory `
-            -IC:\runner\_work\QGIS\QGIS\src\core\providers\sensorthings `
-            -IC:\runner\_work\QGIS\QGIS\src\core\raster `
-            -IC:\runner\_work\QGIS\QGIS\src\core\renderer `
-            -IC:\runner\_work\QGIS\QGIS\src\core\scalebar `
-            -IC:\runner\_work\QGIS\QGIS\src\core\settings `
-            -IC:\runner\_work\QGIS\QGIS\src\core\sensor `
-            -IC:\runner\_work\QGIS\QGIS\src\core\stac `
-            -IC:\runner\_work\QGIS\QGIS\src\core\symbology `
-            -IC:\runner\_work\QGIS\QGIS\src\core\symbology\converters `
-            -IC:\runner\_work\QGIS\QGIS\src\core\textrenderer `
-            -IC:\runner\_work\QGIS\QGIS\src\core\tiledscene `
-            -IC:\runner\_work\QGIS\QGIS\src\core\validity `
-            -IC:\runner\_work\QGIS\QGIS\src\core\vector `
-            -IC:\runner\_work\QGIS\QGIS\src\core\vectortile `
-            -IC:\runner\_work\QGIS\QGIS\src\core\web `
-            -IC:\runner\_work\QGIS\QGIS\external\delaunator-cpp `
-            -IC:\runner\_work\QGIS\QGIS\external\kdbush\include `
-            -IC:\runner\_work\QGIS\QGIS\external\nanoarrow\include `
-            -IC:\runner\_work\QGIS\QGIS\external\nmea `
-            -IC:\runner\_work\QGIS\QGIS\external\rtree\include `
-            -IC:\runner\_work\QGIS\QGIS\external\tinygltf `
-            -IC:\runner\_work\QGIS\QGIS\external\freespa `
-            -IC:\runner\_work\QGIS\QGIS\external\earcut `
-            -external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include `
-            -external:IC:\runner\_work\QGIS\QGIS\external\lazperf `
-            -external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include\QtCrypto `
-            -external:IC:\runner\_work\QGIS\QGIS\build\src\core\qgis_core_autogen\include `
-            -external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include\poly2tri `
-            -external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include\Qt6\QtCore `
-            -external:IC:\`
+          & $cl "@repro-cl.rsp" *>&1 | Tee-Object -FilePath .\ccache-debug\showincludes.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
       - name: 🌋 Build
         env:
