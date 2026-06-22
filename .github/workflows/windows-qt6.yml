@@ -111,57 +111,53 @@ jobs:
                 -D "NUGET_SOURCE=https://nuget.pkg.github.com/opengisch/index.json" \
                 -D NUGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
-      - name: Write cl response file
-        shell: pwsh
-        working-directory: C:\runner\_work\QGIS\QGIS\build
-        run: |
-          @'
-          /nologo
-          /TP
-          /external:W0
-          /showIncludes
-          /EHsc
-          /utf-8
-          /permissive-
-          /O2
-          /Ob2
-          /DNDEBUG
-          /std:c++20
-          /MD
-          /Zc:__cplusplus
-          /FS
-          /c
-          /Fosrc\core\CMakeFiles\qgis_core.dir\layout\qgslayoutitemgroupundocommand.cpp.obj
-          /Fdsrc\core\CMakeFiles\qgis_core.dir\
-          /DABSL_CONSUME_DLL
-          /DCMAKE_SOURCE_DIR="C:/runner/_work/QGIS/QGIS"
-          /DTEST_DATA_DIR="C:/runner/_work/QGIS/QGIS/tests/testdata"
-          /DUNICODE
-          /DWIN32
-          /DWIN32_LEAN_AND_MEAN
-          /DWIN64
-          /D_UNICODE
-          /D_WIN64
-          /Dqgis_core_EXPORTS
-          /IC:\runner\_work\QGIS\QGIS\build
-          /IC:\runner\_work\QGIS\QGIS\src\core
-          /IC:\runner\_work\QGIS\QGIS\build\src\core
-          /external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include
-          /external:IC:\runner\_work\QGIS\QGIS\build\vcpkg_installed\x64-windows-release\include\Qt6
-          C:\runner\_work\QGIS\QGIS\src\core\layout\qgslayoutitemgroupundocommand.cpp
-          '@ | Set-Content repro-cl.rsp
-      
-      - name: Run direct cl repro
+      - name: Reproduce exact MSVC compile with /showIncludes
+        if: always()
         shell: pwsh
         working-directory: C:\runner\_work\QGIS\QGIS\build
         env:
           CCACHE_DISABLE: "1"
         run: |
-          New-Item -ItemType Directory -Force -Path .\ccache-debug | Out-Null
-          $cl = "C:\PROGRA~2\MICROS~1\2022\BUILDT~1\VC\Tools\MSVC\1444~1.352\bin\Hostx64\x64\cl.exe"
-          & $cl "@repro-cl.rsp" *>&1 | Tee-Object -FilePath .\ccache-debug\showincludes.log
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-
+          $ErrorActionPreference = 'Stop'
+      
+          $cmd = ninja -t commands | Select-String 'qgslayoutitemgroupundocommand.cpp' | Select-Object -First 1 | ForEach-Object { $_.Line }
+      
+          if (-not $cmd) {
+            throw "Could not find ninja command for qgslayoutitemgroupundocommand.cpp"
+          }
+      
+          Write-Host "Original ninja command:"
+          Write-Host $cmd
+          Write-Host ""
+      
+          if ($cmd -match '(^| )ccache( |$)') {
+            $cmd = $cmd -replace '(^| )ccache( |$)', ' '
+          }
+      
+          if ($cmd -notmatch '(^| )/showIncludes( |$)') {
+            if ($cmd -match '(^| )-c( |$)') {
+              $cmd = $cmd -replace '(^| )-c( |$)', ' /showIncludes -c '
+            }
+            elseif ($cmd -match '(^| )/c( |$)') {
+              $cmd = $cmd -replace '(^| )/c( |$)', ' /showIncludes /c '
+            }
+            else {
+              $cmd = "$cmd /showIncludes"
+            }
+          }
+      
+          Write-Host "Modified command:"
+          Write-Host $cmd
+          Write-Host ""
+      
+          Write-Host "Running command..."
+          cmd /C $cmd
+      
+          $exitCode = $LASTEXITCODE
+          Write-Host ""
+          Write-Host "Compiler exit code: $exitCode"
+      
+          exit 0
       - name: 🌋 Build
         env:
           CCACHE_DEBUG: 1
