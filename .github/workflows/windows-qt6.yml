@@ -111,7 +111,23 @@ jobs:
                 -D "NUGET_SOURCE=https://nuget.pkg.github.com/opengisch/index.json" \
                 -D NUGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
-      - name: Reproduce exact MSVC compile with /showIncludes
+      - name: 🌋 Build
+        env:
+          CCACHE_DEBUG: 1
+          CCACHE_LOGFILE: ${{ github.workspace }}/ccache.log
+          CCACHE_BASEDIR: ${{ github.workspace }}
+          CCACHE_NOHASHDIR: "true"
+          CCACHE_CPP2: "yes"
+        shell: bash
+        run: |
+          CCACHE_DIR="$(ccache -k cache_dir)"
+          du -hs $CCACHE_DIR
+          echo "CCACHE_DIR=$CCACHE_DIR"
+          ccache --show-config
+          ccache --show-stats
+          cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
+
+      - name: Reproduce exact MSVC compile with /showIncludes after build
         if: always()
         shell: pwsh
         working-directory: C:\runner\_work\QGIS\QGIS\build
@@ -125,10 +141,6 @@ jobs:
           if (-not $cmd) {
             throw "Could not find ninja command for qgslayoutitemgroupundocommand.cpp"
           }
-      
-          Write-Host "Original ninja command:"
-          Write-Host $cmd
-          Write-Host ""
       
           if ($cmd -match '(^| )ccache( |$)') {
             $cmd = $cmd -replace '(^| )ccache( |$)', ' '
@@ -146,33 +158,22 @@ jobs:
             }
           }
       
-          Write-Host "Modified command:"
+          Write-Host "Running modified command:"
           Write-Host $cmd
           Write-Host ""
       
-          Write-Host "Running command..."
-          cmd /C $cmd
-      
+          $output = cmd /C $cmd 2>&1
           $exitCode = $LASTEXITCODE
+      
+          Write-Host "Filtered output:"
+          $output |
+            Select-String 'including file|qgsconfig\.h|moc_qgslayoutitemgroupundocommand\.cpp|fatal error' |
+            ForEach-Object { $_.Line }
+      
           Write-Host ""
           Write-Host "Compiler exit code: $exitCode"
       
           exit 0
-      - name: 🌋 Build
-        env:
-          CCACHE_DEBUG: 1
-          CCACHE_LOGFILE: ${{ github.workspace }}/ccache.log
-          CCACHE_BASEDIR: ${{ github.workspace }}
-          CCACHE_NOHASHDIR: "true"
-          CCACHE_CPP2: "yes"
-        shell: bash
-        run: |
-          CCACHE_DIR="$(ccache -k cache_dir)"
-          du -hs $CCACHE_DIR
-          echo "CCACHE_DIR=$CCACHE_DIR"
-          ccache --show-config
-          ccache --show-stats
-          cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
 
       - name: 📤 Upload ccache debug
 #        if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
