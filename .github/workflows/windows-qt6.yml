@@ -62,11 +62,11 @@ jobs:
           append-timestamp: false
           variant: sccache
 
-      - name: 🛍️ Tune ccache configuration
-        shell: bash
-        run: |
-          # To make ccache work properly with precompiled headers
-          sccache -- --set-config sloppiness=pch_defines,time_macros,include_file_mtime,include_file_ctime
+#      - name: 🛍️ Tune ccache configuration
+#        shell: bash
+#        run: |
+#          # To make ccache work properly with precompiled headers
+#          sccache -- --set-config sloppiness=pch_defines,time_macros,include_file_mtime,include_file_ctime
 
 #      - name: Restore cache
 #        uses: actions/cache@v5
