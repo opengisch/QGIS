@@ -66,7 +66,7 @@ jobs:
         shell: bash
         run: |
           # To make ccache work properly with precompiled headers
-          ccache --set-config sloppiness=pch_defines,time_macros,include_file_mtime,include_file_ctime
+          sccache --set-config sloppiness=pch_defines,time_macros,include_file_mtime,include_file_ctime
 
 #      - name: Restore cache
 #        uses: actions/cache@v5
@@ -106,6 +106,7 @@ jobs:
                 -D FLEX_EXECUTABLE="${SOURCE_DIR}/win_flex.exe" \
                 -D BISON_EXECUTABLE="${SOURCE_DIR}/win_bison.exe" \
                 -D USE_CCACHE=ON \
+                -D CCACHE_VARIANT=sccache \
                 -D WITH_QTWEBENGINE=OFF \
                 -D VCPKG_INSTALL_OPTIONS="--x-buildtrees-root=C:/src" \
                 -D "NUGET_USERNAME=${GITHUB_ACTOR}" \

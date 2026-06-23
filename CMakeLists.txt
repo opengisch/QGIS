@@ -109,10 +109,11 @@ endif()
 
 # Configure CCache if available
 option(USE_CCACHE "Use ccache" ON)
+set(CCACHE_VARIANT "ccache" CACHE STRING "Which ccache variant to use (ccache/sccache)")
 if (USE_CCACHE)
-  find_program(CCACHE_EXE ccache)
+  find_program(CCACHE_EXE "${CCACHE_VARIANT}")
   if(CCACHE_EXE)
-    message(STATUS "ccache found")
+    message(STATUS "ccache found at ${CCACHE_EXE}")
 
     execute_process(COMMAND ${CCACHE_EXE} --help OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE CCACHE_HELP)
     execute_process(COMMAND ${CCACHE_EXE} --get-config sloppiness OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE CCACHE_SLOPPINESS)
