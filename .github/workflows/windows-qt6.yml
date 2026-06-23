@@ -81,9 +81,6 @@ jobs:
         env:
           X_VCPKG_ASSET_SOURCES: x-azurl,https://assetcache.open-vcpkg.org/assetcache,,read
         run: |
-          CCDIR="$(ccache -k cache_dir)"
-          printf 'cache_dir=<%s>\n' "$CCDIR"
-          du -hs "$CCDIR"
           BUILD_DIR=$( cygpath "${{ github.workspace }}/build" )
           SOURCE_DIR=$( cygpath "${{ github.workspace }}" )
 
@@ -122,11 +119,6 @@ jobs:
           CCACHE_CPP2: "yes"
         shell: bash
         run: |
-          CCACHE_DIR="$(ccache -k cache_dir)"
-          du -hs $CCACHE_DIR
-          echo "CCACHE_DIR=$CCACHE_DIR"
-          ccache --show-config
-          ccache --show-stats
           cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
 
       - name: Reproduce exact MSVC compile with /showIncludes after build
