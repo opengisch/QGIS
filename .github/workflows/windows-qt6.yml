@@ -60,6 +60,7 @@ jobs:
           key: build-ccache-win64-qt6-${{ github.event.pull_request.base.ref || github.ref_name }}
           save: ${{ github.event_name == 'push' }}
           append-timestamp: false
+          variant: sccache
 
       - name: 🛍️ Tune ccache configuration
         shell: bash
