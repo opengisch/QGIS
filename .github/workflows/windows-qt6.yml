@@ -121,54 +121,6 @@ jobs:
         run: |
           cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
 
-      - name: Reproduce exact MSVC compile with /showIncludes after build
-        if: always()
-        shell: pwsh
-        working-directory: C:\runner\_work\QGIS\QGIS\build
-        env:
-          CCACHE_DISABLE: "1"
-        run: |
-          $ErrorActionPreference = 'Stop'
-      
-          $cmd = ninja -t commands | Select-String 'qgslayoutitemgroupundocommand.cpp' | Select-Object -First 1 | ForEach-Object { $_.Line }
-      
-          if (-not $cmd) {
-            throw "Could not find ninja command for qgslayoutitemgroupundocommand.cpp"
-          }
-      
-          if ($cmd -match '(^| )ccache( |$)') {
-            $cmd = $cmd -replace '(^| )ccache( |$)', ' '
-          }
-      
-          if ($cmd -notmatch '(^| )/showIncludes( |$)') {
-            if ($cmd -match '(^| )-c( |$)') {
-              $cmd = $cmd -replace '(^| )-c( |$)', ' /showIncludes -c '
-            }
-            elseif ($cmd -match '(^| )/c( |$)') {
-              $cmd = $cmd -replace '(^| )/c( |$)', ' /showIncludes /c '
-            }
-            else {
-              $cmd = "$cmd /showIncludes"
-            }
-          }
-      
-          Write-Host "Running modified command:"
-          Write-Host $cmd
-          Write-Host ""
-      
-          $output = cmd /C $cmd 2>&1
-          $exitCode = $LASTEXITCODE
-      
-          Write-Host "Filtered output:"
-          $output |
-            Select-String 'including file|qgsconfig\.h|moc_qgslayoutitemgroupundocommand\.cpp|fatal error' |
-            ForEach-Object { $_.Line }
-      
-          Write-Host ""
-          Write-Host "Compiler exit code: $exitCode"
-      
-          exit 0
-
       - name: 📤 Upload ccache debug
 #        if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
