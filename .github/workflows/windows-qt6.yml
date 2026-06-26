@@ -23,8 +23,7 @@ jobs:
     runs-on: blacksmith-8vcpu-windows-2025
 
     env:
-      SCCACHE_LOG: debug
-      SCCACHE_LOGFILE: ${{ github.workspace }}/ccache.log
+      SCCACHE_GHA_ENABLED: "true"
 
     steps:
       - name: 🐣 Checkout
@@ -56,15 +55,9 @@ jobs:
           fileName: '*.zip'
           tag: 'v2.5.24'
           extract: true
-
-      - name: 🛍️ Setup ccache
-        uses: hendrikmuhs/ccache-action@v1.2.23
-        with:
-          max-size: 1G
-          key: build-ccache-win64-qt6-${{ github.event.pull_request.base.ref || github.ref_name }}
-          save: ${{ github.event_name == 'push' }}
-          append-timestamp: false
-          variant: sccache
+      
+      - name: 🛍️ sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.10
 
 #      - name: 🛍️ Tune ccache configuration
 #        shell: bash
@@ -119,17 +112,6 @@ jobs:
         run: |
           cmake --build "${{ github.workspace }}/build" --config Release --target qgis_core
 
-      - name: 📤 Upload ccache debug
-#        if: github.event_name == 'workflow_dispatch' || github.event_name == 'release'
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: ccache-debug
-          path: ${{ github.workspace }}/ccache.log
-
-
-#      - uses: m-kuhn/action-tmate@patch-1
-#        if: failure()
-
       - name: 📦 Package
         shell: bash
         run: |
@@ -179,7 +161,6 @@ jobs:
           archive: false
           path: |
             build/*-win64.zip
-
 
       - name: Schedule download comment
         uses: ./.github/actions/post_sticky_comment
