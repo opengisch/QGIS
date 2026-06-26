@@ -20,7 +20,7 @@ permissions:
 jobs:
   build:
     name: build (windows)
-    runs-on: blacksmith-8vcpu-windows-2025
+    runs-on: windows-2022
 
     env:
       SCCACHE_GHA_ENABLED: "true"
