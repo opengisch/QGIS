@@ -55,10 +55,12 @@ jobs:
           fileName: '*.zip'
           tag: 'v2.5.24'
           extract: true
-      
-      - name: 🛍️ sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.10
-
+          
+      - name: Install and setup sccache
+        uses: f3d-app/sccache-setup-action@v1
+        with:
+          key: MyKey-0
+          
 #      - name: 🛍️ Tune ccache configuration
 #        shell: bash
 #        run: |
