@@ -103,7 +103,7 @@ jobs:
                 -D BISON_EXECUTABLE="${SOURCE_DIR}/win_bison.exe" \
                 -D USE_CCACHE=ON \
                 -D CCACHE_VARIANT=sccache \
-                -D WITH_QTWEBENGINE=OFF \
+                -D WITH_QTWEBENGINE=ON \
                 -D VCPKG_INSTALL_OPTIONS="--x-buildtrees-root=C:/src" \
                 -D "NUGET_USERNAME=${GITHUB_ACTOR}" \
                 -D "NUGET_SOURCE=https://nuget.pkg.github.com/opengisch/index.json" \
