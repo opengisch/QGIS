@@ -20,16 +20,14 @@ jobs:
     strategy:
       matrix:
         include:
-#          - os: macos-15-intel
-#            triplet: x64-osx-dynamic-release
-#            deployment-target: "10.15"
-#            osx-architecture: "x86_64"
-          - os: blacksmith-6vcpu-macos-latest
-            triplet: arm64-osx-dynamic-release
+          - triplet: x64-osx-dynamic-release
+            deployment-target: "10.15"
+            osx-architecture: "x86_64"
+          - triplet: arm64-osx-dynamic-release
             deployment-target: "11.0"
             osx-architecture: "arm64"
     name: build (macos)
-    runs-on: ${{ matrix.os }}
+    runs-on: blacksmith-6vcpu-macos-latest
     env:
       FC: gfortran
       GCC_VERSION: 15
@@ -124,7 +122,7 @@ jobs:
                 -D WITH_SFCGAL=ON \
                 -D WITH_PROJ_DATA=ON \
                 -D VCPKG_TARGET_TRIPLET="${{ matrix.triplet }}" \
-                -D VCPKG_HOST_TRIPLET="${{ matrix.triplet }}" \
+                -D VCPKG_HOST_TRIPLET="arm64-osx-dynamic-release" \
                 -D VCPKG_INSTALL_OPTIONS="--only-binarycaching" \
                 -D CMAKE_OSX_DEPLOYMENT_TARGET=${{ matrix.deployment-target }} \
                 -D CMAKE_OSX_ARCHITECTURES=${{ matrix.osx-architecture }} \
