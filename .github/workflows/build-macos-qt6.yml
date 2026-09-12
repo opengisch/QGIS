@@ -20,14 +20,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - triplet: x64-osx-dynamic-release
-            deployment-target: "10.15"
-            osx-architecture: "x86_64"
+#          - triplet: x64-osx-dynamic-release
+#            deployment-target: "10.15"
+#            osx-architecture: "x86_64"
           - triplet: arm64-osx-dynamic-release
             deployment-target: "11.0"
             osx-architecture: "arm64"
     name: build (macos)
-    runs-on: blacksmith-6vcpu-macos-latest
+    runs-on: macos-15
     env:
       FC: gfortran
       GCC_VERSION: 15
