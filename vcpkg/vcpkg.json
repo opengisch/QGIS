@@ -324,7 +324,13 @@
     "qtwebengine": {
       "description": "Build with QtWebEngine support",
       "dependencies": [
-        "qtwebengine"
+        "qtwebengine",
+        {
+          "name": "py-pyqt6",
+          "features": [
+            "qtwebengine"
+          ]
+        }
       ]
     },
     "server": {
