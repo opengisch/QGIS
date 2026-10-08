@@ -122,7 +122,7 @@ jobs:
                 -D WITH_SFCGAL=ON \
                 -D WITH_PROJ_DATA=ON \
                 -D VCPKG_TARGET_TRIPLET="${{ matrix.triplet }}" \
-                -D VCPKG_HOST_TRIPLET="arm64-osx-dynamic-release" \
+                -D VCPKG_HOST_TRIPLET="${{ matrix.triplet }}" \
                 -D VCPKG_INSTALL_OPTIONS="--only-binarycaching" \
                 -D CMAKE_OSX_DEPLOYMENT_TARGET=${{ matrix.deployment-target }} \
                 -D CMAKE_OSX_ARCHITECTURES=${{ matrix.osx-architecture }} \
